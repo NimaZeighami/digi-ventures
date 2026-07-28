@@ -1,8 +1,38 @@
-@import '@fontsource-variable/vazirmatn';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  src: url('/assets/fonts/YEKAN BAKH FA-EN 04 REGULAR.TTF') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  src: url('/assets/fonts/YEKAN BAKH FA-EN 06 BOLD.TTF') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 @layer base {
   html {
@@ -14,6 +44,11 @@
     overflow-x: hidden;
   }
 
+  :lang(en),
+  [dir='ltr'] {
+    font-family: 'Gilroy', sans-serif;
+  }
+
   ::selection {
     @apply bg-brand-green/20 text-brand-darkText;
   }
@@ -22,6 +57,53 @@
 @layer components {
   .container-dv {
     @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Official artwork extracted from the supplied brand book. */
+  .brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    direction: ltr;
+  }
+
+  .brand-logo-mark,
+  .brand-logo-wordmark {
+    display: inline-block;
+    flex: none;
+    background-color: currentColor;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+  }
+
+  .brand-logo-mark {
+    width: 1.7rem;
+    height: 1.7rem;
+    color: #00B140;
+    -webkit-mask-image: url('/assets/images/digiventures-mark.png');
+    mask-image: url('/assets/images/digiventures-mark.png');
+  }
+
+  .brand-logo-wordmark {
+    width: 8.8rem;
+    height: 1.7rem;
+    color: #fff;
+    -webkit-mask-image: url('/assets/images/digiventures-wordmark.png');
+    mask-image: url('/assets/images/digiventures-wordmark.png');
+  }
+
+  .brand-logo--footer .brand-logo-mark {
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+
+  .brand-logo--footer .brand-logo-wordmark {
+    width: 7.5rem;
+    height: 1.45rem;
   }
 
   /* Buttons */
@@ -37,6 +119,28 @@
     @apply inline-flex items-center justify-center rounded-lg border border-brand-green px-6 py-3 text-sm font-semibold text-brand-green transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-green hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-green focus:ring-offset-2;
   }
 
+  .btn-login {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10 hover:text-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green focus:ring-offset-2 focus:ring-offset-brand-dark;
+  }
+
+  /* Shared desktop header geometry: page-specific content must never move the
+     logo, main navigation, or account actions. */
+  @media (min-width: 1280px) {
+    .site-header-brand,
+    .header-auth-actions {
+      flex: 0 0 12rem;
+    }
+
+    .header-primary-nav {
+      flex: 1 1 auto;
+      justify-content: center;
+    }
+
+    .header-auth-actions {
+      justify-content: flex-end;
+    }
+  }
+
   /* Cards */
   .card {
     @apply rounded-2xl border border-gray-100 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-green/20 hover:shadow-card-hover;
@@ -44,6 +148,35 @@
 
   .card-dark {
     @apply rounded-2xl border border-white/10 bg-brand-darkSection p-6 shadow-panel transition-all duration-300 hover:-translate-y-1 hover:border-brand-green/30;
+  }
+
+  .portfolio-logo-card {
+    @apply flex min-h-36 items-center justify-center rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-green/30 hover:shadow-card-hover;
+  }
+
+  .portfolio-logo-card span {
+    @apply text-2xl font-bold text-brand-darkText;
+  }
+
+  .faq-item {
+    @apply rounded-xl border border-gray-100 bg-brand-light px-6 py-5;
+  }
+
+  .faq-item summary {
+    @apply cursor-pointer font-semibold text-brand-darkText;
+  }
+
+  .faq-item p {
+    @apply mt-4 text-sm leading-relaxed text-brand-muted;
+  }
+
+  .site-footer a {
+    @apply text-sm text-white/60 transition-colors hover:text-brand-green;
+  }
+
+  /* The public investment thesis is intentionally limited to three focus areas. */
+  #investment-focus .card:nth-child(n + 4) {
+    display: none;
   }
 
   /* Form */
@@ -61,6 +194,69 @@
 
   .form-textarea {
     @apply w-full resize-y rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-brand-darkText transition-colors duration-200 placeholder:text-brand-muted focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/20;
+  }
+
+  /* Authentication */
+  .auth-shell {
+    @apply relative min-h-screen overflow-hidden bg-brand-dark px-4 py-8 sm:px-6 sm:py-12;
+  }
+
+  .auth-shell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(0, 177, 64, 0.16), transparent 27rem),
+      radial-gradient(circle at 85% 88%, rgba(0, 177, 64, 0.08), transparent 24rem);
+  }
+
+  .auth-panel {
+    @apply relative mx-auto grid w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-white shadow-panel lg:grid-cols-[0.9fr_1.1fr];
+  }
+
+  .auth-aside {
+    @apply relative hidden min-h-[600px] overflow-hidden bg-brand-darkSection p-10 text-white lg:flex lg:flex-col lg:justify-between;
+  }
+
+  .auth-aside::after {
+    content: '';
+    position: absolute;
+    width: 26rem;
+    height: 26rem;
+    left: -9rem;
+    bottom: -12rem;
+    background: #00B140;
+    opacity: 0.13;
+    -webkit-mask: url('/assets/images/digiventures-mark.png') center / contain no-repeat;
+    mask: url('/assets/images/digiventures-mark.png') center / contain no-repeat;
+  }
+
+  .auth-content {
+    @apply relative flex min-h-[600px] flex-col px-6 py-7 sm:px-10 sm:py-10;
+  }
+
+  .auth-input-wrap {
+    @apply relative;
+  }
+
+  .auth-password-toggle {
+    @apply absolute left-3 top-1/2 -translate-y-1/2 rounded-md px-2 py-1 text-xs font-medium text-brand-muted transition-colors hover:text-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/20;
+  }
+
+  .auth-feedback {
+    @apply hidden rounded-xl border px-4 py-3 text-sm leading-relaxed;
+  }
+
+  .auth-feedback.is-visible {
+    @apply block;
+  }
+
+  .auth-feedback.is-error {
+    @apply border-red-200 bg-red-50 text-red-800;
+  }
+
+  .auth-feedback.is-success {
+    @apply border-brand-green/25 bg-brand-green/10 text-brand-darkText;
   }
 
   /* Section headings */
@@ -119,8 +315,23 @@
 
   /* Triangular pattern */
   .tri-pattern {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 L55 50 L5 50 Z' fill='none' stroke='%2300B140' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E");
-    background-size: 60px 60px;
+    overflow: hidden;
+  }
+
+  .tri-pattern::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: #00B140;
+    opacity: 0.08;
+    -webkit-mask-image: url('/assets/images/digiventures-mark.png');
+    mask-image: url('/assets/images/digiventures-mark.png');
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+    -webkit-mask-repeat: repeat;
+    mask-repeat: repeat;
+    -webkit-mask-size: 72px 72px;
+    mask-size: 72px 72px;
   }
 
   /* Reveal animation */
@@ -137,11 +348,32 @@
 
   /* Process step */
   .process-step {
-    @apply relative flex flex-col items-center text-center;
+    @apply relative flex min-h-44 flex-col items-center justify-start rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-card;
   }
 
   .process-number {
     @apply mb-4 flex h-12 w-12 items-center justify-center rounded-full border-2 border-brand-green bg-brand-green/10 text-lg font-bold text-brand-green;
+  }
+
+  .process-grid {
+    @apply relative gap-5;
+  }
+
+  @media (min-width: 1024px) {
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 3rem;
+      right: 10%;
+      left: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 177, 64, 0.45), transparent);
+    }
+
+    .process-grid .process-number {
+      position: relative;
+      z-index: 1;
+    }
   }
 
   /* Startup showcase card */
@@ -249,10 +481,10 @@
      block for fixed descendants. We therefore set an explicit height instead of
      anchoring with bottom/inset (which would collapse to the header height). */
   .mobile-menu {
-    @apply fixed left-0 right-0 top-[72px] z-40 overflow-y-auto transition-opacity duration-300 lg:hidden;
+    @apply fixed left-0 right-0 top-[72px] z-40 overflow-y-auto transition-opacity duration-300 xl:hidden;
     height: calc(100vh - 72px);
     height: calc(100dvh - 72px);
-    background-color: #050807;
+    background-color: #10171F;
   }
 
   .mobile-menu-hidden {

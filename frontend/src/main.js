@@ -233,6 +233,115 @@ import './styles.css';
     }
   }
 
+  /* ── Investment request form validation ── */
+  function initInvestmentForm() {
+    const form = document.getElementById('investment-request-form');
+    const pitchDeck = document.getElementById('pitch_deck');
+    if (!form || !pitchDeck) return;
+
+    const allowedTypes = [
+      'application/pdf',
+      'application/vnd.ms-powerpoint',
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+    ];
+    const allowedExtensions = ['pdf', 'ppt', 'pptx'];
+    const maxSize = 20 * 1024 * 1024;
+
+    function validatePitchDeck() {
+      const file = pitchDeck.files && pitchDeck.files[0];
+      pitchDeck.setCustomValidity('');
+      if (!file) return;
+
+      const extension = file.name.split('.').pop().toLowerCase();
+      if (!allowedExtensions.includes(extension) || (file.type && !allowedTypes.includes(file.type))) {
+        pitchDeck.setCustomValidity('فقط فایل‌های PDF، PPT و PPTX قابل بارگذاری هستند.');
+      } else if (file.size > maxSize) {
+        pitchDeck.setCustomValidity('حجم فایل باید حداکثر ۲۰ مگابایت باشد.');
+      }
+    }
+
+    pitchDeck.addEventListener('change', validatePitchDeck);
+    form.addEventListener('submit', validatePitchDeck);
+  }
+
+  /* ── Authentication forms ──
+     The static frontend is wired to conventional API routes. The receiving
+     application must implement these routes and the email provider. */
+  function initAuthForms() {
+    document.querySelectorAll('[data-password-toggle]').forEach(function (button) {
+      const input = document.getElementById(button.getAttribute('data-password-toggle'));
+      if (!input) return;
+
+      button.addEventListener('click', function () {
+        const isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+        button.textContent = isPassword ? 'پنهان' : 'نمایش';
+        button.setAttribute('aria-label', isPassword ? 'پنهان کردن گذرواژه' : 'نمایش گذرواژه');
+      });
+    });
+
+    document.querySelectorAll('[data-auth-form]').forEach(function (form) {
+      const feedback = form.querySelector('[data-auth-feedback]');
+      const submit = form.querySelector('[type="submit"]');
+      const password = form.querySelector('[data-password]');
+      const confirmation = form.querySelector('[data-password-confirmation]');
+
+      function showFeedback(message, type) {
+        if (!feedback) return;
+        feedback.textContent = message;
+        feedback.className = 'auth-feedback is-visible ' + (type === 'success' ? 'is-success' : 'is-error');
+        feedback.focus();
+      }
+
+      if (password && confirmation) {
+        function validateConfirmation() {
+          confirmation.setCustomValidity(
+            confirmation.value && confirmation.value !== password.value ? 'گذرواژه‌ها با هم یکسان نیستند.' : ''
+          );
+        }
+        password.addEventListener('input', validateConfirmation);
+        confirmation.addEventListener('input', validateConfirmation);
+      }
+
+      form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const endpoint = form.getAttribute('data-endpoint');
+        if (!endpoint) return;
+        const originalLabel = submit ? submit.textContent : '';
+        if (submit) {
+          submit.disabled = true;
+          submit.textContent = 'در حال ارسال…';
+        }
+
+        const values = Object.fromEntries(new FormData(form).entries());
+        try {
+          const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify(values),
+          });
+          const payload = await response.json().catch(function () { return {}; });
+          if (!response.ok) throw new Error(payload.message || 'امکان انجام درخواست وجود ندارد.');
+          showFeedback(payload.message || form.getAttribute('data-success-message') || 'درخواست شما با موفقیت ثبت شد.', 'success');
+          if (payload.redirect) window.location.assign(payload.redirect);
+        } catch (error) {
+          showFeedback(error.message || 'ارتباط با سرویس احراز هویت برقرار نشد. لطفاً دوباره تلاش کنید.', 'error');
+        } finally {
+          if (submit) {
+            submit.disabled = false;
+            submit.textContent = originalLabel;
+          }
+        }
+      });
+    });
+  }
+
   /* ── Init ── */
   document.addEventListener('DOMContentLoaded', function () {
     initMobileMenu();
@@ -240,5 +349,7 @@ import './styles.css';
     initCounters();
     initSliders();
     initHeroAnimation();
+    initInvestmentForm();
+    initAuthForms();
   });
 })();

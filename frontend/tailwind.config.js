@@ -3,21 +3,24 @@ export default {
   content: [
     './*.html',
     './src/**/*.{js,css}',
+    '../wordpress-theme/digiventures-theme/**/*.php',
+    '../wordpress-plugin/digiventures-core/**/*.php',
   ],
   theme: {
     extend: {
       colors: {
         brand: {
           green: '#00B140',
-          dark: '#050807',
-          darkSection: '#0B1110',
-          light: '#F5F7F5',
+          dark: '#10171F',
+          darkSection: '#18212B',
+          light: '#F7F7F7',
           darkText: '#101413',
           muted: '#6B7280',
         },
       },
       fontFamily: {
-        sans: ['Vazirmatn Variable', 'Vazirmatn', 'Tahoma', 'sans-serif'],
+        sans: ['Yekan Bakh', 'Tahoma', 'sans-serif'],
+        brand: ['Gilroy', 'sans-serif'],
       },
       boxShadow: {
         card: '0 4px 24px rgba(0, 0, 0, 0.06)',

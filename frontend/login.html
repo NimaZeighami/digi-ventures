@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ورود به حساب کاربری دیجی‌ونچرز" />
+  <link rel="icon" type="image/png" href="/assets/images/digiventures-favicon.png" />
+  <title>ورود | دیجی‌ونچرز</title>
+</head>
+<body>
+  <main class="auth-shell flex items-center justify-center">
+    <section class="auth-panel" aria-labelledby="login-title">
+      <aside class="auth-aside">
+        <a href="/" class="brand-logo relative z-10 self-start" aria-label="صفحه اصلی دیجی‌ونچرز"><span class="brand-logo-mark" aria-hidden="true"></span><span class="brand-logo-wordmark" aria-hidden="true"></span></a>
+        <div class="relative z-10"><span class="section-label">حساب کاربری</span><h1 class="mt-3 text-4xl font-bold leading-tight">همراه آینده‌سازان باشید.</h1><p class="mt-5 max-w-sm leading-relaxed text-white/65">حساب کاربری شما راهی امن برای پیگیری درخواست‌های سرمایه‌گذاری و ارتباط با تیم دیجی‌ونچرز است.</p></div>
+        <p class="relative z-10 text-sm text-white/45">سرمایه‌گذاری بر آینده کسب‌وکارها.</p>
+      </aside>
+      <div class="auth-content">
+        <div class="flex items-center justify-between"><a href="/" class="text-sm text-brand-muted transition-colors hover:text-brand-green">بازگشت به سایت</a><a href="/" class="brand-logo lg:hidden" aria-label="صفحه اصلی دیجی‌ونچرز"><span class="brand-logo-mark" aria-hidden="true"></span><span class="brand-logo-wordmark !text-brand-dark" aria-hidden="true"></span></a></div>
+        <div class="mx-auto flex w-full max-w-md flex-1 flex-col justify-center py-10"><span class="section-label">خوش آمدید</span><h1 id="login-title" class="text-3xl font-bold text-brand-darkText">ورود به حساب کاربری</h1><p class="mt-3 leading-relaxed text-brand-muted">ایمیل و گذرواژه خود را وارد کنید.</p>
+          <form class="mt-8 space-y-5" data-auth-form data-endpoint="/api/auth/login" data-success-message="ورود شما با موفقیت انجام شد.">
+            <div><label class="form-label" for="login-email">ایمیل</label><input class="form-input" id="login-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="name@example.com" required /></div>
+            <div><div class="mb-2 flex items-center justify-between"><label class="form-label !mb-0" for="login-password">گذرواژه</label><a class="text-xs font-medium text-brand-green hover:text-brand-dark" href="/forgot-password.html">گذرواژه را فراموش کرده‌اید؟</a></div><div class="auth-input-wrap"><input class="form-input pl-20" id="login-password" name="password" type="password" autocomplete="current-password" minlength="8" required /><button class="auth-password-toggle" type="button" data-password-toggle="login-password" aria-label="نمایش گذرواژه">نمایش</button></div></div>
+            <div class="auth-feedback" data-auth-feedback role="status" aria-live="polite" tabindex="-1"></div><button class="btn-primary w-full" type="submit">ورود</button>
+          </form>
+          <p class="mt-7 text-center text-sm text-brand-muted">حساب کاربری ندارید؟ <a class="font-semibold text-brand-green hover:text-brand-dark" href="/signup.html">ثبت‌نام کنید</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

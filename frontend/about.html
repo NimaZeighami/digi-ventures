@@ -4,32 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="درباره دیجی‌ونچرز — سرمایه‌گذاری شرکتی در اکوسیستم دیجیتال" />
-  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link rel="icon" type="image/png" href="/assets/images/digiventures-favicon.png" />
   <title>درباره ما | دیجی‌ونچرز</title>
 </head>
 <body>
 
   <!-- section: header -->
   <header class="fixed top-0 z-50 w-full border-b border-white/10 bg-brand-dark/95 backdrop-blur-md">
-    <div class="container-dv flex h-[72px] items-center justify-between">
-      <a href="/" class="flex items-center gap-2 text-xl font-bold text-white">
-        <svg class="h-8 w-8" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <path d="M16 4L28 26H4L16 4Z" fill="#00B140"/>
-          <path d="M16 10L22 22H10L16 10Z" fill="#050807"/>
-        </svg>
-        <span>DigiVentures</span>
+    <div class="site-header-inner container-dv flex h-[72px] items-center justify-between">
+      <a href="/" class="site-header-brand brand-logo" aria-label="Digiventures">
+        <span class="brand-logo-mark" aria-hidden="true"></span>
+        <span class="brand-logo-wordmark" aria-hidden="true"></span>
       </a>
-      <nav class="hidden items-center gap-8 lg:flex" aria-label="منوی اصلی">
+      <nav class="header-primary-nav hidden items-center gap-6 xl:flex" aria-label="منوی اصلی">
         <a href="/" class="nav-link">خانه</a>
+        <a href="/portfolio.html" class="nav-link">پورتفولیو</a>
         <a href="/about.html" class="nav-link nav-link-active">درباره ما</a>
         <a href="/team.html" class="nav-link">تیم</a>
-        <a href="/contact.html" class="nav-link">تماس</a>
+        <a href="/contact.html" class="nav-link">ارتباط با ما</a>
+        <a href="/news.html" class="nav-link">تازه‌ها</a>
         <a href="/investment-request.html" class="nav-link">درخواست سرمایه‌گذاری</a>
       </nav>
-      <div class="hidden lg:block">
-        <a href="/investment-request.html" class="btn-primary text-sm">ثبت درخواست سرمایه‌گذاری</a>
+      <div class="header-auth-actions hidden items-center gap-3 xl:flex">
+        <a href="/login.html" class="btn-login"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6A2.25 2.25 0 0 0 5.25 5.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M18.75 12H9m9.75 0-3-3m3 3-3 3"/></svg>ورود</a>
+        <a href="/signup.html" class="btn-primary !px-4 !py-2.5">ثبت‌نام</a>
       </div>
-      <button id="mobile-menu-toggle" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg text-white lg:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="باز کردن منو">
+      <button id="mobile-menu-toggle" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg text-white xl:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="باز کردن منو">
         <svg id="icon-menu-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         <svg id="icon-menu-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
@@ -37,11 +37,13 @@
     <nav id="mobile-menu" class="mobile-menu mobile-menu-hidden" aria-label="منوی موبایل" aria-hidden="true">
       <div class="container-dv flex flex-col gap-1 py-6">
         <a href="/" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">خانه</a>
+        <a href="/portfolio.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">پورتفولیو</a>
         <a href="/about.html" class="rounded-lg px-4 py-3 text-base font-medium text-brand-green">درباره ما</a>
         <a href="/team.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">تیم</a>
         <a href="/contact.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">تماس</a>
+        <a href="/news.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">تازه‌ها</a>
         <a href="/investment-request.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">درخواست سرمایه‌گذاری</a>
-        <div class="mt-4 px-4"><a href="/investment-request.html" class="btn-primary w-full text-center">ثبت درخواست سرمایه‌گذاری</a></div>
+        <a href="/login.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">ورود به حساب</a>
       </div>
     </nav>
   </header>
@@ -54,9 +56,9 @@
       <div class="hero-accent-line" aria-hidden="true"></div>
       <div class="container-dv relative z-10 text-center">
         <span class="section-label">درباره دیجی‌ونچرز</span>
-        <h1 class="mt-3 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">شریک استراتژیک رشد استارتاپ‌ها</h1>
+        <h1 class="mt-3 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">هم‌قدم با بنیان‌گذارانی که آینده‌سازند.</h1>
         <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/70">
-          دیجی‌ونچرز واحد سرمایه‌گذاری شرکتی (CVC) اکوسیستم دیجیتال است که با رویکردی مسئولانه و استراتژیک، در استارتاپ‌های نوآور سرمایه‌گذاری می‌کند.
+          دیجی‌ونچرز صندوق پژوهش و فناوری سرمایه‌گذاری خطرپذیر شرکتی (CVC) گروه دیجی‌کالاست که با مشارکت دیجی‌کالا و دیجی‌پی و با مدیریت اجرایی دیجی‌نکست فعالیت می‌کند.
         </p>
       </div>
     </section>
@@ -66,13 +68,16 @@
       <div class="container-dv">
         <div class="grid items-center gap-12 lg:grid-cols-2">
           <div class="reveal">
-            <span class="section-label">مأموریت</span>
-            <h2 class="section-title">مأموریت ما</h2>
+            <span class="section-label">درباره ما</span>
+            <h2 class="section-title">در کنار ساختن آینده</h2>
             <p class="section-desc">
-              شناسایی، حمایت و توانمندسازی استارتاپ‌هایی که با نوآوری فناورانه، تحول پایدار در اقتصاد دیجیتال ایران ایجاد می‌کنند.
+              ما با سرمایه‌گذاری در استارتاپ‌های نوآور و ایجاد دسترسی به ظرفیت‌های عملیاتی، تخصصی و تجاری گروه دیجی‌کالا، با بنیان‌گذارانی هم‌قدم می‌شویم که در حال ساختن آینده تجارت، خدمات مالی و فناوری هستند.
             </p>
             <p class="mt-4 text-base leading-relaxed text-brand-muted">
-              ما معتقدیم سرمایه‌گذاری موفق، فراتر از تأمین مالی است. دیجی‌ونچرز با بهره‌گیری از تجربه عملیاتی، شبکه ارتباطی و زیرساخت‌های اکوسیستم دیجیتال، به استارتاپ‌های منتخب کمک می‌کند تا مسیر رشد خود را با اطمینان طی کنند.
+              ما با تکیه بر تجربه و ظرفیت‌های گروه دیجی‌کالا شکل گرفته‌ایم؛ اکوسیستمی که طی سال‌ها در حوزه‌هایی مانند تجارت الکترونیک، پرداخت، فناوری، لجستیک و نوآوری فعالیت کرده و با میلیون‌ها کاربر و هزاران کسب‌وکار در ارتباط است.
+            </p>
+            <p class="mt-4 text-base leading-relaxed text-brand-muted">
+              اما ارزش این ارتباط فقط در سرمایه خلاصه نمی‌شود. ما تلاش می‌کنیم برای تیم‌های پورتفولیو، دسترسی به فرصت‌هایی فراهم کنیم که می‌تواند به آن‌ها در توسعه محصول، شناخت بازار، ایجاد همکاری‌های استراتژیک و رشد کسب‌وکار کمک کند.
             </p>
           </div>
           <div class="reveal rounded-2xl border border-gray-100 bg-brand-light p-8">
@@ -175,6 +180,18 @@
       </div>
     </section>
 
+    <section class="bg-white py-20 lg:py-28" id="investment-strategy">
+      <div class="container-dv"><div class="reveal mb-12 text-center"><span class="section-label">استراتژی سرمایه‌گذاری ما</span><h2 class="section-title">سرمایه‌گذاری بر کسب‌وکارهای آینده‌ساز</h2><p class="section-desc mx-auto">استراتژی ما بر سرمایه‌گذاری در حوزه‌هایی متمرکز است که با زنجیره ارزش گروه دیجی‌کالا ارتباط دارند و در حال تغییر شکل اقتصاد دیجیتال هستند.</p></div>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"><article class="card reveal"><h3 class="font-semibold text-brand-darkText">تجارت الکترونیک</h3><p class="mt-2 text-sm leading-relaxed text-brand-muted">استارتاپ‌هایی که شیوه خرید، فروش و تعامل کسب‌وکارها با مشتریان را تغییر می‌دهند؛ از راهکارهای خرده‌فروشی و مارکت‌پلیس تا تجربه مشتری، زیرساخت‌های تجارت دیجیتال و فناوری‌های مرتبط با زنجیره تأمین.</p></article><article class="card reveal"><h3 class="font-semibold text-brand-darkText">فین‌تک</h3><p class="mt-2 text-sm leading-relaxed text-brand-muted">کسب‌وکارهایی که در حال ساخت نسل جدید خدمات مالی هستند؛ از پرداخت و اعتبار تا زیرساخت‌های مالی و راهکارهای دیجیتالی که خدمات مالی را ساده‌تر، هوشمندتر و در دسترس‌تر می‌کنند.</p></article><article class="card reveal"><h3 class="font-semibold text-brand-darkText">کسب‌وکارهای پلتفرمی</h3><p class="mt-2 text-sm leading-relaxed text-brand-muted">پلتفرم‌هایی که افراد، کسب‌وکارها و خدمات را به شکل‌های جدیدی به یکدیگر متصل می‌کنند و امکان ایجاد بازارهای جدید را به وجود می‌آورند.</p></article><article class="card reveal"><h3 class="font-semibold text-brand-darkText">زنجیره تأمین</h3><p class="mt-2 text-sm leading-relaxed text-brand-muted">راهکارهایی که به بهبود، هوشمندسازی و تحول زنجیره تأمین، لجستیک و عملیات کمک می‌کنند.</p></article><article class="card reveal"><h3 class="font-semibold text-brand-darkText">هوش مصنوعی</h3><p class="mt-2 text-sm leading-relaxed text-brand-muted">تیم‌هایی که از هوش مصنوعی برای حل مسائل واقعی و ساخت محصولات و کسب‌وکارهای جدید استفاده می‌کنند؛ به‌ویژه در تقاطع هوش مصنوعی با تجارت، خدمات مالی و عملیات.</p></article></div>
+      </div>
+    </section>
+
+    <section class="bg-brand-light py-20 lg:py-28"><div class="container-dv"><div class="grid gap-12 lg:grid-cols-2"><div class="reveal"><span class="section-label">سرمایه‌گذاری برای رشد</span><h2 class="section-title">در مراحل مختلف رشد کنار استارتاپ‌ها هستیم</h2><p class="section-desc">ما در مراحل مختلف رشد در کنار استارتاپ‌ها قرار می‌گیریم؛ از تیم‌هایی که به مرحله early stage رسیده‌اند تا کسب‌وکارهای بالغ‌تری که در مسیر رشد و مقیاس‌پذیری قرار دارند.</p></div><div class="reveal"><span class="section-label">ارزش‌های ما</span><div class="space-y-4"><div class="card"><h3 class="font-semibold text-brand-darkText">همراهی بلندمدت</h3><p class="mt-2 text-sm text-brand-muted">ما به دنبال ساختن رابطه‌هایی بلندمدت با بنیان‌گذاران هستیم و موفقیت خودمان را در موفقیت کسب‌وکارهایی می‌بینیم که در آن‌ها سرمایه‌گذاری کرده‌ایم.</p></div><div class="card"><h3 class="font-semibold text-brand-darkText">ارزش واقعی</h3><p class="mt-2 text-sm text-brand-muted">ما به دنبال فرصت‌هایی هستیم که بتوانیم فراتر از سرمایه مالی، ارزش واقعی و عملیاتی ایجاد کنیم.</p></div><div class="card"><h3 class="font-semibold text-brand-darkText">اعتماد و شفافیت</h3><p class="mt-2 text-sm text-brand-muted">ساختن یک کسب‌وکار بزرگ به اعتماد نیاز دارد. ما تلاش می‌کنیم شریکی شفاف، قابل اتکا و همراه برای بنیان‌گذاران باشیم.</p></div><div class="card"><h3 class="font-semibold text-brand-darkText">ساختن، نه فقط سرمایه‌گذاری</h3><p class="mt-2 text-sm text-brand-muted">ما به بنیان‌گذارانی باور داریم که در حال حل مسائل واقعی هستند. نقش ما فقط تأمین سرمایه نیست؛ بلکه کمک به ساختن و رشد کسب‌وکارهای بزرگ و ماندگار است.</p></div></div></div></div></div></section>
+
+    <section class="bg-brand-darkSection py-20 lg:py-28"><div class="container-dv"><div class="reveal mb-12 text-center"><span class="section-label">ساختار دیجی‌ونچرز</span><h2 class="section-title text-white">سه مجموعه، یک بازوی سرمایه‌گذاری</h2></div><div class="grid gap-6 md:grid-cols-3"><article class="card-dark reveal"><h3 class="text-lg font-semibold text-white">دیجی‌کالا</h3><p class="mt-3 text-sm leading-relaxed text-white/60">ظرفیت‌های تجارت الکترونیک، بازار، مشتریان، فناوری و زیرساخت‌های عملیاتی.</p></article><article class="card-dark reveal"><h3 class="text-lg font-semibold text-white">دیجی‌پی</h3><p class="mt-3 text-sm leading-relaxed text-white/60">تجربه و تخصص در حوزه پرداخت، خدمات مالی و فین‌تک.</p></article><article class="card-dark reveal"><h3 class="text-lg font-semibold text-white">دیجی‌نکست</h3><p class="mt-3 text-sm leading-relaxed text-white/60">تجربه در سرمایه‌گذاری، شتاب‌دهی و همکاری با استارتاپ‌ها و مدیریت اجرایی دیجی‌ونچرز.</p></article></div><p class="mt-10 text-center text-sm text-white/50">این بخش بعد از نهایی‌شدن داده‌ها تکمیل می‌شود.</p><div class="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4"><div class="rounded-xl border border-white/10 p-5 text-center"><p class="text-2xl font-bold text-brand-green">[عدد]+</p><p class="mt-2 text-sm text-white/60">سرمایه‌گذاری</p></div><div class="rounded-xl border border-white/10 p-5 text-center"><p class="text-2xl font-bold text-brand-green">[عدد]+</p><p class="mt-2 text-sm text-white/60">شرکت‌های پورتفولیو</p></div><div class="rounded-xl border border-white/10 p-5 text-center"><p class="text-2xl font-bold text-brand-green">[عدد]</p><p class="mt-2 text-sm text-white/60">حوزه سرمایه‌گذاری</p></div><div class="rounded-xl border border-white/10 p-5 text-center"><p class="text-2xl font-bold text-brand-green">[سال]</p><p class="mt-2 text-sm text-white/60">سال آغاز فعالیت</p></div></div></div></section>
+
+    <section class="bg-white py-20 lg:py-28" id="faq"><div class="container-dv max-w-4xl"><div class="reveal mb-12 text-center"><span class="section-label">سوالات متداول</span><h2 class="section-title">آنچه بنیان‌گذاران می‌پرسند</h2></div><div class="space-y-4"><details class="faq-item reveal"><summary>دیجی‌ونچرز چیست؟</summary><p>دیجی‌ونچرز صندوق پژوهش و فناوری سرمایه‌گذاری خطرپذیر شرکتی گروه دیجی‌کالاست که با مشارکت دیجی‌کالا و دیجی‌پی و با مدیریت اجرایی دیجی‌نکست فعالیت می‌کند.</p></details><details class="faq-item reveal"><summary>در چه حوزه‌هایی سرمایه‌گذاری می‌کنید؟</summary><p>تمرکز ما بر حوزه‌هایی مانند تجارت الکترونیک، فین‌تک، کسب‌وکارهای پلتفرمی، زنجیره تأمین و هوش مصنوعی است.</p></details><details class="faq-item reveal"><summary>در چه مرحله‌ای سرمایه‌گذاری می‌کنید؟</summary><p>دیجی‌ونچرز در استارتاپ‌های مرحله Seed به بالا سرمایه‌گذاری می‌کند و بسته به مرحله و نیاز کسب‌وکار، امکان همراهی در مراحل بعدی رشد نیز وجود دارد.</p></details><details class="faq-item reveal"><summary>استارتاپ من در مرحله اولیه قرار دارد، امکان جذب سرمایه دارم؟</summary><p>دیجی‌نکست به‌عنوان بازوی نوآوری و سرمایه‌گذاری گروه دیجی‌کالا، بر حمایت از تیم‌ها و استارتاپ‌های مراحل اولیه تمرکز دارد. دیجی‌ونچرز با چک‌سایز بالاتر و تمرکز بر استارتاپ‌های Seed به بالا، برای همراهی با کسب‌وکارهایی طراحی شده است که در مسیر رشد و مقیاس‌پذیری قرار دارند.</p></details><details class="faq-item reveal"><summary>آیا علاوه بر سرمایه‌گذاری، در سایر موارد نیز از استارتاپ‌ها حمایت می‌کنید؟</summary><p>بله. هدف ما ایجاد ارزش افزوده عملیاتی است. بسته به نیاز و فرصت همکاری، این ارزش می‌تواند از طریق دسترسی به تخصص، بازار، شبکه، زیرساخت‌ها و ظرفیت‌های گروه دیجی‌کالا ایجاد شود.</p></details><details class="faq-item reveal"><summary>چگونه می‌توانم برای جذب سرمایه درخواست بدهم؟</summary><p>از طریق فرم درخواست سرمایه‌گذاری، اطلاعات کسب‌وکار و Pitch Deck خود را برای ما ارسال کنید. تیم سرمایه‌گذاری پس از بررسی اولیه، در صورت تطابق با معیارهای سرمایه‌گذاری با شما تماس خواهد گرفت.</p></details></div></div></section>
+
   </main>
 
   <!-- section: footer -->
@@ -182,11 +199,11 @@
     <div class="container-dv">
       <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
         <div class="lg:col-span-2">
-          <a href="/" class="flex items-center gap-2 text-lg font-bold text-white">
-            <svg class="h-7 w-7" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 4L28 26H4L16 4Z" fill="#00B140"/><path d="M16 10L22 22H10L16 10Z" fill="#050807"/></svg>
-            <span>DigiVentures</span>
+          <a href="/" class="brand-logo brand-logo--footer" aria-label="Digiventures">
+            <span class="brand-logo-mark" aria-hidden="true"></span>
+            <span class="brand-logo-wordmark" aria-hidden="true"></span>
           </a>
-          <p class="mt-4 max-w-sm text-sm leading-relaxed text-white/60">دیجی‌ونچرز، واحد سرمایه‌گذاری شرکتی متعلق به اکوسیستم دیجیتال، با تمرکز بر حمایت از استارتاپ‌های نوآور در حوزه اقتصاد دیجیتال.</p>
+          <p class="mt-4 max-w-sm text-sm leading-relaxed text-white/60">سرمایه‌گذاری بر آینده کسب‌وکارها.</p>
         </div>
         <div>
           <h3 class="mb-4 text-sm font-semibold text-white">دسترسی سریع</h3>
