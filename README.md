@@ -26,6 +26,7 @@ Create pages and place these shortcodes:
 | `my-requests` | `[dv_customer_dashboard]` |
 | `request-management` | `[dv_request_management]` |
 | `request-user-management` | `[dv_request_user_management]` |
+| `login` | `[dv_login]` |
 
 Use WordPress’s standard Login and Lost Password URLs. Configure application copy under **DigiVentures → Settings**. Production password-reset and notification mail require a correctly configured WordPress mail/SMTP provider.
 
@@ -38,10 +39,59 @@ cd frontend && npm run build:theme
 find wordpress-theme wordpress-plugin -name '*.php' -print0 | xargs -0 -n1 php -l
 ```
 
-## Deployment and verification
+## Deployment
 
-Build assets before deploying, activate the plugin before assigning application users, and set the intended front page in WordPress Reading settings. Verify customer ownership, request transitions, role-management restrictions, password reset links, mail delivery, and responsive rendering using the checklist in `PLAN.md`.
+```bash
+cd frontend && npm run build:theme
+```
 
-## Documentation cleanup
+Copy `wordpress-theme/digiventures-theme` to `wp-content/themes/` and `wordpress-plugin/digiventures-core` to `wp-content/plugins/`. Activate both from WordPress admin. Set the front page in Reading Settings. Create pages per the shortcode table above.
 
-Removed `CURRENT-TASK.md`, the old static-only `PLAN.md`, and `PRROJECT-RULES.md`: each conflicted with the current WordPress application requirements and was unreferenced. The stale `wordpress-theme/digiventures.zip` archive (including macOS metadata) and ignored `frontend/dist` output were moved to Trash; the source theme was retained and renamed to `digiventures-theme`.
+## Manual verification matrix
+
+Run these tests after deployment on a fresh WordPress instance.
+
+### Access control
+
+| Test | Steps | Expected |
+|---|---|---|
+| Unauthenticated form | Visit `/investment-request` | Sees login prompt, not the form |
+| Unauthenticated POST | Submit `admin-post.php` directly with `action=dv_core_submit_request` | 403 die or redirect |
+| Nonce rejection | Log in as customer, tamper `dv_core_nonce` value on form submit | Action rejected, error notice |
+| Wrong capability | Log in as subscriber (no role), visit shortcode pages | Sees "forbidden" message |
+| Ownership isolation | User A creates a request; User B visits `/?request_id=N` | Sees forbidden (not User A's request) |
+| Edit past submission | Customer edits a request after admin set it to `under_review` | Forbidden (only `draft`/`needs_revision` editable) |
+| Protected admin | Manager promotes a native `administrator` user | Error; `manage_options` users are protected |
+
+### Request workflow
+
+| Test | Steps | Expected |
+|---|---|---|
+| Customer submission | Fill form, upload PDF pitch deck, submit | Request created, status `submitted`, redirect with success notice |
+| Customer dashboard | Visit `/my-requests` | Lists only own requests with correct status labels |
+| Request admin review | Log in as request admin, visit `/request-management` | Sees all requests, can filter by status |
+| Status transition | Admin sets request to `accepted` with a message | Status changes, customer-visible message saved |
+| Email notification | Admin decision on a request with valid email | `wp_mail` called (check mail log) |
+| Pitch deck download | Admin clicks Pitch Deck link in management view | PDF/PPT downloads correctly |
+
+### Role management
+
+| Test | Steps | Expected |
+|---|---|---|
+| Manager promotes user | Manager promotes a customer to request admin | User gains `request_admin` role |
+| Manager demotes user | Manager demotes a request admin back to customer | User loses `request_admin` role |
+| Non-manager access | Request admin visits `/request-user-management` | Sees forbidden (no `dv_manage_request_users`) |
+
+### Authentication
+
+| Test | Steps | Expected |
+|---|---|---|
+| Login page | Visit login shortcode page | WP login form rendered with custom title/description |
+| Password reset | Click "Forgot password" link | Redirects to core `wp-login.php?action=lostpassword` |
+
+### Responsive
+
+| Test | Steps | Expected |
+|---|---|---|
+| Mobile nav | Resize viewport < 1280px | Hamburger menu visible, desktop nav hidden |
+| Form on mobile | Submit request on small screen | Layout stacks vertically, no overflow |

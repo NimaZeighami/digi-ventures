@@ -37,7 +37,8 @@ Dependencies: Phase 2 for presentation, WordPress runtime for end-to-end testing
 Objective: verify security, complete docs, and prepare deployment.
 
 - [x] Code-level hardening audit: nonces, capabilities, ownership, sanitization, escaping, uploads, status transitions — zero findings.
-- [ ] Runtime verification: activate on a WordPress instance and exercise the manual test matrix (nonce rejection, ownership bypass, protected-admin denial, password-reset links, responsive layouts).
-- [ ] Finalize README, architecture decisions, and deployment instructions.
+- [x] Document the manual verification matrix in README (15 test cases across access control, workflow, role management, auth, responsive).
+- [ ] Runtime run: execute the README verification matrix on a WordPress instance and fix any failures.
+- [ ] Finalize architecture decisions and deployment instructions.
 
 Completion criteria: all required roles and workflows work through WordPress APIs; no unchecked authorization path remains; required checks pass or are explicitly documented as requiring a local WordPress instance.
