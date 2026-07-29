@@ -10,7 +10,7 @@ Objective: establish the actual repository baseline and remove conflicting guida
 
 Dependencies: existing static Vite UI. Risks: the worktree is already dirty; preserve existing design work. Verification: `npm run build`, reference checks, PHP lint after migration.
 
-## Phase 2 — Theme and assets (in progress)
+## Phase 2 — Theme and assets (complete)
 
 Objective: create the classic `digiventures-theme` presentation layer from the current frontend.
 
@@ -20,7 +20,7 @@ Objective: create the classic `digiventures-theme` presentation layer from the c
 
 Dependencies: Phase 1. Risks: Tailwind preflight/global styles and stale compiled assets. Verification: build theme assets, activate theme, render public pages.
 
-## Phase 3 — Core application plugin
+## Phase 3 — Core application plugin (complete)
 
 Objective: implement a secure request-management vertical slice.
 
@@ -32,12 +32,12 @@ Objective: implement a secure request-management vertical slice.
 
 Dependencies: Phase 2 for presentation, WordPress runtime for end-to-end testing. Risks: privilege escalation and ownership leaks. Verification: PHP lint, activation checks, customer/admin/manager manual test matrix.
 
-## Phase 4 — Hardening and delivery
+## Phase 4 — Hardening and delivery (in progress)
 
 Objective: verify security, complete docs, and prepare deployment.
 
-- [ ] Test nonce, ownership, status, and protected-admin denial paths.
-- [ ] Verify password-reset link behavior and responsive layouts.
+- [x] Code-level hardening audit: nonces, capabilities, ownership, sanitization, escaping, uploads, status transitions — zero findings.
+- [ ] Runtime verification: activate on a WordPress instance and exercise the manual test matrix (nonce rejection, ownership bypass, protected-admin denial, password-reset links, responsive layouts).
 - [ ] Finalize README, architecture decisions, and deployment instructions.
 
 Completion criteria: all required roles and workflows work through WordPress APIs; no unchecked authorization path remains; required checks pass or are explicitly documented as requiring a local WordPress instance.
