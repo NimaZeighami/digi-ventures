@@ -24,7 +24,8 @@
 }
 
 @layer base {
-  .dv-app { @apply bg-brand-light font-sans text-brand-darkText antialiased; overflow-x: hidden; }
+  .dv-app { @apply m-0 bg-brand-light font-sans text-brand-darkText antialiased; overflow-x: hidden; }
+  .dv-app a { text-decoration: none; }
   .dv-app :lang(en), .dv-app [dir='ltr'] { font-family: 'Gilroy', sans-serif; }
   .dv-app ::selection { @apply bg-brand-green/20 text-brand-darkText; }
 }

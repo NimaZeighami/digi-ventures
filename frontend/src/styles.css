@@ -40,8 +40,12 @@
   }
 
   body {
-    @apply bg-brand-light font-sans text-brand-darkText antialiased;
+    @apply m-0 bg-brand-light font-sans text-brand-darkText antialiased;
     overflow-x: hidden;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   :lang(en),
