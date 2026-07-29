@@ -42,7 +42,14 @@ final class Shortcodes {
 		$shortcodes = array( 'dv_request_form', 'dv_customer_dashboard', 'dv_request_management', 'dv_request_user_management', 'dv_login' );
 		foreach ( $shortcodes as $shortcode ) {
 			if ( has_shortcode( $post->post_content, $shortcode ) ) {
-				wp_enqueue_style( 'dv-core-application', DV_CORE_URL . 'assets/css/application.css', array(), DV_CORE_VERSION );
+				$css_path = DV_CORE_PATH . 'assets/css/application.css';
+				$js_path  = DV_CORE_PATH . 'assets/application.js';
+				if ( file_exists( $css_path ) ) {
+					wp_enqueue_style( 'dv-core-application', DV_CORE_URL . 'assets/css/application.css', array(), filemtime( $css_path ) );
+				}
+				if ( file_exists( $js_path ) ) {
+					wp_enqueue_script( 'dv-core-application', DV_CORE_URL . 'assets/application.js', array(), filemtime( $js_path ), true );
+				}
 				break;
 			}
 		}

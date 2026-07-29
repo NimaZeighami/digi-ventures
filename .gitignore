@@ -16,6 +16,12 @@ out/
 .output/
 .cache/
 
+# Track theme and plugin built assets (needed for runtime)
+!wordpress-theme/digiventures-theme/assets/dist/
+!wordpress-plugin/digiventures-core/assets/css/
+!wordpress-plugin/digiventures-core/assets/application.js
+!wordpress-plugin/digiventures-core/assets/manifest.json
+
 # ---------------------------------------------------------------------------
 # Vite / bundler cache
 # ---------------------------------------------------------------------------

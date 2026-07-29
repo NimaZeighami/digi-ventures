@@ -6,6 +6,7 @@ export default {
   corePlugins: { preflight: false },
   content: [
     './src/**/*.{js,css}',
-    '../wordpress-plugin/digi-ventures/**/*.php',
+    '../wordpress-plugin/digiventures-core/**/*.php',
+    '../wordpress-theme/digiventures-theme/**/*.php',
   ],
 };

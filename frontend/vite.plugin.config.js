@@ -9,18 +9,18 @@ export default defineConfig({
     postcss: { plugins: [tailwindcss('./tailwind.plugin.config.js'), autoprefixer()] },
   },
   build: {
-    outDir: resolve(__dirname, '../wordpress-plugin/digi-ventures/dist'),
-    emptyOutDir: true,
+    outDir: resolve(__dirname, '../wordpress-plugin/digiventures-core/assets'),
+    emptyOutDir: false,
     manifest: 'manifest.json',
     rollupOptions: {
       input: resolve(__dirname, 'src/plugin.js'),
       output: {
-        entryFileNames: 'main.js',
+        entryFileNames: 'application.js',
         assetFileNames: (assetInfo) => {
           if (assetInfo.name && assetInfo.name.endsWith('.css')) {
-            return 'main.css';
+            return 'css/application.css';
           }
-          return 'assets/[name][extname]';
+          return 'css/[name][extname]';
         },
       },
     },

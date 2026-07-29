@@ -45,6 +45,7 @@ add_action( 'after_setup_theme', 'digiventures_setup' );
 function digiventures_body_classes( $classes ) {
 	if ( ! is_admin() ) {
 		$classes[] = 'dv-site';
+		$classes[] = 'dv-app';
 	}
 	return $classes;
 }

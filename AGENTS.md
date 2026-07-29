@@ -41,7 +41,10 @@ cd frontend && npm install
 cd frontend && npm run dev
 cd frontend && npm run build
 cd frontend && npm run build:theme
+cd frontend && npm run build:plugin
 find wordpress-theme wordpress-plugin -name '*.php' -print0 | xargs -0 -n1 php -l
+# Docker runtime verification:
+cd docker && docker compose up -d && docker compose exec wp-cli sh -c 'wp core install --url="http://localhost:8080" --title="DigiVentures" --admin_user="admin" --admin_password="admin" --admin_email="admin@example.com" --skip-email && wp theme activate digiventures-theme && wp plugin activate digiventures-core'
 ```
 
 ## Definition of done
