@@ -1,0 +1,34 @@
+{
+    "title": "درخواست‌های من",
+    "type": "page",
+    "content": [
+        {
+            "id": "6a69e55bba7a7",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "background_background": "classic",
+                "background_color": "#ffffff",
+                "padding": {
+                    "unit": "px",
+                    "top": "80",
+                    "right": "0",
+                    "bottom": "80",
+                    "left": "0",
+                    "isLinked": false
+                }
+            },
+            "elements": [
+                {
+                    "id": "6a69e55bba7a8",
+                    "elType": "widget",
+                    "widgetType": "dv-customer-dashboard",
+                    "settings": []
+                }
+            ]
+        }
+    ],
+    "page_settings": {
+        "hide_title": "yes"
+    }
+}

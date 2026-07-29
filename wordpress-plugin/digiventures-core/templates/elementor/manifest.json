@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0",
+  "pages": [
+    "home",
+    "portfolio",
+    "team",
+    "about",
+    "contact",
+    "news",
+    "investment-request",
+    "my-requests",
+    "request-management",
+    "request-user-management",
+    "login"
+  ]
+}

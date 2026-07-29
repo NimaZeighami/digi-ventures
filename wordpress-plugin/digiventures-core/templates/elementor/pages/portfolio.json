@@ -1,0 +1,44 @@
+{
+    "title": "پورتفولیو",
+    "type": "page",
+    "content": [
+        {
+            "id": "6a69e55bba959",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "padding": {
+                    "unit": "px",
+                    "top": "80",
+                    "right": "0",
+                    "bottom": "80",
+                    "left": "0",
+                    "isLinked": false
+                }
+            },
+            "elements": [
+                {
+                    "id": "6a69e55bba95a",
+                    "elType": "widget",
+                    "widgetType": "heading",
+                    "settings": {
+                        "title": "پورتفولیو",
+                        "header_size": "h1",
+                        "align": "right"
+                    }
+                },
+                {
+                    "id": "6a69e55bba95b",
+                    "elType": "widget",
+                    "widgetType": "text-editor",
+                    "settings": {
+                        "editor": "<p>شرکت‌های سرمایه‌پذیر دیجی‌ونچرز<\/p>"
+                    }
+                }
+            ]
+        }
+    ],
+    "page_settings": {
+        "hide_title": "yes"
+    }
+}

@@ -19,11 +19,22 @@ function digiventures_asset_uri( $path = '' ) {
 }
 
 /**
- * Permalink for a page by slug, with fallback URL.
+ * Permalink for a page key.
  *
- * @param string $slug Page slug.
+ * Delegates to DV_Core\Page_Resolver when the plugin is active (preferred —
+ * uses stored page IDs). Falls back to slug lookup and then a raw URL when
+ * the plugin is unavailable (e.g. during a partial deployment).
+ *
+ * @param string $slug Page key (e.g. 'portfolio', 'investment-request').
+ * @return string
  */
 function digiventures_page_url( $slug ) {
+	// Prefer the plugin's page resolver (stored IDs, slug backfill, safe fallback).
+	if ( class_exists( '\DV_Core\Page_Resolver' ) ) {
+		return \DV_Core\Page_Resolver::url( $slug );
+	}
+
+	// Plugin not loaded — fall back to slug lookup.
 	if ( 'home' === $slug ) {
 		return home_url( '/' );
 	}
@@ -46,7 +57,33 @@ function digiventures_is_page( $slug ) {
 		return is_front_page();
 	}
 
-	return is_page( $slug );
+	if ( is_page( $slug ) ) {
+		return true;
+	}
+
+	// Match by page ID stored in the resolver.
+	if ( class_exists( '\DV_Core\Page_Resolver' ) ) {
+		$id = \DV_Core\Page_Resolver::get_page_id( $slug );
+		if ( $id && is_page( $id ) ) {
+			return true;
+		}
+	}
+
+	// Match by template file.
+	$template_map = array(
+		'investment-request' => 'page-investment-request.php',
+		'login'              => 'page-login.php',
+		'portfolio'          => 'page-portfolio.php',
+		'team'               => 'page-team.php',
+		'about'              => 'page-about.php',
+		'contact'            => 'page-contact.php',
+		'news'               => 'page-news.php',
+	);
+	if ( isset( $template_map[ $slug ] ) && is_page_template( $template_map[ $slug ] ) ) {
+		return true;
+	}
+
+	return false;
 }
 
 /**

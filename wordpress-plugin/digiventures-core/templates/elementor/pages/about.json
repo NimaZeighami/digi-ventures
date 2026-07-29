@@ -1,0 +1,44 @@
+{
+    "title": "درباره ما",
+    "type": "page",
+    "content": [
+        {
+            "id": "6a69e55bbaa01",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "padding": {
+                    "unit": "px",
+                    "top": "80",
+                    "right": "0",
+                    "bottom": "80",
+                    "left": "0",
+                    "isLinked": false
+                }
+            },
+            "elements": [
+                {
+                    "id": "6a69e55bbaa02",
+                    "elType": "widget",
+                    "widgetType": "heading",
+                    "settings": {
+                        "title": "درباره دیجی‌ونچرز",
+                        "header_size": "h1",
+                        "align": "right"
+                    }
+                },
+                {
+                    "id": "6a69e55bbaa03",
+                    "elType": "widget",
+                    "widgetType": "text-editor",
+                    "settings": {
+                        "editor": "<p>داستان و مأموریت ما<\/p>"
+                    }
+                }
+            ]
+        }
+    ],
+    "page_settings": {
+        "hide_title": "yes"
+    }
+}

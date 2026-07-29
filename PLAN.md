@@ -42,3 +42,18 @@ Objective: verify security, complete docs, and prepare deployment.
 - [x] Finalize architecture decisions and deployment instructions.
 
 Completion criteria: all required roles and workflows work through WordPress APIs; no unchecked authorization path remains; required checks pass or are explicitly documented as requiring a local WordPress instance.
+
+## Phase 5 — Deployment fixes and UI polish (complete)
+
+Objective: resolve 404 navigation links, broken layouts on cPanel, and poor investment-request UI.
+
+- [x] Created `setup-pages.php` WP-CLI script that idempotently creates all required pages (portfolio, team, about, contact, news, investment-request, my-requests, login, request-management, request-user-management) with correct slugs and shortcodes.
+- [x] Rewrote `request-form.php`: semantic `<div>` wrapper per field, `form-input`/`form-select`/`form-textarea` classes, correct `id="investment-request-form"` for JS validation, file input styled with Tailwind file: variant, current pitch deck link shown on edit, mobile-responsive.
+- [x] Rewrote `customer-dashboard.php`: status badges, dual mobile-card / desktop-table layout, empty state with CTA, header with new request link resolved via `get_page_by_path()`.
+- [x] Rewrote `request-management.php`: status badges, `dl` grid for request metadata, Persian sector/stage labels, unique label `for` attributes per request, responsive 2-column decision form.
+- [x] Added `Template Name` comment to `page-login.php` so WordPress exposes it in page attributes dropdown (cPanel compatibility).
+- [x] Fixed `dv-alert` / `dv-alert-*` CSS class mismatch in `plugin.css`: both prefixed and un-prefixed alert variants defined.
+- [x] Fixed `dv-form` mobile layout: single-column below 640 px, two-column above.
+- [x] Rebuilt `application.css` and theme `main.css`; all PHP files pass syntax check.
+
+Dependencies: Phase 4. Risks: cPanel file permissions, WordPress permalink configuration, SMTP. Verification: run `setup-pages.php` via WP-CLI, test nav links, test form submission and dashboard on mobile viewport.

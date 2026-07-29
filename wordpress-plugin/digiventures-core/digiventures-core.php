@@ -2,7 +2,7 @@
 /**
  * Plugin Name: DigiVentures Core
  * Description: Secure investment request workflow for DigiVentures.
- * Version: 1.0.0
+ * Version: 2.0.0
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Text Domain: digiventures-core
@@ -16,14 +16,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'DV_CORE_VERSION', '1.0.0' );
+define( 'DV_CORE_VERSION', '2.0.0' );
 define( 'DV_CORE_FILE', __FILE__ );
 define( 'DV_CORE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'DV_CORE_URL', plugin_dir_url( __FILE__ ) );
 
+// Core domain classes.
 require_once DV_CORE_PATH . 'includes/class-roles.php';
 require_once DV_CORE_PATH . 'includes/class-request-type.php';
 require_once DV_CORE_PATH . 'includes/class-settings.php';
+require_once DV_CORE_PATH . 'includes/class-page-resolver.php';
+
+// Shared rendering layer.
+require_once DV_CORE_PATH . 'includes/rendering/class-render-service.php';
+require_once DV_CORE_PATH . 'includes/rendering/class-form-renderer.php';
+require_once DV_CORE_PATH . 'includes/rendering/class-dashboard-renderer.php';
+require_once DV_CORE_PATH . 'includes/rendering/class-management-renderer.php';
+require_once DV_CORE_PATH . 'includes/rendering/class-user-management-renderer.php';
+require_once DV_CORE_PATH . 'includes/rendering/class-login-renderer.php';
+
+// Elementor integration (safe to load without Elementor).
+require_once DV_CORE_PATH . 'includes/elementor/class-elementor-integration.php';
+
+// Setup system.
+require_once DV_CORE_PATH . 'includes/setup/class-install-state.php';
+require_once DV_CORE_PATH . 'includes/setup/class-page-installer.php';
+require_once DV_CORE_PATH . 'includes/setup/class-template-installer.php';
+require_once DV_CORE_PATH . 'includes/setup/class-rollback.php';
+require_once DV_CORE_PATH . 'includes/setup/class-setup-wizard.php';
+
+// Shortcodes (must load after rendering layer).
 require_once DV_CORE_PATH . 'includes/class-shortcodes.php';
 require_once DV_CORE_PATH . 'includes/class-handlers.php';
 
@@ -31,6 +53,7 @@ require_once DV_CORE_PATH . 'includes/class-handlers.php';
  * Plugin composition root.
  */
 final class Plugin {
+
 	/**
 	 * Register runtime hooks.
 	 *
@@ -42,6 +65,8 @@ final class Plugin {
 		Settings::init();
 		Shortcodes::init();
 		Handlers::init();
+		Elementor\Elementor_Integration::init();
+		Setup\Setup_Wizard::init();
 	}
 
 	/**

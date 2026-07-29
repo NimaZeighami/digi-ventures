@@ -143,4 +143,51 @@ final class Request_Type {
 		$request = get_post( $request_id );
 		return $request && self::POST_TYPE === $request->post_type && (int) $request->post_author === (int) $user_id;
 	}
+
+	/**
+	 * Sector key => Persian label map. Single source of truth.
+	 * Used by the form template, management template, and validation.
+	 *
+	 * @return array<string,string>
+	 */
+	public static function sectors() {
+		return array(
+			'ecommerce'    => 'تجارت الکترونیک',
+			'fintech'      => 'فین‌تک',
+			'platform'     => 'کسب‌وکارهای پلتفرمی',
+			'supply_chain' => 'زنجیره تأمین',
+			'ai'           => 'هوش مصنوعی',
+			'other'        => 'سایر',
+		);
+	}
+
+	/**
+	 * Business stage key => label map. Single source of truth.
+	 *
+	 * @return array<string,string>
+	 */
+	public static function stages() {
+		return array(
+			'seed'   => 'Seed',
+			'early'  => 'مرحله اولیه',
+			'growth' => 'رشد',
+			'scale'  => 'مقیاس‌پذیری',
+		);
+	}
+
+	/**
+	 * Persian status labels. Used for display; the keys are the canonical values.
+	 *
+	 * @return array<string,string>
+	 */
+	public static function status_labels_fa() {
+		return array(
+			'draft'          => 'پیش‌نویس',
+			'submitted'      => 'ثبت شده',
+			'under_review'   => 'در حال بررسی',
+			'needs_revision' => 'نیاز به اصلاح',
+			'accepted'       => 'پذیرفته شده',
+			'rejected'       => 'رد شده',
+		);
+	}
 }

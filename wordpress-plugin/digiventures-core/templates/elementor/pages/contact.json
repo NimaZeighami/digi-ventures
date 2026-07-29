@@ -1,0 +1,44 @@
+{
+    "title": "تماس با ما",
+    "type": "page",
+    "content": [
+        {
+            "id": "6a69e55bbaa4e",
+            "elType": "container",
+            "settings": {
+                "content_width": "boxed",
+                "padding": {
+                    "unit": "px",
+                    "top": "80",
+                    "right": "0",
+                    "bottom": "80",
+                    "left": "0",
+                    "isLinked": false
+                }
+            },
+            "elements": [
+                {
+                    "id": "6a69e55bbaa4f",
+                    "elType": "widget",
+                    "widgetType": "heading",
+                    "settings": {
+                        "title": "تماس با ما",
+                        "header_size": "h1",
+                        "align": "right"
+                    }
+                },
+                {
+                    "id": "6a69e55bbaa50",
+                    "elType": "widget",
+                    "widgetType": "text-editor",
+                    "settings": {
+                        "editor": "<p>راه‌های ارتباط با تیم دیجی‌ونچرز<\/p>"
+                    }
+                }
+            ]
+        }
+    ],
+    "page_settings": {
+        "hide_title": "yes"
+    }
+}

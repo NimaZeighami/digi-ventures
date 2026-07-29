@@ -1,4 +1,13 @@
 <?php
+/**
+ * Template Name: Login (Full-screen, no site header/footer)
+ *
+ * Used automatically when the page slug is "login" and as a selectable
+ * template from the WordPress page editor (Page Attributes → Template).
+ *
+ * @package DigiVentures
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
