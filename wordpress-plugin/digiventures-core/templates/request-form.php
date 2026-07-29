@@ -7,8 +7,8 @@ $sectors = array( 'ecommerce' => 'تجارت الکترونیک', 'fintech' => '
 $stages = array( 'seed' => 'Seed', 'early' => 'مرحله اولیه', 'growth' => 'رشد', 'scale' => 'مقیاس‌پذیری' );
 ?>
 <section class="dv-app-panel" aria-labelledby="dv-request-title">
-	<h1 id="dv-request-title"><?php echo esc_html( Settings::get( 'request_form_title' ) ); ?></h1>
-	<p><?php echo esc_html( Settings::get( 'request_form_instructions' ) ); ?></p>
+	<h1 id="dv-request-title"><?php echo esc_html( \DV_Core\Settings::get( 'request_form_title' ) ); ?></h1>
+	<p><?php echo esc_html( \DV_Core\Settings::get( 'request_form_instructions' ) ); ?></p>
 	<form class="dv-form" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" enctype="multipart/form-data">
 		<?php wp_nonce_field( $request ? 'dv_core_update_request' : 'dv_core_submit_request', 'dv_core_nonce' ); ?>
 		<input type="hidden" name="action" value="<?php echo esc_attr( $request ? 'dv_core_update_request' : 'dv_core_submit_request' ); ?>" />
@@ -21,6 +21,6 @@ $stages = array( 'seed' => 'Seed', 'early' => 'مرحله اولیه', 'growth' 
 		<p><label for="dv-stage">مرحله کسب‌وکار <span aria-hidden="true">*</span></label><select id="dv-stage" name="stage" required><option value="">انتخاب کنید</option><?php foreach ( $stages as $key => $label ) : ?><option value="<?php echo esc_attr( $key ); ?>" <?php selected( $value( 'stage' ), $key ); ?>><?php echo esc_html( $label ); ?></option><?php endforeach; ?></select></p>
 		<p class="dv-form-wide"><label for="dv-description">توضیح کوتاه <span aria-hidden="true">*</span></label><textarea id="dv-description" name="description" rows="5" required><?php echo esc_textarea( $value( 'description' ) ); ?></textarea></p>
 		<p class="dv-form-wide"><label for="dv-pitch-deck">Pitch Deck <?php if ( ! $request ) : ?><span aria-hidden="true">*</span><?php endif; ?></label><input id="dv-pitch-deck" name="pitch_deck" type="file" accept=".pdf,.ppt,.pptx" <?php echo $request ? '' : 'required'; ?> /><small>PDF، PPT یا PPTX — حداکثر ۲۰ مگابایت</small></p>
-		<p class="dv-form-wide"><button class="btn-primary" type="submit"><?php echo esc_html( $request ? Settings::get( 'edit_request_label' ) : 'ارسال درخواست' ); ?></button></p>
+		<p class="dv-form-wide"><button class="btn-primary" type="submit"><?php echo esc_html( $request ? \DV_Core\Settings::get( 'edit_request_label' ) : 'ارسال درخواست' ); ?></button></p>
 	</form>
 </section>
