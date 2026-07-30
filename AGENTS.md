@@ -1,52 +1,28 @@
-# DigiVentures engineering guide
+# DigiVentures contributor guide
 
-## Purpose
+## Repository map
 
-This repository delivers the DigiVentures Persian-first WordPress site and its private investment-request application. Public marketing pages retain the Vite/Tailwind design; authenticated request workflows are implemented by the `digiventures-core` plugin.
-
-## Structure
-
-- `frontend/` — Vite/Tailwind design source and static visual reference.
-- `wordpress-theme/digiventures-theme/` — classic WordPress presentation theme.
-- `wordpress-plugin/digiventures-core/` — roles, request workflow, settings, front-end application screens, and authorization.
-- Root documentation — `README.md`, `PLAN.md`, `ARCHITECTURE.md`, and `TASKS.md` only.
+- `frontend/` is the visual reference; do not treat its client-side forms as the production security boundary.
+- `SPECIFICATION.md` is the application contract.
+- `wordpress/wp-content/plugins/digiventures-application/` is the deployable product.
+- `docs/` records discovery, decisions, contracts, and release evidence.
 
 ## Boundaries
 
-- Theme: WordPress setup, templates, menus, public-page presentation, and enqueueing built assets.
-- Plugin: all business logic, roles/capabilities, request data, forms, workflows, settings, customer dashboard, and management UI.
-- Elementor may place public content or plugin shortcodes. Do not use it for dashboards, forms, request management, authentication behavior, or role management.
-- Do not modify WordPress core, `node_modules`, vendor code, or generated `dist` output by hand.
+Elementor and WordPress pages own editable presentation. The DigiVentures plugin owns roles, authentication integration, validation, uploads, persistence, authorization, notifications, migrations, and diagnostics. Never place application logic in a theme, Elementor HTML widget, Elementor JSON, browser-only code, or WordPress core.
 
-## Security and authorization
+## Required practices
 
-- Use capabilities, never scattered role-name checks.
-- Every state-changing action requires a nonce, authenticated user, capability check, and server-side validation.
-- Customers may access only requests whose `post_author` is their own ID.
-- Customers may edit only `draft` and `needs_revision` requests.
-- Request managers may grant/revoke only `request_admin`; never assign/remove native `administrator`, and never modify protected administrators.
-- Sanitize input, allowlist statuses/actions/placeholders, use `esc_*` at output, and do not expose request data through public REST endpoints.
+- Target PHP 8.1+ and WordPress 6.4+; use namespaces, WordPress APIs, and WordPress coding standards.
+- Authenticate, check a capability, verify a nonce, validate ownership and server-side input on every state change.
+- Use `$wpdb->prepare()` for dynamic SQL; sanitize inputs and escape all HTML/URLs/attributes at output.
+- Use WordPress users and password APIs only. Never store a password, secret, or role selected by a browser request.
+- Validate uploads by extension, MIME, WordPress file type, and 20 MiB size; never execute uploads.
+- Use repeat-safe migrations and installers. Do not make direct production schema changes or overwrite user page content silently.
+- Keep normal users out of wp-admin and hide their toolbar; preserve administrator login and reset routes.
+- Log non-sensitive failures through the plugin logger. Never commit production secrets or debug logs.
+- Do not invent Elementor template JSON. Register plugin widgets and verify templates in a real Elementor install before exporting them.
 
-## Coding standards
+## Verification and definition of done
 
-- PHP follows WordPress Coding Standards, uses the `DV_Core` namespace or `dv_core_` prefix, and prevents direct access with `ABSPATH` checks.
-- Keep classes focused and put templates in `templates/`; no business logic in theme files.
-- Use translation-ready strings and semantic, accessible Persian RTL markup.
-- Tailwind belongs to the front end. Keep preflight disabled and application/theme styles scoped so WordPress admin and Elementor are unaffected.
-
-## Commands
-
-```bash
-cd frontend && npm install
-cd frontend && npm run dev
-cd frontend && npm run build
-cd frontend && npm run build:theme
-cd frontend && npm run build:plugin
-find wordpress-theme wordpress-plugin -name '*.php' -print0 | xargs -0 -n1 php -l
-# Docker runtime verification:
-cd docker && docker compose up -d && docker compose exec wp-cli sh -c 'wp core install --url="http://localhost:8080" --title="DigiVentures" --admin_user="admin" --admin_password="admin" --admin_email="admin@example.com" --skip-email && wp theme activate digiventures-theme && wp plugin activate digiventures-core'
-```
-
-## Definition of done
-
-Changes include appropriate tests or manual verification steps, pass available builds/syntax checks, preserve authorization boundaries, update `PLAN.md` and `TASKS.md`, and document architecture changes in `ARCHITECTURE.md`.
+Run `php -l` on every PHP source file, `scripts/validate-release.sh`, and `scripts/package-plugin.sh` before delivery. Run WordPress/Elementor integration and browser checks only in the documented disposable environment; label anything not run as unverified. A change is done only when its docs, relevant tests, migration impact, release package, and security review are updated.

@@ -1,0 +1,3 @@
+# Rollback
+
+The plugin creates the `dv_requests` table, plugin options, pages, and application roles. Deactivation deliberately retains all of them. Before upgrades, back up files and database. Restore the previous plugin ZIP first; do not delete the table. If a schema migration must be reversed, restore the database backup taken immediately before the upgrade. To recover from a fatal error, rename `wp-content/plugins/digiventures-application` through cPanel, log in as an administrator, then restore the last known-good package. Uninstalling data requires the explicit `dv_delete_data_on_uninstall` option.

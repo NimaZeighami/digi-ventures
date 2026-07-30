@@ -3,8 +3,6 @@ export default {
   content: [
     './*.html',
     './src/**/*.{js,css}',
-    '../wordpress-theme/digiventures-theme/**/*.php',
-    '../wordpress-plugin/digiventures-core/**/*.php',
   ],
   theme: {
     extend: {

@@ -1,0 +1,13 @@
+{
+  "name": "digiventures/application",
+  "description": "DigiVentures WordPress application plugin",
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=8.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "DigiVentures\\Application\\": "src/"
+    }
+  }
+}

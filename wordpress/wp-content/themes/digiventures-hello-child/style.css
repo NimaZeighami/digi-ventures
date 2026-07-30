@@ -1,0 +1,105 @@
+/*
+Theme Name: DigiVentures Hello Child
+Description: Hello Elementor child theme for the DigiVentures application.
+Author: DigiVentures
+Template: hello-elementor
+Version: 1.1.9
+Text Domain: digiventures-hello-child
+*/
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	inline-size: 100%;
+	max-inline-size: none;
+	overflow-x: clip;
+}
+
+.dv-canvas,
+.dv-canvas-content {
+	inline-size: 100%;
+	max-inline-size: none;
+	min-block-size: 100vh;
+	margin: 0;
+	padding: 0;
+}
+
+.dv-canvas-content > .elementor,
+.dv-canvas-content > .elementor > .elementor-element,
+.dv-canvas-content .elementor-section-wrap > .e-con,
+.dv-canvas-content .elementor-section-wrap > .e-con > .e-con-inner,
+.dv-canvas-content .elementor-widget-shortcode,
+.dv-canvas-content .elementor-widget-shortcode > .elementor-widget-container,
+.dv-canvas-content .elementor-shortcode,
+.dv-canvas .dv-reference-page {
+	inline-size: 100%;
+	max-inline-size: none;
+	margin-inline: 0;
+	padding-inline: 0;
+}
+
+.dv-canvas-content .elementor-section-wrap > .e-con,
+.dv-canvas-content .elementor-section-wrap > .e-con > .e-con-inner {
+	--padding-top: 0;
+	--padding-right: 0;
+	--padding-bottom: 0;
+	--padding-left: 0;
+	padding-block: 0;
+}
+
+/*
+ * WordPress may remain configured as en-US while these pages are RTL Persian.
+ * Scope the source typography to the application and preserve intentional LTR
+ * fragments such as email addresses and English brand text.
+ */
+.dv-canvas .dv-reference-page,
+.dv-canvas .dv-reference-page :where(:not([dir="ltr"], [dir="ltr"] *)) {
+	font-family: "Yekan Bakh", Tahoma, sans-serif;
+}
+
+.dv-canvas .dv-reference-page :where([dir="ltr"], [dir="ltr"] *) {
+	font-family: Gilroy, sans-serif;
+}
+
+.dv-canvas :is(.auth-shell, .dv-panel, .dv-marketing),
+.dv-canvas :is(.auth-shell, .dv-panel, .dv-marketing) :where(:not([dir="ltr"], [dir="ltr"] *)) {
+	font-family: "Yekan Bakh", Tahoma, sans-serif;
+}
+
+.dv-canvas :is(.auth-shell, .dv-panel, .dv-marketing) :where([dir="ltr"], [dir="ltr"] *) {
+	font-family: Gilroy, sans-serif;
+}
+
+/* Restore Tailwind's inherited heading rhythm after Hello's heading defaults. */
+.dv-reference-page :where(h1, h2, h3, h4, h5, h6) {
+	line-height: inherit;
+}
+
+/* Hello adds generic button padding that expands fixed-size source controls. */
+.dv-canvas .dv-reference-page #mobile-menu-toggle,
+.dv-canvas .dv-reference-page .slider-btn,
+.dv-canvas .dv-reference-page .slider-dots button {
+	padding: 0;
+}
+
+.dv-reference-page > header,
+.dv-reference-page > main,
+.dv-reference-page > footer {
+	inline-size: 100%;
+	max-inline-size: none;
+	margin-inline: 0;
+}
+
+/*
+ * Portfolio and News use the semantic site-footer class, which Hello
+ * Elementor otherwise constrains to its 1140px theme content width.
+ */
+.dv-canvas .dv-reference-page > footer.site-footer {
+	inline-size: 100%;
+	width: 100%;
+	max-inline-size: none;
+	max-width: none;
+	margin-inline: 0;
+	padding-inline: 0;
+}

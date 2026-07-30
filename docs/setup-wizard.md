@@ -1,0 +1,3 @@
+# Setup wizard
+
+An administrator opens **DigiVentures → Setup** and submits a single nonce-protected action. It checks PHP/WordPress, creates roles, runs schema migrations, creates or repairs plugin-managed pages, migrates known 1.0 placeholder content, assigns `dv-canvas.php`, sets the static front page, configures post-name permalinks when the site still uses plain URLs, stores page IDs, and flushes rewrites. Custom page content is not overwritten; slug collisions produce an actionable error. Completed steps and last error are stored in options, exact generated URLs are displayed, and rerunning is safe.
