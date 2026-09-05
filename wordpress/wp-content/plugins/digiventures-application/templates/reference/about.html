@@ -3,112 +3,144 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="درباره دیجی‌ونچرز — سرمایه‌گذاری شرکتی در اکوسیستم دیجیتال" />
+  <meta name="description" content="درباره دیجی‌ونچرز — صندوق سرمایه‌گذاری خطرپذیر شرکتی (CVC) گروه دیجی‌کالا" />
   <link rel="icon" type="image/png" href="/assets/images/digiventures-favicon.png" />
   <title>درباره ما | دیجی‌ونچرز</title>
 </head>
-<body>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-brand-green selection:text-white">
 
-  <!-- section: header -->
-  <header class="fixed top-0 z-50 w-full border-b border-white/10 bg-brand-dark/95 backdrop-blur-md">
-    <div class="site-header-inner container-dv flex h-[72px] items-center justify-between">
-      <a href="/" class="site-header-brand brand-logo" aria-label="Digiventures">
+  <!-- ==================== HEADER (M12 Exact Style) ==================== -->
+  <header class="fixed top-0 z-50 w-full border-b border-slate-100 bg-white/95 backdrop-blur-md transition-all duration-200">
+    <div class="site-header-inner container-dv flex h-[76px] items-center justify-between">
+      <a href="/" class="site-header-brand brand-logo flex items-center gap-2" aria-label="Digiventures">
         <span class="brand-logo-mark" aria-hidden="true"></span>
         <span class="brand-logo-wordmark" aria-hidden="true"></span>
       </a>
-      <nav class="header-primary-nav hidden items-center gap-6 xl:flex" aria-label="منوی اصلی">
-        <a href="/" class="nav-link">خانه</a>
-        <a href="/portfolio.html" class="nav-link">پورتفولیو</a>
-        <a href="/about.html" class="nav-link nav-link-active">درباره ما</a>
-        <a href="/team.html" class="nav-link">تیم</a>
-        <a href="/contact.html" class="nav-link">ارتباط با ما</a>
-        <a href="/news.html" class="nav-link">تازه‌ها</a>
-        <a href="/investment-request.html" class="nav-link">درخواست سرمایه‌گذاری</a>
+
+      <!-- Primary Navigation -->
+      <nav class="header-primary-nav hidden items-center gap-7 xl:flex" aria-label="منوی اصلی">
+        <a href="/#focus" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">حوزه‌های سرمایه‌گذاری</a>
+        <a href="/#portfolio" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">پورتفولیو</a>
+        <a href="/#team" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">تیم ما</a>
+        <a href="/#news" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">تازه‌ها و دیدگاه‌ها</a>
+        <a href="/#contact" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">ارتباط با ما</a>
+        <a href="/about.html" class="text-sm font-bold text-brand-green is-active">درباره ما</a>
       </nav>
+
+      <!-- Actions -->
       <div class="header-auth-actions hidden items-center gap-3 xl:flex">
-        <a href="/login.html" class="btn-login"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6A2.25 2.25 0 0 0 5.25 5.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M18.75 12H9m9.75 0-3-3m3 3-3 3"/></svg>ورود</a>
-        <a href="/signup.html" class="btn-primary !px-4 !py-2.5">ثبت‌نام</a>
+        <a href="/login.html" class="btn-header-login">
+          <svg class="h-4 w-4 text-slate-500 transition-colors group-hover:text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+          </svg>
+          <span>ورود</span>
+        </a>
+        <a href="/investment-request.html" class="btn-header-cta">
+          <span>درخواست سرمایه‌گذاری</span>
+          <svg class="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+          </svg>
+        </a>
       </div>
-      <button id="mobile-menu-toggle" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg text-white xl:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="باز کردن منو">
-        <svg id="icon-menu-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        <svg id="icon-menu-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-toggle" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg text-slate-800 xl:hidden hover:bg-slate-100" aria-expanded="false" aria-controls="mobile-menu" aria-label="باز کردن منو">
+        <svg id="icon-menu-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-menu-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
-    <nav id="mobile-menu" class="mobile-menu mobile-menu-hidden" aria-label="منوی موبایل" aria-hidden="true">
+
+    <!-- Mobile Nav Dropdown -->
+    <nav id="mobile-menu" class="mobile-menu mobile-menu-hidden xl:hidden" aria-label="منوی موبایل" aria-hidden="true">
       <div class="container-dv flex flex-col gap-1 py-6">
-        <a href="/" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">خانه</a>
-        <a href="/portfolio.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">پورتفولیو</a>
+        <a href="/#focus" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">حوزه‌های سرمایه‌گذاری</a>
+        <a href="/#portfolio" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">پورتفولیو</a>
+        <a href="/#team" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">تیم ما</a>
+        <a href="/#news" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">تازه‌ها و دیدگاه‌ها</a>
+        <a href="/#contact" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">ارتباط با ما</a>
         <a href="/about.html" class="rounded-lg px-4 py-3 text-base font-medium text-brand-green">درباره ما</a>
-        <a href="/team.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">تیم</a>
-        <a href="/contact.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">تماس</a>
-        <a href="/news.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">تازه‌ها</a>
-        <a href="/investment-request.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">درخواست سرمایه‌گذاری</a>
-        <a href="/login.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">ورود به حساب</a>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex flex-col gap-2">
+          <a href="/investment-request.html" class="flex items-center justify-center gap-2 rounded-xl bg-brand-green px-4 py-3 text-base font-semibold text-white shadow-sm hover:bg-brand-greenHover">
+            <span>درخواست سرمایه‌گذاری</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+          </a>
+          <a href="/login.html" class="flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-brand-green">
+            <svg class="h-4 w-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+            <span>ورود به حساب</span>
+          </a>
+        </div>
       </div>
     </nav>
   </header>
 
-  <main class="pt-[72px]">
+  <main class="pt-[76px]">
 
-    <!-- section: page-hero -->
-    <section class="hero-bg py-20 lg:py-28">
-      <div class="tri-pattern absolute inset-0 opacity-40" aria-hidden="true"></div>
-      <div class="hero-accent-line" aria-hidden="true"></div>
-      <div class="container-dv relative z-10 text-center">
-        <span class="section-label">درباره دیجی‌ونچرز</span>
-        <h1 class="mt-3 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">هم‌قدم با بنیان‌گذارانی که آینده‌سازند.</h1>
-        <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/70">
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="py-20 lg:py-28 bg-white border-b border-slate-100">
+      <div class="container-dv text-center max-w-4xl mx-auto">
+        <span class="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50 px-4 py-1.5 text-xs font-semibold text-slate-700 mb-6">
+          <span class="h-2 w-2 rounded-full bg-brand-green"></span>
+          درباره دیجی‌ونچرز
+        </span>
+        <h1 class="text-4xl font-extrabold text-slate-950 sm:text-5xl lg:text-6xl leading-tight">
+          هم‌قدم با بنیان‌گذارانی که <span class="text-brand-green">آینده‌سازند.</span>
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-slate-600 font-light leading-relaxed max-w-3xl mx-auto">
           دیجی‌ونچرز صندوق پژوهش و فناوری سرمایه‌گذاری خطرپذیر شرکتی (CVC) گروه دیجی‌کالاست که با مشارکت دیجی‌کالا و دیجی‌پی و با مدیریت اجرایی دیجی‌نکست فعالیت می‌کند.
         </p>
       </div>
     </section>
 
-    <!-- section: mission -->
+    <!-- ==================== MISSION & NARRATIVE ==================== -->
     <section class="bg-white py-20 lg:py-28">
       <div class="container-dv">
         <div class="grid items-center gap-12 lg:grid-cols-2">
           <div class="reveal">
-            <span class="section-label">درباره ما</span>
-            <h2 class="section-title">در کنار ساختن آینده</h2>
-            <p class="section-desc">
+            <p class="text-xs font-bold uppercase tracking-wider text-brand-green">در کنار ساختن آینده</p>
+            <h2 class="mt-2 text-3xl font-bold text-slate-950 sm:text-4xl leading-snug">
+              سرمایه‌گذاری استراتژیک بر تحول اقتصاد دیجیتال
+            </h2>
+            <p class="mt-6 text-base sm:text-lg leading-relaxed text-slate-700 font-normal">
               ما با سرمایه‌گذاری در استارتاپ‌های نوآور و ایجاد دسترسی به ظرفیت‌های عملیاتی، تخصصی و تجاری گروه دیجی‌کالا، با بنیان‌گذارانی هم‌قدم می‌شویم که در حال ساختن آینده تجارت، خدمات مالی و فناوری هستند.
             </p>
-            <p class="mt-4 text-base leading-relaxed text-brand-muted">
+            <p class="mt-4 text-base leading-relaxed text-slate-600 font-light">
               ما با تکیه بر تجربه و ظرفیت‌های گروه دیجی‌کالا شکل گرفته‌ایم؛ اکوسیستمی که طی سال‌ها در حوزه‌هایی مانند تجارت الکترونیک، پرداخت، فناوری، لجستیک و نوآوری فعالیت کرده و با میلیون‌ها کاربر و هزاران کسب‌وکار در ارتباط است.
             </p>
-            <p class="mt-4 text-base leading-relaxed text-brand-muted">
+            <p class="mt-4 text-base leading-relaxed text-slate-600 font-light">
               اما ارزش این ارتباط فقط در سرمایه خلاصه نمی‌شود. ما تلاش می‌کنیم برای تیم‌های پورتفولیو، دسترسی به فرصت‌هایی فراهم کنیم که می‌تواند به آن‌ها در توسعه محصول، شناخت بازار، ایجاد همکاری‌های استراتژیک و رشد کسب‌وکار کمک کند.
             </p>
           </div>
-          <div class="reveal rounded-2xl border border-gray-100 bg-brand-light p-8">
-            <h3 class="text-lg font-semibold text-brand-darkText">ارزش‌های کلیدی</h3>
-            <ul class="mt-6 space-y-4">
-              <li class="flex items-start gap-3">
-                <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-green/10 text-xs font-bold text-brand-green">۱</span>
+
+          <div class="reveal rounded-3xl border border-slate-200/80 bg-slate-50/70 p-8 sm:p-10 shadow-card">
+            <h3 class="text-xl font-bold text-slate-900">ارزش‌های کلیدی ما</h3>
+            <p class="mt-2 text-sm text-slate-500">اصول بنیادینی که تصمیمات سرمایه‌گذاری و همراهی ما را هدایت می‌کنند:</p>
+            <ul class="mt-8 space-y-6">
+              <li class="flex items-start gap-4">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-brand-green/10 text-sm font-bold text-brand-green">۱</span>
                 <div>
-                  <p class="font-medium text-brand-darkText">شفافیت</p>
-                  <p class="text-sm text-brand-muted">فرآیند ارزیابی روشن و بازخورد صادقانه</p>
+                  <h4 class="font-bold text-slate-900">همراهی بلندمدت</h4>
+                  <p class="mt-1 text-sm text-slate-600 font-light leading-relaxed">ما به دنبال ساختن رابطه‌هایی بلندمدت با بنیان‌گذاران هستیم و موفقیت خودمان را در موفقیت کسب‌وکارهایی می‌بینیم که در آن‌ها سرمایه‌گذاری کرده‌ایم.</p>
                 </div>
               </li>
-              <li class="flex items-start gap-3">
-                <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-green/10 text-xs font-bold text-brand-green">۲</span>
+              <li class="flex items-start gap-4">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-brand-green/10 text-sm font-bold text-brand-green">۲</span>
                 <div>
-                  <p class="font-medium text-brand-darkText">مسئولیت‌پذیری</p>
-                  <p class="text-sm text-brand-muted">تعهد به رشد پایدار و ارزش‌آفرینی بلندمدت</p>
+                  <h4 class="font-bold text-slate-900">ارزش واقعی</h4>
+                  <p class="mt-1 text-sm text-slate-600 font-light leading-relaxed">ما به دنبال فرصت‌هایی هستیم که بتوانیم فراتر از سرمایه مالی، ارزش واقعی و عملیاتی ایجاد کنیم.</p>
                 </div>
               </li>
-              <li class="flex items-start gap-3">
-                <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-green/10 text-xs font-bold text-brand-green">۳</span>
+              <li class="flex items-start gap-4">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-brand-green/10 text-sm font-bold text-brand-green">۳</span>
                 <div>
-                  <p class="font-medium text-brand-darkText">نوآوری</p>
-                  <p class="text-sm text-brand-muted">حمایت از ایده‌های جسورانه و فناوری‌های نوظهور</p>
+                  <h4 class="font-bold text-slate-900">اعتماد و شفافیت</h4>
+                  <p class="mt-1 text-sm text-slate-600 font-light leading-relaxed">ساختن یک کسب‌وکار بزرگ به اعتماد نیاز دارد. ما تلاش می‌کنیم شریکی شفاف، قابل اتکا و همراه برای بنیان‌گذاران باشیم.</p>
                 </div>
               </li>
-              <li class="flex items-start gap-3">
-                <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-green/10 text-xs font-bold text-brand-green">۴</span>
+              <li class="flex items-start gap-4">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-brand-green/10 text-sm font-bold text-brand-green">۴</span>
                 <div>
-                  <p class="font-medium text-brand-darkText">همکاری</p>
-                  <p class="text-sm text-brand-muted">ساختن روابط استراتژیک مبتنی بر اعتماد متقابل</p>
+                  <h4 class="font-bold text-slate-900">ساختن، نه فقط سرمایه‌گذاری</h4>
+                  <p class="mt-1 text-sm text-slate-600 font-light leading-relaxed">ما به بنیان‌گذارانی باور داریم که در حال حل مسائل واقعی هستند. نقش ما فقط تأمین سرمایه نیست؛ بلکه کمک به ساختن و رشد کسب‌وکارهای بزرگ و ماندگار است.</p>
                 </div>
               </li>
             </ul>
@@ -117,119 +149,299 @@
       </div>
     </section>
 
-    <!-- section: cvc-philosophy -->
-    <section class="bg-brand-light py-20 lg:py-28">
+    <!-- ==================== 5 INVESTMENT STRATEGY AREAS ==================== -->
+    <section class="bg-slate-50/70 border-y border-slate-200/80 py-20 lg:py-28" id="investment-strategy">
       <div class="container-dv">
-        <div class="reveal mb-12 text-center">
-          <span class="section-label">فلسفه سرمایه‌گذاری</span>
-          <h2 class="section-title">رویکرد سرمایه‌گذاری شرکتی</h2>
-          <p class="section-desc mx-auto">
-            دیجی‌ونچرز با ترکیب دیدگاه استراتژیک یک شرکت بزرگ و چابکی یک سرمایه‌گذار جسورانه، ارزش منحصربه‌فردی برای استارتاپ‌ها ایجاد می‌کند.
+        <div class="reveal mb-14 text-center max-w-3xl mx-auto">
+          <p class="text-xs font-bold uppercase tracking-wider text-brand-green">استراتژی سرمایه‌گذاری ما</p>
+          <h2 class="mt-2 text-3xl font-extrabold text-slate-950 sm:text-4xl">
+            دیجی‌ونچرز بر کسب‌وکارهای آینده‌ساز سرمایه‌گذاری می‌کند
+          </h2>
+          <p class="mt-4 text-base text-slate-600 font-light leading-relaxed">
+            استراتژی ما بر سرمایه‌گذاری در حوزه‌هایی متمرکز است که با زنجیره ارزش گروه دیجی‌کالا ارتباط دارند و در حال تغییر شکل اقتصاد دیجیتال هستند.
           </p>
         </div>
-        <div class="grid gap-6 md:grid-cols-3">
-          <div class="card reveal">
-            <h3 class="font-semibold text-brand-darkText">هم‌راستایی استراتژیک</h3>
-            <p class="mt-2 text-sm leading-relaxed text-brand-muted">سرمایه‌گذاری در حوزه‌هایی که با استراتژی کلان گروه و چشم‌انداز اقتصاد دیجیتال هم‌راستا هستند.</p>
-          </div>
-          <div class="card reveal">
-            <h3 class="font-semibold text-brand-darkText">ارزش افزوده عملیاتی</h3>
-            <p class="mt-2 text-sm leading-relaxed text-brand-muted">فراتر از سرمایه، دسترسی به مشتریان، زیرساخت فنی و تجربه عملیاتی بازار را فراهم می‌کنیم.</p>
-          </div>
-          <div class="card reveal">
-            <h3 class="font-semibold text-brand-darkText">دید بلندمدت</h3>
-            <p class="mt-2 text-sm leading-relaxed text-brand-muted">تمرکز بر ایجاد ارزش پایدار و رشد تدریجی، نه خروج سریع و کوتاه‌مدت.</p>
-          </div>
+
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- 1. E-Commerce -->
+          <article class="reveal rounded-2xl border border-slate-200/80 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-green/40 hover:shadow-card-hover">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-brand-green mb-6 font-bold text-lg">۰۱</div>
+            <h3 class="text-xl font-bold text-slate-900">تجارت الکترونیک</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 font-light">
+              استارتاپ‌هایی که شیوه خرید، فروش و تعامل کسب‌وکارها با مشتریان را تغییر می‌دهند؛ از راهکارهای خرده‌فروشی و مارکت‌پلیس تا تجربه مشتری، زیرساخت‌های تجارت دیجیتال و فناوری‌های مرتبط با زنجیره تأمین.
+            </p>
+          </article>
+
+          <!-- 2. Fintech -->
+          <article class="reveal rounded-2xl border border-slate-200/80 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-green/40 hover:shadow-card-hover">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-brand-green mb-6 font-bold text-lg">۰۲</div>
+            <h3 class="text-xl font-bold text-slate-900">فین‌تک و خدمات مالی</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 font-light">
+              کسب‌وکارهایی که در حال ساخت نسل جدید خدمات مالی هستند؛ از پرداخت و اعتبار تا زیرساخت‌های مالی و راهکارهای دیجیتالی که خدمات مالی را ساده‌تر، هوشمندتر و در دسترس‌تر می‌کنند.
+            </p>
+          </article>
+
+          <!-- 3. Platforms -->
+          <article class="reveal rounded-2xl border border-slate-200/80 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-green/40 hover:shadow-card-hover">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-brand-green mb-6 font-bold text-lg">۰۳</div>
+            <h3 class="text-xl font-bold text-slate-900">کسب‌وکارهای پلتفرمی</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 font-light">
+              پلتفرم‌هایی که افراد، کسب‌وکارها و خدمات را به شکل‌های جدیدی به یکدیگر متصل می‌کنند و امکان ایجاد بازارهای جدید و فرصت‌های مقیاس‌پذیر را به وجود می‌آورند.
+            </p>
+          </article>
+
+          <!-- 4. Supply Chain -->
+          <article class="reveal rounded-2xl border border-slate-200/80 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-green/40 hover:shadow-card-hover">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-brand-green mb-6 font-bold text-lg">۰۴</div>
+            <h3 class="text-xl font-bold text-slate-900">زنجیره تأمین و لجستیک</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 font-light">
+              راهکارهایی که به بهبود، هوشمندسازی و تحول بنیادین زنجیره تأمین، مدیریت ناوگان، لجستیک و انبارداری و عملیات توزیع کمک می‌کنند.
+            </p>
+          </article>
+
+          <!-- 5. AI -->
+          <article class="reveal rounded-2xl border border-slate-200/80 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-brand-green/40 hover:shadow-card-hover sm:col-span-2 lg:col-span-1">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-brand-green mb-6 font-bold text-lg">۰۵</div>
+            <h3 class="text-xl font-bold text-slate-900">هوش مصنوعی</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 font-light">
+              تیم‌هایی که از هوش مصنوعی برای حل مسائل واقعی و ساخت محصولات و کسب‌وکارهای جدید استفاده می‌کنند؛ به‌ویژه در تقاطع هوش مصنوعی با تجارت، خدمات مالی و عملیات.
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- section: process-overview -->
-    <section class="bg-brand-darkSection py-20 lg:py-28">
+    <!-- ==================== THREE ENTITIES, ONE INVESTMENT ARM ==================== -->
+    <section class="bg-white py-20 lg:py-28">
       <div class="container-dv">
-        <div class="reveal mb-12 text-center">
-          <span class="section-label">فرآیند</span>
-          <h2 class="section-title text-white">چگونه با ما همکاری کنید؟</h2>
-          <p class="section-desc mx-auto text-white/60">فرآیند ساده و شفاف از ارسال درخواست تا شروع همکاری</p>
+        <div class="reveal mb-14 text-center max-w-3xl mx-auto">
+          <p class="text-xs font-bold uppercase tracking-wider text-brand-green">ساختار دیجی‌ونچرز</p>
+          <h2 class="mt-2 text-3xl font-extrabold text-slate-950 sm:text-4xl">
+            سه مجموعه، یک بازوی سرمایه‌گذاری
+          </h2>
+          <p class="mt-4 text-base text-slate-600 font-light">
+            هم‌افزایی بی‌نظیر برای خلق بیشترین ارزش افزوده به نفع استارتاپ‌ها
+          </p>
         </div>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          <div class="card-dark reveal text-center">
-            <div class="process-number mx-auto">۱</div>
-            <h3 class="font-semibold text-white">ارسال درخواست</h3>
-          </div>
-          <div class="card-dark reveal text-center">
-            <div class="process-number mx-auto">۲</div>
-            <h3 class="font-semibold text-white">بررسی اولیه</h3>
-          </div>
-          <div class="card-dark reveal text-center">
-            <div class="process-number mx-auto">۳</div>
-            <h3 class="font-semibold text-white">جلسه ارزیابی</h3>
-          </div>
-          <div class="card-dark reveal text-center">
-            <div class="process-number mx-auto">۴</div>
-            <h3 class="font-semibold text-white">تصمیم نهایی</h3>
-          </div>
-          <div class="card-dark reveal text-center">
-            <div class="process-number mx-auto">۵</div>
-            <h3 class="font-semibold text-white">شروع همکاری</h3>
-          </div>
+
+        <div class="grid gap-8 md:grid-cols-3">
+          <article class="reveal rounded-2xl border border-slate-200/80 bg-slate-50/50 p-8 shadow-sm text-center">
+            <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-green/10 text-brand-green font-bold text-xl">
+              دیجی‌کالا
+            </div>
+            <h3 class="text-xl font-bold text-slate-900">دیجی‌کالا</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 font-light">
+              ظرفیت‌های تجارت الکترونیک، بازار، میلیون‌ها مشتری، فناوری، انبارداری و زیرساخت‌های عملیاتی گسترده.
+            </p>
+          </article>
+
+          <article class="reveal rounded-2xl border border-slate-200/80 bg-slate-50/50 p-8 shadow-sm text-center">
+            <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 font-bold text-xl">
+              دیجی‌پی
+            </div>
+            <h3 class="text-xl font-bold text-slate-900">دیجی‌پی</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 font-light">
+              تجربه و تخصص عمیق در حوزه پرداخت، خدمات مالی دیجیتال، اعتبار خرید (BNPL) و فناوری‌های فین‌تک.
+            </p>
+          </article>
+
+          <article class="reveal rounded-2xl border border-slate-200/80 bg-slate-50/50 p-8 shadow-sm text-center">
+            <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-50 text-teal-600 font-bold text-xl">
+              دیجی‌نکست
+            </div>
+            <h3 class="text-xl font-bold text-slate-900">دیجی‌نکست</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 font-light">
+              تجربه در سرمایه‌گذاری، شتاب‌دهی، همراهی با استارتاپ‌ها، استعدادیابی فناوری و مدیریت اجرایی دیجی‌ونچرز.
+            </p>
+          </article>
         </div>
-        <div class="reveal mt-10 text-center">
-          <a href="/investment-request.html" class="btn-primary">ثبت درخواست سرمایه‌گذاری</a>
+
+        <!-- Metric Bars -->
+        <div class="mt-16 grid grid-cols-2 gap-6 lg:grid-cols-4 text-center">
+          <div class="rounded-2xl border border-slate-200/80 bg-slate-50/30 p-6">
+            <p class="text-4xl font-extrabold text-slate-950">+۴۰</p>
+            <p class="mt-2 text-sm font-medium text-slate-600">سرمایه‌گذاری فعال</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm border-brand-green/30">
+            <p class="text-4xl font-extrabold text-brand-green">Seed - B</p>
+            <p class="mt-2 text-sm font-medium text-slate-600">مراحل سرمایه‌گذاری</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200/80 bg-slate-50/30 p-6">
+            <p class="text-4xl font-extrabold text-slate-950">۵</p>
+            <p class="mt-2 text-sm font-medium text-slate-600">حوزه سرمایه‌گذاری استراتژیک</p>
+          </div>
+          <div class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm border-brand-green/30">
+            <p class="text-4xl font-extrabold text-brand-green">۱۳۹۸</p>
+            <p class="mt-2 text-sm font-medium text-slate-600">سال آغاز فعالیت CVC</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="bg-white py-20 lg:py-28" id="investment-strategy">
-      <div class="container-dv"><div class="reveal mb-12 text-center"><span class="section-label">استراتژی سرمایه‌گذاری ما</span><h2 class="section-title">سرمایه‌گذاری بر کسب‌وکارهای آینده‌ساز</h2><p class="section-desc mx-auto">استراتژی ما بر سرمایه‌گذاری در حوزه‌هایی متمرکز است که با زنجیره ارزش گروه دیجی‌کالا ارتباط دارند و در حال تغییر شکل اقتصاد دیجیتال هستند.</p></div>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"><article class="card reveal"><h3 class="font-semibold text-brand-darkText">تجارت الکترونیک</h3><p class="mt-2 text-sm leading-relaxed text-brand-muted">استارتاپ‌هایی که شیوه خرید، فروش و تعامل کسب‌وکارها با مشتریان را تغییر می‌دهند؛ از راهکارهای خرده‌فروشی و مارکت‌پلیس تا تجربه مشتری، زیرساخت‌های تجارت دیجیتال و فناوری‌های مرتبط با زنجیره تأمین.</p></article><article class="card reveal"><h3 class="font-semibold text-brand-darkText">فین‌تک</h3><p class="mt-2 text-sm leading-relaxed text-brand-muted">کسب‌وکارهایی که در حال ساخت نسل جدید خدمات مالی هستند؛ از پرداخت و اعتبار تا زیرساخت‌های مالی و راهکارهای دیجیتالی که خدمات مالی را ساده‌تر، هوشمندتر و در دسترس‌تر می‌کنند.</p></article><article class="card reveal"><h3 class="font-semibold text-brand-darkText">کسب‌وکارهای پلتفرمی</h3><p class="mt-2 text-sm leading-relaxed text-brand-muted">پلتفرم‌هایی که افراد، کسب‌وکارها و خدمات را به شکل‌های جدیدی به یکدیگر متصل می‌کنند و امکان ایجاد بازارهای جدید را به وجود می‌آورند.</p></article><article class="card reveal"><h3 class="font-semibold text-brand-darkText">زنجیره تأمین</h3><p class="mt-2 text-sm leading-relaxed text-brand-muted">راهکارهایی که به بهبود، هوشمندسازی و تحول زنجیره تأمین، لجستیک و عملیات کمک می‌کنند.</p></article><article class="card reveal"><h3 class="font-semibold text-brand-darkText">هوش مصنوعی</h3><p class="mt-2 text-sm leading-relaxed text-brand-muted">تیم‌هایی که از هوش مصنوعی برای حل مسائل واقعی و ساخت محصولات و کسب‌وکارهای جدید استفاده می‌کنند؛ به‌ویژه در تقاطع هوش مصنوعی با تجارت، خدمات مالی و عملیات.</p></article></div>
+    <!-- ==================== FAQ ACCORDION SECTION (Exact 6 Doc Questions) ==================== -->
+    <section class="bg-slate-50/70 border-t border-slate-200/80 py-20 lg:py-28" id="faq">
+      <div class="container-dv max-w-4xl">
+        <div class="reveal mb-14 text-center">
+          <p class="text-xs font-bold uppercase tracking-wider text-brand-green">سوالات متداول</p>
+          <h2 class="mt-2 text-3xl font-extrabold text-slate-950 sm:text-4xl">
+            آنچه بنیان‌گذاران می‌پرسند
+          </h2>
+          <p class="mt-3 text-base text-slate-600 font-light">
+            پاسخ به سوالات کلیدی درباره فرآیند، معیارها و نحوه همکاری با دیجی‌ونچرز
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- FAQ 1 -->
+          <details class="faq-item reveal group rounded-2xl border border-slate-200/90 bg-white p-6 transition-all duration-200 open:shadow-md open:border-brand-green/40">
+            <summary class="flex cursor-pointer list-none items-center justify-between text-lg font-bold text-slate-900">
+              <span>دیجی‌ونچرز چیست؟</span>
+              <span class="transition duration-200 group-open:rotate-180 text-brand-green">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <p class="mt-4 text-base leading-relaxed text-slate-600 font-light pt-3 border-t border-slate-100">
+              دیجی‌ونچرز صندوق پژوهش و فناوری سرمایه‌گذاری خطرپذیر شرکتی گروه دیجی‌کالاست که با مشارکت دیجی‌کالا و دیجی‌پی و با مدیریت اجرایی دیجی‌نکست فعالیت می‌کند.
+            </p>
+          </details>
+
+          <!-- FAQ 2 -->
+          <details class="faq-item reveal group rounded-2xl border border-slate-200/90 bg-white p-6 transition-all duration-200 open:shadow-md open:border-brand-green/40">
+            <summary class="flex cursor-pointer list-none items-center justify-between text-lg font-bold text-slate-900">
+              <span>در چه حوزه‌هایی سرمایه‌گذاری می‌کنید؟</span>
+              <span class="transition duration-200 group-open:rotate-180 text-brand-green">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <p class="mt-4 text-base leading-relaxed text-slate-600 font-light pt-3 border-t border-slate-100">
+              تمرکز ما بر حوزه‌هایی مانند تجارت الکترونیک، فین‌تک، کسب‌وکارهای پلتفرمی، زنجیره تأمین و هوش مصنوعی است.
+            </p>
+          </details>
+
+          <!-- FAQ 3 -->
+          <details class="faq-item reveal group rounded-2xl border border-slate-200/90 bg-white p-6 transition-all duration-200 open:shadow-md open:border-brand-green/40">
+            <summary class="flex cursor-pointer list-none items-center justify-between text-lg font-bold text-slate-900">
+              <span>در چه مرحله‌ای سرمایه‌گذاری می‌کنید؟</span>
+              <span class="transition duration-200 group-open:rotate-180 text-brand-green">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <p class="mt-4 text-base leading-relaxed text-slate-600 font-light pt-3 border-t border-slate-100">
+              دیجی‌ونچرز در استارتاپ‌های مرحله Seed به بالا سرمایه‌گذاری می‌کند و بسته به مرحله و نیاز کسب‌وکار، امکان همراهی در مراحل بعدی رشد نیز وجود دارد.
+            </p>
+          </details>
+
+          <!-- FAQ 4 -->
+          <details class="faq-item reveal group rounded-2xl border border-slate-200/90 bg-white p-6 transition-all duration-200 open:shadow-md open:border-brand-green/40">
+            <summary class="flex cursor-pointer list-none items-center justify-between text-lg font-bold text-slate-900">
+              <span>استارتاپ من در مرحله اولیه قرار دارد، امکان جذب سرمایه دارم؟</span>
+              <span class="transition duration-200 group-open:rotate-180 text-brand-green">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <p class="mt-4 text-base leading-relaxed text-slate-600 font-light pt-3 border-t border-slate-100">
+              دیجی‌نکست به‌عنوان بازوی نوآوری و سرمایه‌گذاری گروه دیجی‌کالا، بر حمایت از تیم‌ها و استارتاپ‌های مراحل اولیه تمرکز دارد. دیجی‌ونچرز با چک‌سایز بالاتر و تمرکز بر استارتاپ‌های Seed به بالا، برای همراهی با کسب‌وکارهایی طراحی شده است که در مسیر رشد و مقیاس‌پذیری قرار دارند.
+            </p>
+          </details>
+
+          <!-- FAQ 5 -->
+          <details class="faq-item reveal group rounded-2xl border border-slate-200/90 bg-white p-6 transition-all duration-200 open:shadow-md open:border-brand-green/40">
+            <summary class="flex cursor-pointer list-none items-center justify-between text-lg font-bold text-slate-900">
+              <span>آیا علاوه بر سرمایه‌گذاری، در سایر موارد نیز از استارتاپ‌ها حمایت می‌کنید؟</span>
+              <span class="transition duration-200 group-open:rotate-180 text-brand-green">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <p class="mt-4 text-base leading-relaxed text-slate-600 font-light pt-3 border-t border-slate-100">
+              بله. هدف ما ایجاد ارزش افزوده عملیاتی است. بسته به نیاز و فرصت همکاری، این ارزش می‌تواند از طریق دسترسی به تخصص، بازار، شبکه، زیرساخت‌ها و ظرفیت‌های گروه دیجی‌کالا ایجاد شود.
+            </p>
+          </details>
+
+          <!-- FAQ 6 -->
+          <details class="faq-item reveal group rounded-2xl border border-slate-200/90 bg-white p-6 transition-all duration-200 open:shadow-md open:border-brand-green/40">
+            <summary class="flex cursor-pointer list-none items-center justify-between text-lg font-bold text-slate-900">
+              <span>چگونه می‌توانم برای جذب سرمایه درخواست بدهم؟</span>
+              <span class="transition duration-200 group-open:rotate-180 text-brand-green">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+              </span>
+            </summary>
+            <p class="mt-4 text-base leading-relaxed text-slate-600 font-light pt-3 border-t border-slate-100">
+              از طریق فرم درخواست سرمایه‌گذاری، اطلاعات کسب‌وکار و Pitch Deck خود را برای ما ارسال کنید. تیم سرمایه‌گذاری پس از بررسی اولیه، در صورت تطابق با معیارهای سرمایه‌گذاری با شما تماس خواهد گرفت.
+            </p>
+          </details>
+        </div>
+
+        <div class="mt-12 text-center">
+          <a href="/investment-request.html" class="btn-primary !px-8 !py-3.5 text-base shadow-md shadow-brand-green/20">
+            ارسال فرم درخواست سرمایه‌گذاری
+          </a>
+        </div>
       </div>
     </section>
-
-    <section class="bg-brand-light py-20 lg:py-28"><div class="container-dv"><div class="grid gap-12 lg:grid-cols-2"><div class="reveal"><span class="section-label">سرمایه‌گذاری برای رشد</span><h2 class="section-title">در مراحل مختلف رشد کنار استارتاپ‌ها هستیم</h2><p class="section-desc">ما در مراحل مختلف رشد در کنار استارتاپ‌ها قرار می‌گیریم؛ از تیم‌هایی که به مرحله early stage رسیده‌اند تا کسب‌وکارهای بالغ‌تری که در مسیر رشد و مقیاس‌پذیری قرار دارند.</p></div><div class="reveal"><span class="section-label">ارزش‌های ما</span><div class="space-y-4"><div class="card"><h3 class="font-semibold text-brand-darkText">همراهی بلندمدت</h3><p class="mt-2 text-sm text-brand-muted">ما به دنبال ساختن رابطه‌هایی بلندمدت با بنیان‌گذاران هستیم و موفقیت خودمان را در موفقیت کسب‌وکارهایی می‌بینیم که در آن‌ها سرمایه‌گذاری کرده‌ایم.</p></div><div class="card"><h3 class="font-semibold text-brand-darkText">ارزش واقعی</h3><p class="mt-2 text-sm text-brand-muted">ما به دنبال فرصت‌هایی هستیم که بتوانیم فراتر از سرمایه مالی، ارزش واقعی و عملیاتی ایجاد کنیم.</p></div><div class="card"><h3 class="font-semibold text-brand-darkText">اعتماد و شفافیت</h3><p class="mt-2 text-sm text-brand-muted">ساختن یک کسب‌وکار بزرگ به اعتماد نیاز دارد. ما تلاش می‌کنیم شریکی شفاف، قابل اتکا و همراه برای بنیان‌گذاران باشیم.</p></div><div class="card"><h3 class="font-semibold text-brand-darkText">ساختن، نه فقط سرمایه‌گذاری</h3><p class="mt-2 text-sm text-brand-muted">ما به بنیان‌گذارانی باور داریم که در حال حل مسائل واقعی هستند. نقش ما فقط تأمین سرمایه نیست؛ بلکه کمک به ساختن و رشد کسب‌وکارهای بزرگ و ماندگار است.</p></div></div></div></div></div></section>
-
-    <section class="bg-brand-darkSection py-20 lg:py-28"><div class="container-dv"><div class="reveal mb-12 text-center"><span class="section-label">ساختار دیجی‌ونچرز</span><h2 class="section-title text-white">سه مجموعه، یک بازوی سرمایه‌گذاری</h2></div><div class="grid gap-6 md:grid-cols-3"><article class="card-dark reveal"><h3 class="text-lg font-semibold text-white">دیجی‌کالا</h3><p class="mt-3 text-sm leading-relaxed text-white/60">ظرفیت‌های تجارت الکترونیک، بازار، مشتریان، فناوری و زیرساخت‌های عملیاتی.</p></article><article class="card-dark reveal"><h3 class="text-lg font-semibold text-white">دیجی‌پی</h3><p class="mt-3 text-sm leading-relaxed text-white/60">تجربه و تخصص در حوزه پرداخت، خدمات مالی و فین‌تک.</p></article><article class="card-dark reveal"><h3 class="text-lg font-semibold text-white">دیجی‌نکست</h3><p class="mt-3 text-sm leading-relaxed text-white/60">تجربه در سرمایه‌گذاری، شتاب‌دهی و همکاری با استارتاپ‌ها و مدیریت اجرایی دیجی‌ونچرز.</p></article></div><p class="mt-10 text-center text-sm text-white/50">این بخش بعد از نهایی‌شدن داده‌ها تکمیل می‌شود.</p><div class="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4"><div class="rounded-xl border border-white/10 p-5 text-center"><p class="text-2xl font-bold text-brand-green">[عدد]+</p><p class="mt-2 text-sm text-white/60">سرمایه‌گذاری</p></div><div class="rounded-xl border border-white/10 p-5 text-center"><p class="text-2xl font-bold text-brand-green">[عدد]+</p><p class="mt-2 text-sm text-white/60">شرکت‌های پورتفولیو</p></div><div class="rounded-xl border border-white/10 p-5 text-center"><p class="text-2xl font-bold text-brand-green">[عدد]</p><p class="mt-2 text-sm text-white/60">حوزه سرمایه‌گذاری</p></div><div class="rounded-xl border border-white/10 p-5 text-center"><p class="text-2xl font-bold text-brand-green">[سال]</p><p class="mt-2 text-sm text-white/60">سال آغاز فعالیت</p></div></div></div></section>
-
-    <section class="bg-white py-20 lg:py-28" id="faq"><div class="container-dv max-w-4xl"><div class="reveal mb-12 text-center"><span class="section-label">سوالات متداول</span><h2 class="section-title">آنچه بنیان‌گذاران می‌پرسند</h2></div><div class="space-y-4"><details class="faq-item reveal"><summary>دیجی‌ونچرز چیست؟</summary><p>دیجی‌ونچرز صندوق پژوهش و فناوری سرمایه‌گذاری خطرپذیر شرکتی گروه دیجی‌کالاست که با مشارکت دیجی‌کالا و دیجی‌پی و با مدیریت اجرایی دیجی‌نکست فعالیت می‌کند.</p></details><details class="faq-item reveal"><summary>در چه حوزه‌هایی سرمایه‌گذاری می‌کنید؟</summary><p>تمرکز ما بر حوزه‌هایی مانند تجارت الکترونیک، فین‌تک، کسب‌وکارهای پلتفرمی، زنجیره تأمین و هوش مصنوعی است.</p></details><details class="faq-item reveal"><summary>در چه مرحله‌ای سرمایه‌گذاری می‌کنید؟</summary><p>دیجی‌ونچرز در استارتاپ‌های مرحله Seed به بالا سرمایه‌گذاری می‌کند و بسته به مرحله و نیاز کسب‌وکار، امکان همراهی در مراحل بعدی رشد نیز وجود دارد.</p></details><details class="faq-item reveal"><summary>استارتاپ من در مرحله اولیه قرار دارد، امکان جذب سرمایه دارم؟</summary><p>دیجی‌نکست به‌عنوان بازوی نوآوری و سرمایه‌گذاری گروه دیجی‌کالا، بر حمایت از تیم‌ها و استارتاپ‌های مراحل اولیه تمرکز دارد. دیجی‌ونچرز با چک‌سایز بالاتر و تمرکز بر استارتاپ‌های Seed به بالا، برای همراهی با کسب‌وکارهایی طراحی شده است که در مسیر رشد و مقیاس‌پذیری قرار دارند.</p></details><details class="faq-item reveal"><summary>آیا علاوه بر سرمایه‌گذاری، در سایر موارد نیز از استارتاپ‌ها حمایت می‌کنید؟</summary><p>بله. هدف ما ایجاد ارزش افزوده عملیاتی است. بسته به نیاز و فرصت همکاری، این ارزش می‌تواند از طریق دسترسی به تخصص، بازار، شبکه، زیرساخت‌ها و ظرفیت‌های گروه دیجی‌کالا ایجاد شود.</p></details><details class="faq-item reveal"><summary>چگونه می‌توانم برای جذب سرمایه درخواست بدهم؟</summary><p>از طریق فرم درخواست سرمایه‌گذاری، اطلاعات کسب‌وکار و Pitch Deck خود را برای ما ارسال کنید. تیم سرمایه‌گذاری پس از بررسی اولیه، در صورت تطابق با معیارهای سرمایه‌گذاری با شما تماس خواهد گرفت.</p></details></div></div></section>
 
   </main>
 
-  <!-- section: footer -->
-  <footer class="border-t border-white/10 bg-brand-dark py-12 lg:py-16">
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="border-t border-slate-200 bg-white py-16 text-slate-700">
     <div class="container-dv">
-      <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
         <div class="lg:col-span-2">
-          <a href="/" class="brand-logo brand-logo--footer" aria-label="Digiventures">
+          <a href="/" class="brand-logo flex items-center gap-2" aria-label="Digiventures">
             <span class="brand-logo-mark" aria-hidden="true"></span>
             <span class="brand-logo-wordmark" aria-hidden="true"></span>
           </a>
-          <p class="mt-4 max-w-sm text-sm leading-relaxed text-white/60">سرمایه‌گذاری بر آینده کسب‌وکارها.</p>
+          <p class="mt-4 text-base font-semibold text-slate-900">سرمایه‌گذاری بر آینده کسب‌وکارها.</p>
+          <p class="mt-3 max-w-sm text-sm leading-relaxed text-slate-500 font-light">
+            دیجی‌ونچرز صندوق پژوهش و فناوری سرمایه‌گذاری خطرپذیر شرکتی (CVC) گروه دیجی‌کالاست که با مشارکت دیجی‌کالا و دیجی‌پی و با مدیریت اجرایی دیجی‌نکست فعالیت می‌کند.
+          </p>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-slate-600">
+            <span>دیجی‌کالا</span>
+            <span>·</span>
+            <span>دیجی‌پی</span>
+            <span>·</span>
+            <span>دیجی‌نکست</span>
+          </div>
         </div>
+
         <div>
-          <h3 class="mb-4 text-sm font-semibold text-white">دسترسی سریع</h3>
-          <ul class="space-y-2">
-            <li><a href="/" class="text-sm text-white/60 transition-colors hover:text-brand-green">خانه</a></li>
-            <li><a href="/about.html" class="text-sm text-white/60 transition-colors hover:text-brand-green">درباره ما</a></li>
-            <li><a href="/team.html" class="text-sm text-white/60 transition-colors hover:text-brand-green">تیم</a></li>
-            <li><a href="/contact.html" class="text-sm text-white/60 transition-colors hover:text-brand-green">تماس</a></li>
-            <li><a href="/investment-request.html" class="text-sm text-white/60 transition-colors hover:text-brand-green">درخواست سرمایه‌گذاری</a></li>
+          <h4 class="mb-4 text-sm font-bold text-slate-900">حوزه‌های سرمایه‌گذاری</h4>
+          <ul class="space-y-3 text-sm text-slate-600">
+            <li><a href="/#focus" class="transition-colors hover:text-brand-green">تجارت الکترونیک</a></li>
+            <li><a href="/#focus" class="transition-colors hover:text-brand-green">فین‌تک و پرداخت</a></li>
+            <li><a href="/#focus" class="transition-colors hover:text-brand-green">هوش مصنوعی و داده</a></li>
+            <li><a href="/#focus" class="transition-colors hover:text-brand-green">کسب‌وکارهای پلتفرمی</a></li>
+            <li><a href="/#focus" class="transition-colors hover:text-brand-green">زنجیره تأمین و لجستیک</a></li>
           </ul>
         </div>
+
         <div>
-          <h3 class="mb-4 text-sm font-semibold text-white">تماس</h3>
-          <ul class="space-y-2 text-sm text-white/60">
-            <li>تهران، ایران</li>
+          <h4 class="mb-4 text-sm font-bold text-slate-900">دسترسی سریع</h4>
+          <ul class="space-y-3 text-sm text-slate-600">
+            <li><a href="/#portfolio" class="transition-colors hover:text-brand-green">پورتفولیو</a></li>
+            <li><a href="/#advantage" class="transition-colors hover:text-brand-green">مزیت دیجی‌ونچرز</a></li>
+            <li><a href="/#team" class="transition-colors hover:text-brand-green">تیم ما</a></li>
+            <li><a href="/about.html" class="transition-colors hover:text-brand-green">درباره ما</a></li>
+            <li><a href="/#news" class="transition-colors hover:text-brand-green">اخبار و دیدگاه‌ها</a></li>
+            <li><a href="/#contact" class="transition-colors hover:text-brand-green">ارتباط با ما</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="mb-4 text-sm font-bold text-slate-900">برای بنیان‌گذاران</h4>
+          <ul class="space-y-3 text-sm text-slate-600">
+            <li><a href="/investment-request.html" class="font-semibold text-brand-green hover:underline">درخواست جذب سرمایه</a></li>
+            <li><a href="/about.html#faq" class="transition-colors hover:text-brand-green">سوالات متداول</a></li>
             <li><a href="mailto:info@digiventures.ir" class="transition-colors hover:text-brand-green">info@digiventures.ir</a></li>
-            <li dir="ltr" class="text-right">+98 21 0000 0000</li>
           </ul>
         </div>
       </div>
-      <div class="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/40">
+
+      <div class="mt-14 border-t border-slate-100 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
         <p>© ۱۴۰۵ دیجی‌ونچرز. تمامی حقوق محفوظ است.</p>
+        <p class="text-slate-400">صندوق سرمایه‌گذاری خطرپذیر شرکتی گروه دیجی‌کالا (CVC)</p>
       </div>
     </div>
   </footer>
 
-  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

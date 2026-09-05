@@ -4,6 +4,7 @@
  */
 
 import './styles.css';
+import lottie from 'lottie-web';
 
 (function () {
   'use strict';
@@ -52,7 +53,7 @@ import './styles.css';
 
   /* ── Scroll reveal ── */
   function initReveal() {
-    const elements = document.querySelectorAll('.reveal');
+    const elements = document.querySelectorAll('.reveal, .reveal-fade');
     if (!elements.length) return;
 
     if (prefersReducedMotion) {
@@ -223,14 +224,55 @@ import './styles.css';
     });
   }
 
-  /* ── Hero load animation ── */
-  function initHeroAnimation() {
-    if (prefersReducedMotion) return;
+  /* ── Hero Lottie animation (M12 orbit visual) ──
+     Renders hero-animation.json as inline SVG at 0.5x speed, autoplaying
+     when scrolled into view. Falls back to a single static frame when the
+     user prefers reduced motion. The JSON path is read from a <link> tag so
+     ReferencePages::replace_urls() rewrites /assets/images/... to the plugin
+     URL at render time — no PHP change required. */
+  function initHeroLottie() {
+    const srcLink = document.getElementById('hero-lottie-src');
+    const container = document.getElementById('hero-lottie');
+    if (!srcLink || !container || !srcLink.href) return;
 
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-      heroContent.classList.add('animate-fade-up');
+    const animation = lottie.loadAnimation({
+      container: container,
+      renderer: 'svg',
+      loop: true,
+      autoplay: false,
+      path: srcLink.href,
+    });
+
+    animation.setSpeed(0.5);
+
+    if (prefersReducedMotion) {
+      animation.goToAndStop(0, true);
+      return;
     }
+
+    const observer = new IntersectionObserver(
+      function (entries, obs) {
+        if (entries[0] && entries[0].isIntersecting) {
+          animation.play();
+          obs.unobserve(container);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(container);
+  }
+
+  /* ── 3D flip cards: tap-to-flip for touch devices ──
+     Hover and :focus-within already flip via CSS; this mirrors the same
+     state through .is-flipped so touch users can reach the back face. */
+  function initFlipCards() {
+    document.querySelectorAll('.m12-flip-card').forEach(function (card) {
+      card.addEventListener('click', function (event) {
+        // Let real links on the back face navigate normally.
+        if (event.target.closest('a')) return;
+        card.classList.toggle('is-flipped');
+      });
+    });
   }
 
   /* ── Investment request form validation ── */
@@ -342,14 +384,162 @@ import './styles.css';
     });
   }
 
+  /* ── Smooth In-Page Scrolling with Custom Easing ── */
+  function initSmoothScroll() {
+    const HEADER_OFFSET = 84; // 76px sticky header + 8px clearance
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function smoothScrollTo(targetY) {
+      if (prefersReducedMotion) {
+        window.scrollTo(0, targetY);
+        return;
+      }
+
+      const startY = window.pageYOffset || document.documentElement.scrollTop;
+      const difference = targetY - startY;
+      if (Math.abs(difference) < 4) return;
+
+      const startTime = performance.now();
+      const duration = Math.min(850, Math.max(500, Math.abs(difference) * 0.35));
+
+      function step(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = easeInOutCubic(progress);
+
+        window.scrollTo(0, startY + difference * easeProgress);
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    function scrollToHash(hash, updateHistory) {
+      if (!hash || hash === '#' || hash === '#!') return;
+      const targetId = hash.replace(/^#/, '');
+      const targetElement = document.getElementById(targetId);
+      if (!targetElement) return;
+
+      const elementRect = targetElement.getBoundingClientRect();
+      const absoluteTop = elementRect.top + (window.pageYOffset || document.documentElement.scrollTop);
+      const targetY = Math.max(0, absoluteTop - HEADER_OFFSET);
+
+      smoothScrollTo(targetY);
+
+      if (updateHistory && window.history && window.history.pushState) {
+        window.history.pushState(null, '', hash);
+      }
+    }
+
+    // Intercept clicks on anchor tags
+    document.addEventListener('click', function (e) {
+      const link = e.target.closest('a');
+      if (!link) return;
+
+      const rawHref = link.getAttribute('href');
+      if (!rawHref) return;
+
+      let targetHash = null;
+
+      try {
+        const targetUrl = new URL(link.href, window.location.href);
+        const currentCleanPath = window.location.pathname.replace(/\/$/, '') || '/';
+        const targetCleanPath = targetUrl.pathname.replace(/\/$/, '') || '/';
+        const isSamePage = (targetUrl.origin === window.location.origin) &&
+          (targetCleanPath === currentCleanPath ||
+           (currentCleanPath === '/' && targetCleanPath === '/index.html') ||
+           (currentCleanPath === '/index.html' && targetCleanPath === '/'));
+
+        if (isSamePage && targetUrl.hash && targetUrl.hash.length > 1) {
+          targetHash = targetUrl.hash;
+        }
+      } catch (err) {
+        if (rawHref.startsWith('#') && rawHref.length > 1) {
+          targetHash = rawHref;
+        }
+      }
+
+      if (targetHash) {
+        const targetEl = document.getElementById(targetHash.replace(/^#/, ''));
+        if (targetEl) {
+          e.preventDefault();
+          scrollToHash(targetHash, true);
+        }
+      }
+    });
+
+    // Handle initial hash on page load if coming from another page (e.g. /about.html -> /#team)
+    if (window.location.hash) {
+      setTimeout(function () {
+        scrollToHash(window.location.hash, false);
+      }, 150);
+    }
+  }
+
+  /* ── Active Section Scroll-Spy ── */
+  function initScrollSpy() {
+    const navLinks = document.querySelectorAll('.header-primary-nav a[href*="#"]');
+    if (!navLinks.length) return;
+
+    const sectionIds = Array.from(navLinks).map(function (link) {
+      const href = link.getAttribute('href');
+      return href.includes('#') ? href.split('#')[1] : '';
+    }).filter(Boolean);
+
+    const sections = sectionIds.map(function (id) {
+      return document.getElementById(id);
+    }).filter(Boolean);
+
+    if (!sections.length) return;
+
+    let ticking = false;
+    function updateActiveNav() {
+      const triggerY = (window.pageYOffset || document.documentElement.scrollTop) + 120;
+      let currentId = '';
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section.offsetTop <= triggerY) {
+          currentId = section.getAttribute('id');
+          break;
+        }
+      }
+
+      navLinks.forEach(function (link) {
+        const href = link.getAttribute('href');
+        const linkHash = href.includes('#') ? href.split('#')[1] : '';
+        link.classList.toggle('is-active', Boolean(currentId && linkHash === currentId));
+      });
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(updateActiveNav);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateActiveNav();
+  }
+
   /* ── Init ── */
   document.addEventListener('DOMContentLoaded', function () {
     initMobileMenu();
     initReveal();
     initCounters();
     initSliders();
-    initHeroAnimation();
+    initHeroLottie();
     initInvestmentForm();
     initAuthForms();
+    initSmoothScroll();
+    initScrollSpy();
   });
 })();
+

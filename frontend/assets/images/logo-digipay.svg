@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 40" fill="none">
+  <rect width="36" height="36" y="2" rx="10" fill="#0040FF" fill-opacity="0.1" />
+  <rect x="10" y="13" width="18" height="14" rx="3" fill="#0040FF" />
+  <rect x="10" y="16" width="18" height="3" fill="white" fill-opacity="0.5" />
+  <circle cx="23" cy="22" r="1.8" fill="#00B140" />
+  <text x="46" y="26" font-family="'Yekan Bakh', 'Gilroy', sans-serif" font-size="18" font-weight="800" fill="#0F172A">دیجی‌پی</text>
+</svg>

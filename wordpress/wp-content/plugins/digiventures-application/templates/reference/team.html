@@ -3,197 +3,270 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="تیم دیجی‌ونچرز — متخصصان سرمایه‌گذاری و توسعه اکوسیستم" />
+  <meta name="description" content="تیم دیجی‌ونچرز — متخصصان سرمایه‌گذاری خطرپذیر، پلتفرم و توسعه اکوسیستم" />
   <link rel="icon" type="image/png" href="/assets/images/digiventures-favicon.png" />
-  <title>تیم | دیجی‌ونچرز</title>
+  <title>تیم ما | دیجی‌ونچرز</title>
 </head>
-<body>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-brand-green selection:text-white">
 
-  <!-- section: header -->
-  <header class="fixed top-0 z-50 w-full border-b border-white/10 bg-brand-dark/95 backdrop-blur-md">
-    <div class="site-header-inner container-dv flex h-[72px] items-center justify-between">
-      <a href="/" class="site-header-brand brand-logo" aria-label="Digiventures">
+  <!-- ==================== HEADER (M12 Exact Style) ==================== -->
+  <header class="fixed top-0 z-50 w-full border-b border-slate-100 bg-white/95 backdrop-blur-md transition-all duration-200">
+    <div class="site-header-inner container-dv flex h-[76px] items-center justify-between">
+      <a href="/" class="site-header-brand brand-logo flex items-center gap-2" aria-label="Digiventures">
         <span class="brand-logo-mark" aria-hidden="true"></span>
         <span class="brand-logo-wordmark" aria-hidden="true"></span>
       </a>
-      <nav class="header-primary-nav hidden items-center gap-6 xl:flex" aria-label="منوی اصلی">
-        <a href="/" class="nav-link">خانه</a>
-        <a href="/portfolio.html" class="nav-link">پورتفولیو</a>
-        <a href="/about.html" class="nav-link">درباره ما</a>
-        <a href="/team.html" class="nav-link nav-link-active">تیم</a>
-        <a href="/contact.html" class="nav-link">ارتباط با ما</a>
-        <a href="/news.html" class="nav-link">تازه‌ها</a>
-        <a href="/investment-request.html" class="nav-link">درخواست سرمایه‌گذاری</a>
+
+      <!-- Primary Navigation -->
+      <nav class="header-primary-nav hidden items-center gap-7 xl:flex" aria-label="منوی اصلی">
+        <a href="/#focus" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">حوزه‌های سرمایه‌گذاری</a>
+        <a href="/#portfolio" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">پورتفولیو</a>
+        <a href="/#team" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">تیم ما</a>
+        <a href="/#news" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">تازه‌ها و دیدگاه‌ها</a>
+        <a href="/#contact" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">ارتباط با ما</a>
+        <a href="/about.html" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">درباره ما</a>
       </nav>
+
+      <!-- Actions -->
       <div class="header-auth-actions hidden items-center gap-3 xl:flex">
-        <a href="/login.html" class="btn-login"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6A2.25 2.25 0 0 0 5.25 5.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M18.75 12H9m9.75 0-3-3m3 3-3 3"/></svg>ورود</a>
-        <a href="/signup.html" class="btn-primary !px-4 !py-2.5">ثبت‌نام</a>
+        <a href="/login.html" class="btn-header-login">
+          <svg class="h-4 w-4 text-slate-500 transition-colors group-hover:text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+          </svg>
+          <span>ورود</span>
+        </a>
+        <a href="/investment-request.html" class="btn-header-cta">
+          <span>درخواست سرمایه‌گذاری</span>
+          <svg class="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+          </svg>
+        </a>
       </div>
-      <button id="mobile-menu-toggle" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg text-white xl:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="باز کردن منو">
-        <svg id="icon-menu-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        <svg id="icon-menu-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-toggle" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg text-slate-800 xl:hidden hover:bg-slate-100" aria-expanded="false" aria-controls="mobile-menu" aria-label="باز کردن منو">
+        <svg id="icon-menu-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-menu-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
-    <nav id="mobile-menu" class="mobile-menu mobile-menu-hidden" aria-label="منوی موبایل" aria-hidden="true">
+
+    <!-- Mobile Nav Dropdown -->
+    <nav id="mobile-menu" class="mobile-menu mobile-menu-hidden xl:hidden" aria-label="منوی موبایل" aria-hidden="true">
       <div class="container-dv flex flex-col gap-1 py-6">
-        <a href="/" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">خانه</a>
-        <a href="/portfolio.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">پورتفولیو</a>
-        <a href="/about.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">درباره ما</a>
-        <a href="/team.html" class="rounded-lg px-4 py-3 text-base font-medium text-brand-green">تیم</a>
-        <a href="/contact.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">تماس</a>
-        <a href="/news.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">تازه‌ها</a>
-        <a href="/investment-request.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">درخواست سرمایه‌گذاری</a>
-        <a href="/login.html" class="rounded-lg px-4 py-3 text-base font-medium text-white/80 hover:bg-white/5 hover:text-brand-green">ورود به حساب</a>
+        <a href="/#focus" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">حوزه‌های سرمایه‌گذاری</a>
+        <a href="/#portfolio" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">پورتفولیو</a>
+        <a href="/#team" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">تیم ما</a>
+        <a href="/#news" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">تازه‌ها و دیدگاه‌ها</a>
+        <a href="/#contact" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">ارتباط با ما</a>
+        <a href="/about.html" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">درباره ما</a>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex flex-col gap-2">
+          <a href="/investment-request.html" class="flex items-center justify-center gap-2 rounded-xl bg-brand-green px-4 py-3 text-base font-semibold text-white shadow-sm hover:bg-brand-greenHover">
+            <span>درخواست سرمایه‌گذاری</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+          </a>
+          <a href="/login.html" class="flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-brand-green">
+            <svg class="h-4 w-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+            <span>ورود به حساب</span>
+          </a>
+        </div>
       </div>
     </nav>
   </header>
 
-  <main class="pt-[72px]">
+  <main class="pt-[76px]">
 
-    <!-- section: page-hero -->
-    <section class="hero-bg py-20 lg:py-28">
-      <div class="tri-pattern absolute inset-0 opacity-40" aria-hidden="true"></div>
-      <div class="hero-accent-line" aria-hidden="true"></div>
-      <div class="container-dv relative z-10 text-center">
-        <span class="section-label">تیم سرمایه‌گذاری</span>
-        <h1 class="mt-3 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">تیم دیجی‌ونچرز</h1>
-        <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/70">
-          تیمی متشکل از متخصصان سرمایه‌گذاری، تحلیل فنی و توسعه اکوسیستم که با تجربه عملی در حوزه فناوری و کسب‌وکار دیجیتال، استارتاپ‌ها را در مسیر رشد همراهی می‌کنند.
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="py-20 lg:py-28 bg-white border-b border-slate-100">
+      <div class="container-dv text-center max-w-4xl mx-auto">
+        <span class="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50 px-4 py-1.5 text-xs font-semibold text-slate-700 mb-6">
+          <span class="h-2 w-2 rounded-full bg-brand-green"></span>
+          تیم سرمایه‌گذاری و راهبری
+        </span>
+        <h1 class="text-4xl font-extrabold text-slate-950 sm:text-5xl lg:text-6xl leading-tight">
+          تیم <span class="text-brand-green">دیجی‌ونچرز</span>
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-slate-600 font-light leading-relaxed max-w-3xl mx-auto">
+          تیمی از مدیران سرمایه‌گذاری، تحلیلگران فنی و توسعه‌دهندگان پلتفرم که با تکیه بر تجربه اکوسیستم گروه دیجی‌کالا، استارتاپ‌ها را در مسیر رشد همراهی می‌کنند.
         </p>
       </div>
     </section>
 
-    <!-- section: team-grid -->
-    <section class="bg-white py-20 lg:py-28">
+    <!-- ==================== 1. INVESTMENT & GP TEAM ==================== -->
+    <section class="py-20 bg-slate-50/50">
       <div class="container-dv">
-        <div class="reveal mb-12 text-center">
-          <span class="section-label">ساختار تیم</span>
-          <h2 class="section-title">سرمایه‌گذاری، پلتفرم و مشاوران</h2>
-          <p class="section-desc mx-auto">نقش‌های کلیدی در فرآیند ارزیابی، سرمایه‌گذاری و توسعه پرتفوی</p>
+        <div class="mb-12">
+          <p class="text-xs font-bold uppercase tracking-wider text-brand-green">Investment Team</p>
+          <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">تیم راهبری و سرمایه‌گذاری</h2>
+          <p class="mt-2 text-sm text-slate-600 font-light">رهبری استراتژی سرمایه‌گذاری، مدیریت پرتفوی و اعتبارسنجی موشکافانه فرصت‌های نوین بازار</p>
         </div>
 
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <div class="card reveal text-center">
-            <div class="team-avatar">
-              <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+          <!-- Member 1 -->
+          <div class="reveal rounded-2xl border border-slate-200/80 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover hover:border-brand-green/40">
+            <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-green/10 text-brand-green font-bold text-xl">
+              GP
             </div>
-            <h3 class="text-lg font-semibold text-brand-darkText">مدیریت سرمایه‌گذاری</h3>
-            <p class="mt-1 text-sm font-medium text-brand-green">Investment Lead</p>
-            <p class="mt-3 text-sm leading-relaxed text-brand-muted">رهبری استراتژی سرمایه‌گذاری، مدیریت پرتفوی و تصمیم‌گیری نهایی در فرآیند ارزیابی استارتاپ‌ها</p>
+            <h3 class="text-xl font-bold text-slate-900">مدیریت سرمایه‌گذاری</h3>
+            <p class="mt-1 text-sm font-semibold text-brand-green">Investment Lead & Partner</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 font-light">
+              هدایت استراتژی کلان تخصیص سرمایه، ساختاردهی قراردادهای مشارکت و راهبری توسعه پورتفولیو در مقیاس ملی.
+            </p>
           </div>
-          <div class="card reveal text-center">
-            <div class="team-avatar">
-              <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+
+          <!-- Member 2 -->
+          <div class="reveal rounded-2xl border border-slate-200/80 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover hover:border-brand-green/40">
+            <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 font-bold text-xl">
+              DD
             </div>
-            <h3 class="text-lg font-semibold text-brand-darkText">تحلیل و ارزیابی</h3>
-            <p class="mt-1 text-sm font-medium text-brand-green">Due Diligence Analyst</p>
-            <p class="mt-3 text-sm leading-relaxed text-brand-muted">تحلیل مالی، فنی و بازار استارتاپ‌های متقاضی و تهیه گزارش‌های ارزیابی جامع</p>
+            <h3 class="text-xl font-bold text-slate-900">تحلیل مالی و ارزیابی موشکافانه</h3>
+            <p class="mt-1 text-sm font-semibold text-brand-green">Due Diligence & Financial Analyst</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 font-light">
+              تحلیل صورت‌های مالی، ارزیابی ریسک، ارزش‌گذاری استارتاپ‌ها و مدل‌سازی اقتصادی مبتنی بر داده‌های بازار.
+            </p>
           </div>
-          <div class="card reveal text-center">
-            <div class="team-avatar">
-              <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+
+          <!-- Member 3 -->
+          <div class="reveal rounded-2xl border border-slate-200/80 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover hover:border-brand-green/40">
+            <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 font-bold text-xl">
+              TA
             </div>
-            <h3 class="text-lg font-semibold text-brand-darkText">توسعه اکوسیستم</h3>
-            <p class="mt-1 text-sm font-medium text-brand-green">Ecosystem Manager</p>
-            <p class="mt-3 text-sm leading-relaxed text-brand-muted">ایجاد ارتباط بین استارتاپ‌ها و واحدهای تجاری گروه، شبکه‌سازی و فراهم‌سازی دسترسی به بازار</p>
-          </div>
-          <div class="card reveal text-center">
-            <div class="team-avatar">
-              <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-            </div>
-            <h3 class="text-lg font-semibold text-brand-darkText">مشاوره فنی</h3>
-            <p class="mt-1 text-sm font-medium text-brand-green">Technical Advisor</p>
-            <p class="mt-3 text-sm leading-relaxed text-brand-muted">ارزیابی فناوری، معماری محصول و پتانسیل فنی راهکارهای پیشنهادی استارتاپ‌ها</p>
-          </div>
-          <div class="card reveal text-center">
-            <div class="team-avatar">
-              <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-            </div>
-            <h3 class="text-lg font-semibold text-brand-darkText">حقوقی و قراردادها</h3>
-            <p class="mt-1 text-sm font-medium text-brand-green">Legal Counsel</p>
-            <p class="mt-3 text-sm leading-relaxed text-brand-muted">تدوین و بررسی قراردادهای سرمایه‌گذاری و اطمینان از رعایت الزامات حقوقی</p>
-          </div>
-          <div class="card reveal text-center">
-            <div class="team-avatar">
-              <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-            </div>
-            <h3 class="text-lg font-semibold text-brand-darkText">ارتباطات و روابط</h3>
-            <p class="mt-1 text-sm font-medium text-brand-green">Communications Lead</p>
-            <p class="mt-3 text-sm leading-relaxed text-brand-muted">مدیریت ارتباط با بنیان‌گذاران، پیگیری درخواست‌ها و هماهنگی جلسات ارزیابی</p>
+            <h3 class="text-xl font-bold text-slate-900">ارزیابی فناوری و هوش مصنوعی</h3>
+            <p class="mt-1 text-sm font-semibold text-brand-green">Tech & AI Assessment Lead</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 font-light">
+              بررسی معماری فنی، اعتبارسنجی الگوریتم‌های هوش مصنوعی و ارزیابی مقیاس‌پذیری زیرساخت استارتاپ‌ها.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- section: advisory-note -->
-    <section class="bg-brand-light py-20 lg:py-28">
+    <!-- ==================== 2. PLATFORM & ECOSYSTEM TEAM ==================== -->
+    <section class="py-20 bg-white border-t border-slate-100">
       <div class="container-dv">
-        <div class="reveal mx-auto max-w-3xl rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-card lg:p-12">
-          <span class="section-label">هیئت مشاوره</span>
-          <h2 class="section-title mt-2">شبکه مشاوران تخصصی</h2>
-          <p class="mt-4 text-base leading-relaxed text-brand-muted">
-            علاوه بر تیم اجرایی، دیجی‌ونچرز از شبکه‌ای از مشاوران متخصص در حوزه‌های فناوری، مالی، حقوقی و بازار بهره می‌برد. این مشاوران در مراحل ارزیابی عمیق و تصمیم‌گیری نهایی، دیدگاه تخصصی خود را ارائه می‌دهند.
-          </p>
-          <p class="mt-4 text-sm text-brand-muted">
-            اطلاعات اعضای هیئت مشاوره به‌زودی در این بخش منتشر خواهد شد.
-          </p>
+        <div class="mb-12">
+          <p class="text-xs font-bold uppercase tracking-wider text-brand-green">Platform & Value Creation</p>
+          <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">تیم پلتفرم و ارزش‌آفرینی اکوسیستم</h2>
+          <p class="mt-2 text-sm text-slate-600 font-light">ایجاد اتصال استراتژیک بین پورتفولیو و ظرفیت‌های عملیاتی، بازار و فناوری گروه دیجی‌کالا</p>
+        </div>
+
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Platform 1 -->
+          <div class="reveal rounded-2xl border border-slate-200/80 bg-slate-50/60 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover hover:border-brand-green/40">
+            <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-50 text-teal-600 font-bold text-xl">
+              EC
+            </div>
+            <h3 class="text-xl font-bold text-slate-900">توسعه ارتباطات اکوسیستم</h3>
+            <p class="mt-1 text-sm font-semibold text-brand-green">Ecosystem & Synergy Lead</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 font-light">
+              اتصال استارتاپ‌ها به واحدهای تجاری دیجی‌کالا، دیجی‌پی و دیجی‌نکست و خلق پایلوت‌های مشترک تجاری.
+            </p>
+          </div>
+
+          <!-- Platform 2 -->
+          <div class="reveal rounded-2xl border border-slate-200/80 bg-slate-50/60 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover hover:border-brand-green/40">
+            <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-50 text-purple-600 font-bold text-xl">
+              GR
+            </div>
+            <h3 class="text-xl font-bold text-slate-900">شتاب‌دهی رشد و توسعه بازار</h3>
+            <p class="mt-1 text-sm font-semibold text-brand-green">Growth & Market Access</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 font-light">
+              ارائه راهکارهای توسعه بازار، بهینه‌سازی کانال‌های جذب مشتری و هم‌افزایی با پایگاه میلیونی کاربران.
+            </p>
+          </div>
+
+          <!-- Platform 3 -->
+          <div class="reveal rounded-2xl border border-slate-200/80 bg-slate-50/60 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover hover:border-brand-green/40">
+            <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 font-bold text-xl">
+              OP
+            </div>
+            <h3 class="text-xl font-bold text-slate-900">عملیات و همراهی استارتاپ‌ها</h3>
+            <p class="mt-1 text-sm font-semibold text-brand-green">Operations & Portfolio Support</p>
+            <p class="mt-4 text-sm leading-relaxed text-slate-600 font-light">
+              پشتیبانی از نیازمندی‌های حقوقی، حکمرانی شرکتی، راندهای بعدی تأمین مالی و هماهنگی‌های ستادی.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- section: join-cta -->
-    <section class="hero-bg py-16 lg:py-20">
-      <div class="tri-pattern absolute inset-0 opacity-40" aria-hidden="true"></div>
-      <div class="container-dv relative z-10 text-center">
-        <div class="reveal">
-          <h2 class="text-2xl font-bold text-white sm:text-3xl">با تیم ما در ارتباط باشید</h2>
-          <p class="mx-auto mt-4 max-w-lg text-base text-white/70">برای پرسش‌های مربوط به فرآیند سرمایه‌گذاری یا همکاری، با ما تماس بگیرید.</p>
-          <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a href="/contact.html" class="btn-secondary">تماس با ما</a>
-            <a href="/investment-request.html" class="btn-primary">ثبت درخواست سرمایه‌گذاری</a>
-          </div>
+    <!-- ==================== FINAL CTA ==================== -->
+    <section class="py-20 bg-slate-50 border-t border-slate-200/80 text-center">
+      <div class="container-dv max-w-2xl mx-auto">
+        <h2 class="text-3xl font-bold text-slate-950">مشتاق گفتگو با شما هستیم</h2>
+        <p class="mt-4 text-slate-600 font-light leading-relaxed">
+          اگر در حال ساخت محصولی نوآور در حوزه تجارت الکترونیک، فین‌تک یا هوش مصنوعی هستید، با تیم ما در ارتباط باشید.
+        </p>
+        <div class="mt-8">
+          <a href="/investment-request.html" class="btn-primary !px-8 !py-3.5 text-base shadow-md shadow-brand-green/20">
+            ثبت درخواست جذب سرمایه
+          </a>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- section: footer -->
-  <footer class="border-t border-white/10 bg-brand-dark py-12 lg:py-16">
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="border-t border-slate-200 bg-white py-16 text-slate-700">
     <div class="container-dv">
-      <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
         <div class="lg:col-span-2">
-          <a href="/" class="brand-logo brand-logo--footer" aria-label="Digiventures">
+          <a href="/" class="brand-logo flex items-center gap-2" aria-label="Digiventures">
             <span class="brand-logo-mark" aria-hidden="true"></span>
             <span class="brand-logo-wordmark" aria-hidden="true"></span>
           </a>
-          <p class="mt-4 max-w-sm text-sm leading-relaxed text-white/60">سرمایه‌گذاری بر آینده کسب‌وکارها.</p>
+          <p class="mt-4 text-base font-semibold text-slate-900">سرمایه‌گذاری بر آینده کسب‌وکارها.</p>
+          <p class="mt-3 max-w-sm text-sm leading-relaxed text-slate-500 font-light">
+            دیجی‌ونچرز صندوق پژوهش و فناوری سرمایه‌گذاری خطرپذیر شرکتی (CVC) گروه دیجی‌کالاست که با مشارکت دیجی‌کالا و دیجی‌پی و با مدیریت اجرایی دیجی‌نکست فعالیت می‌کند.
+          </p>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-slate-600">
+            <span>دیجی‌کالا</span>
+            <span>·</span>
+            <span>دیجی‌پی</span>
+            <span>·</span>
+            <span>دیجی‌نکست</span>
+          </div>
         </div>
+
         <div>
-          <h3 class="mb-4 text-sm font-semibold text-white">دسترسی سریع</h3>
-          <ul class="space-y-2">
-            <li><a href="/" class="text-sm text-white/60 transition-colors hover:text-brand-green">خانه</a></li>
-            <li><a href="/about.html" class="text-sm text-white/60 transition-colors hover:text-brand-green">درباره ما</a></li>
-            <li><a href="/team.html" class="text-sm text-white/60 transition-colors hover:text-brand-green">تیم</a></li>
-            <li><a href="/contact.html" class="text-sm text-white/60 transition-colors hover:text-brand-green">تماس</a></li>
-            <li><a href="/investment-request.html" class="text-sm text-white/60 transition-colors hover:text-brand-green">درخواست سرمایه‌گذاری</a></li>
+          <h4 class="mb-4 text-sm font-bold text-slate-900">حوزه‌های سرمایه‌گذاری</h4>
+          <ul class="space-y-3 text-sm text-slate-600">
+            <li><a href="/#focus" class="transition-colors hover:text-brand-green">تجارت الکترونیک</a></li>
+            <li><a href="/#focus" class="transition-colors hover:text-brand-green">فین‌تک و پرداخت</a></li>
+            <li><a href="/#focus" class="transition-colors hover:text-brand-green">هوش مصنوعی و داده</a></li>
+            <li><a href="/#focus" class="transition-colors hover:text-brand-green">کسب‌وکارهای پلتفرمی</a></li>
+            <li><a href="/#focus" class="transition-colors hover:text-brand-green">زنجیره تأمین و لجستیک</a></li>
           </ul>
         </div>
+
         <div>
-          <h3 class="mb-4 text-sm font-semibold text-white">تماس</h3>
-          <ul class="space-y-2 text-sm text-white/60">
-            <li>تهران، ایران</li>
+          <h4 class="mb-4 text-sm font-bold text-slate-900">دسترسی سریع</h4>
+          <ul class="space-y-3 text-sm text-slate-600">
+            <li><a href="/portfolio.html" class="transition-colors hover:text-brand-green">پورتفولیو</a></li>
+            <li><a href="/#advantage" class="transition-colors hover:text-brand-green">مزیت دیجی‌ونچرز</a></li>
+            <li><a href="/team.html" class="transition-colors hover:text-brand-green">تیم ما</a></li>
+            <li><a href="/about.html" class="transition-colors hover:text-brand-green">درباره ما</a></li>
+            <li><a href="/news.html" class="transition-colors hover:text-brand-green">اخبار و دیدگاه‌ها</a></li>
+            <li><a href="/contact.html" class="transition-colors hover:text-brand-green">ارتباط با ما</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="mb-4 text-sm font-bold text-slate-900">برای بنیان‌گذاران</h4>
+          <ul class="space-y-3 text-sm text-slate-600">
+            <li><a href="/investment-request.html" class="font-semibold text-brand-green hover:underline">درخواست جذب سرمایه</a></li>
+            <li><a href="/about.html#faq" class="transition-colors hover:text-brand-green">سوالات متداول</a></li>
             <li><a href="mailto:info@digiventures.ir" class="transition-colors hover:text-brand-green">info@digiventures.ir</a></li>
-            <li dir="ltr" class="text-right">+98 21 0000 0000</li>
           </ul>
         </div>
       </div>
-      <div class="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/40">
+
+      <div class="mt-14 border-t border-slate-100 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
         <p>© ۱۴۰۵ دیجی‌ونچرز. تمامی حقوق محفوظ است.</p>
+        <p class="text-slate-400">صندوق سرمایه‌گذاری خطرپذیر شرکتی گروه دیجی‌کالا (CVC)</p>
       </div>
     </div>
   </footer>
 
-  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

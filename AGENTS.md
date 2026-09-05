@@ -25,4 +25,4 @@ Elementor and WordPress pages own editable presentation. The DigiVentures plugin
 
 ## Verification and definition of done
 
-Run `php -l` on every PHP source file, `scripts/validate-release.sh`, and `scripts/package-plugin.sh` before delivery. Run WordPress/Elementor integration and browser checks only in the documented disposable environment; label anything not run as unverified. A change is done only when its docs, relevant tests, migration impact, release package, and security review are updated.
+After changing `frontend/`, run `frontend/scripts/sync-plugin.sh` to rebuild the Vite bundle and sync reference templates, CSS/JS, and hashed assets into the plugin. Run `php -l` on every PHP source file, `scripts/validate-release.sh`, and `scripts/package-plugin.sh` before delivery. Run WordPress/Elementor integration and browser checks only in the documented disposable environment; label anything not run as unverified. A change is done only when its docs, relevant tests, migration impact, release package, and security review are updated.

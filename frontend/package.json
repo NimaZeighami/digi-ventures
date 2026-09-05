@@ -16,6 +16,7 @@
     "wawoff2": "^2.0.1"
   },
   "dependencies": {
-    "@fontsource-variable/vazirmatn": "^5.2.6"
+    "@fontsource-variable/vazirmatn": "^5.2.6",
+    "lottie-web": "^5.12.2"
   }
 }

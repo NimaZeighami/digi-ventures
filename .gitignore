@@ -1,0 +1,136 @@
+# ==============================================================================
+# DigiVentures .gitignore
+# ==============================================================================
+
+# Operating System & Filesystem
+# ------------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+ehthumbs_vista.db
+Thumbs.db
+Thumbs.db:encryptable
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.directory
+*~
+*.swp
+*.swo
+
+# IDE & Editor Files
+# ------------------------------------------------------------------------------
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+.project
+.settings/
+.buildpath
+
+# Environment & Sensitive Credentials
+# ------------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+
+# Logs & Debugging
+# ------------------------------------------------------------------------------
+*.log
+debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node & Frontend Build (Vite / Tailwind / PostCSS)
+# ------------------------------------------------------------------------------
+node_modules/
+dist/
+build/
+.vite/
+.turbo/
+.parcel-cache/
+.next/
+.nuxt/
+.cache/
+.eslintcache
+.stylelintcache
+
+# Package Manager Storage
+# ------------------------------------------------------------------------------
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# PHP & Composer
+# ------------------------------------------------------------------------------
+vendor/
+composer.phar
+.phpunit.result.cache
+.phpunit.cache/
+.php-cs-fixer.cache
+coverage/
+.nyc_output/
+
+# WordPress Specific
+# ------------------------------------------------------------------------------
+# Core configuration and local overrides (if full WP is placed in repo)
+wp-config.php
+wp-config-local.php
+wordpress/wp-config.php
+wordpress/wp-config-local.php
+
+# WordPress uploads and media (protect user data & uploads)
+wp-content/uploads/
+wordpress/wp-content/uploads/
+**/wp-content/uploads/
+
+# WordPress drop-ins, cache, and upgrade folders
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/cache/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wordpress/wp-content/upgrade/
+wordpress/wp-content/cache/
+**/wp-content/cache/
+**/wp-content/upgrade/
+
+# Database dumps & Local SQL exports
+# ------------------------------------------------------------------------------
+*.sql
+*.sql.gz
+*.sqlite
+*.sqlite3
+*.db
+
+# Docker Local Overrides
+# ------------------------------------------------------------------------------
+docker-compose.override.yml
+
+# Temporary & Scratch Files
+# ------------------------------------------------------------------------------
+tmp/
+temp/
+.temp/

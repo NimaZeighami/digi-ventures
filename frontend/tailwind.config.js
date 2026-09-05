@@ -9,11 +9,14 @@ export default {
       colors: {
         brand: {
           green: '#00B140',
-          dark: '#10171F',
-          darkSection: '#18212B',
-          light: '#F7F7F7',
-          darkText: '#101413',
-          muted: '#6B7280',
+          greenHover: '#009636',
+          greenLight: '#F0FDF4',
+          dark: '#FFFFFF',
+          darkSection: '#F8FAFC',
+          light: '#F8FAFC',
+          darkText: '#0F172A',
+          muted: '#64748B',
+          border: '#E2E8F0',
         },
       },
       fontFamily: {
@@ -21,14 +24,16 @@ export default {
         brand: ['Gilroy', 'sans-serif'],
       },
       boxShadow: {
-        card: '0 4px 24px rgba(0, 0, 0, 0.06)',
-        'card-hover': '0 12px 40px rgba(0, 177, 64, 0.12)',
-        panel: '0 8px 32px rgba(0, 0, 0, 0.25)',
+        card: '0 4px 20px -2px rgba(15, 23, 42, 0.05)',
+        'card-hover': '0 20px 40px -15px rgba(0, 177, 64, 0.15)',
+        panel: '0 20px 50px -10px rgba(15, 23, 42, 0.08)',
+        glow: '0 0 25px rgba(0, 177, 64, 0.2)',
       },
       animation: {
         'grid-move': 'gridMove 20s linear infinite',
         'accent-line': 'accentLine 4s ease-in-out infinite',
         'fade-up': 'fadeUp 0.8s ease-out forwards',
+        'pulse-slow': 'pulseSlow 6s ease-in-out infinite',
       },
       keyframes: {
         gridMove: {
@@ -42,6 +47,10 @@ export default {
         fadeUp: {
           '0%': { opacity: '0', transform: 'translateY(24px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        pulseSlow: {
+          '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+          '50%': { opacity: '0.7', transform: 'scale(1.08)' },
         },
       },
     },
