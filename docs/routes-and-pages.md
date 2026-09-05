@@ -7,7 +7,8 @@
 | `/team` | Team | Elementor-native content migration, public |
 | `/about` | About / FAQ | Elementor-native content migration, public |
 | `/contact` | Contact | Elementor-native content migration, public |
-| `/news` | News | Elementor-native content migration, public |
+| `/news` | News & Insights hub | Reference page `[dv_reference_page page="news"]` with dynamic WordPress posts, live search, and modal reader |
+| `/{post-slug}` | Single news / blog article | Rendered via child theme `single.php` with M12 typography, breadcrumbs, reading time, and author card |
 | `/login` | Login | `[dv_login]` / Elementor Login widget |
 | `/logout` | Frontend logout confirmation | `[dv_logout]` / Elementor Logout widget |
 | `/register` | Registration | `[dv_register]` / Elementor Register widget |

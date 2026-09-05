@@ -10,7 +10,16 @@ final class Roles {
 
 	public static function register(): void {
 		$customer = array( 'read' => true, 'create_request' => true, 'view_own_requests' => true, 'edit_own_request' => true );
-		$admin = array( 'read' => true, 'review_requests' => true, 'change_request_status' => true );
+		$post_caps = array(
+			'edit_posts'           => true,
+			'edit_others_posts'    => true,
+			'publish_posts'        => true,
+			'read_private_posts'   => true,
+			'upload_files'         => true,
+			'delete_posts'         => true,
+			'edit_published_posts' => true,
+		);
+		$admin = array( 'read' => true, 'review_requests' => true, 'change_request_status' => true ) + $post_caps;
 		$protected = $admin + array( 'manage_application_settings' => true, 'manage_application_users' => true, 'manage_application_protected' => true );
 		self::upsert( self::CUSTOMER, 'DigiVentures Customer', $customer );
 		self::upsert( self::ADMIN, 'DigiVentures Admin', $admin );
@@ -23,7 +32,7 @@ final class Roles {
 		remove_role( 'manager' );
 		$wordpress_administrator = get_role( 'administrator' );
 		if ( $wordpress_administrator ) {
-			foreach ( $protected as $capability => $grant ) {
+			foreach ( ( $protected + $post_caps ) as $capability => $grant ) {
 				if ( $grant ) {
 					$wordpress_administrator->add_cap( $capability );
 				}

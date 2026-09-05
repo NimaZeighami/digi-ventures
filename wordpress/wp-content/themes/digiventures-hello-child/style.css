@@ -103,3 +103,112 @@ body {
 	margin-inline: 0;
 	padding-inline: 0;
 }
+
+/* ==========================================================================
+   Standard WordPress Page & Post Typography (RTL Persian)
+   ========================================================================== */
+.dv-standard-page-body {
+	background-color: #ffffff;
+	color: #1e293b;
+	font-family: "Yekan Bakh", Tahoma, sans-serif;
+	direction: rtl;
+}
+
+.dv-standard-main {
+	padding-top: 100px;
+}
+
+.dv-entry-content {
+	font-family: "Yekan Bakh", Tahoma, sans-serif;
+	font-size: 1.0625rem;
+	line-height: 1.9;
+	color: #334155;
+}
+
+.dv-entry-content p {
+	margin-bottom: 1.5rem;
+}
+
+.dv-entry-content h2 {
+	font-size: 1.75rem;
+	font-weight: 700;
+	color: #0f172a;
+	margin-top: 2.5rem;
+	margin-bottom: 1rem;
+	line-height: 1.4;
+}
+
+.dv-entry-content h3 {
+	font-size: 1.35rem;
+	font-weight: 700;
+	color: #0f172a;
+	margin-top: 2rem;
+	margin-bottom: 0.75rem;
+	line-height: 1.5;
+}
+
+.dv-entry-content ul,
+.dv-entry-content ol {
+	margin-top: 1rem;
+	margin-bottom: 1.5rem;
+	padding-right: 1.75rem;
+}
+
+.dv-entry-content ul {
+	list-style-type: disc;
+}
+
+.dv-entry-content ol {
+	list-style-type: decimal;
+}
+
+.dv-entry-content li {
+	margin-bottom: 0.5rem;
+}
+
+.dv-entry-content a {
+	color: #00b140;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	transition: color 0.15s ease;
+}
+
+.dv-entry-content a:hover {
+	color: #009636;
+}
+
+.dv-entry-content blockquote {
+	border-right: 4px solid #00b140;
+	padding-right: 1.25rem;
+	margin: 1.75rem 0;
+	color: #475569;
+	font-style: italic;
+	background-color: #f8fafc;
+	padding-block: 0.75rem;
+	border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.dv-entry-content img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 0.75rem;
+	margin: 1.5rem 0;
+}
+
+.dv-entry-content table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1.5rem 0;
+}
+
+.dv-entry-content th,
+.dv-entry-content td {
+	padding: 0.75rem 1rem;
+	border: 1px solid #e2e8f0;
+	text-align: right;
+}
+
+.dv-entry-content th {
+	background-color: #f8fafc;
+	font-weight: 600;
+}

@@ -46,7 +46,17 @@ final class Setup {
 			$existing = ! empty( $pages[ $key ] ) ? get_post( (int) $pages[ $key ] ) : null;
 			$existing = $existing ?: get_page_by_path( $page['slug'], OBJECT, 'page' );
 			if ( ! $existing ) {
-				$id = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => $page['title'], 'post_name' => $page['slug'], 'post_content' => $page['content'] ), true );
+				$id = wp_insert_post(
+					array(
+						'post_type'    => 'page',
+						'post_status'  => 'publish',
+						'post_title'   => $page['title'],
+						'post_name'    => $page['slug'],
+						'post_content' => $page['content'],
+						'post_excerpt' => $page['excerpt'] ?? '',
+					),
+					true
+				);
 				$managed = true;
 			} else {
 				$id = (int) $existing->ID;
@@ -55,15 +65,16 @@ final class Setup {
 					throw new \RuntimeException( sprintf( 'The /%s/ slug is already used by a page not managed by DigiVentures. Rename that page, then retry setup.', $page['slug'] ) );
 				}
 				if ( $managed ) {
-					$id = wp_update_post(
-						array(
-							'ID' => $id,
-							'post_status' => 'publish',
-							'post_name' => $page['slug'],
-							'post_content' => $this->is_generated_content( (string) $existing->post_content ) ? $page['content'] : $existing->post_content,
-						),
-						true
+					$update_data = array(
+						'ID'           => $id,
+						'post_status'  => 'publish',
+						'post_name'    => $page['slug'],
+						'post_content' => $this->is_generated_content( (string) $existing->post_content ) ? $page['content'] : $existing->post_content,
 					);
+					if ( empty( trim( (string) $existing->post_excerpt ) ) && ! empty( $page['excerpt'] ) ) {
+						$update_data['post_excerpt'] = $page['excerpt'];
+					}
+					$id = wp_update_post( $update_data, true );
 				}
 			}
 			if ( is_wp_error( $id ) ) {
@@ -84,7 +95,20 @@ final class Setup {
 			global $wp_rewrite;
 			$wp_rewrite->set_permalink_structure( '/%postname%/' );
 		}
-		update_option( 'dv_app_setup_steps', array( 'roles' => true, 'migrations' => true, 'pages' => true, 'front_page' => true, 'permalinks' => true, 'elementor' => did_action( 'elementor/loaded' ) > 0, 'theme' => wp_get_theme()->get_stylesheet(), 'completed_at' => gmdate( 'c' ) ), false );
+		$categories = array(
+			'investment'   => 'داستان سرمایه‌گذاری',
+			'portfolio'    => 'اخبار پورتفولیو',
+			'fintech'      => 'فین‌تک و پرداخت',
+			'ai'           => 'هوش مصنوعی و داده',
+			'logistics'    => 'لجستیک و زنجیره تأمین',
+			'perspectives' => 'دیدگاه و تحلیل',
+		);
+		foreach ( $categories as $cat_slug => $cat_name ) {
+			if ( ! term_exists( $cat_slug, 'category' ) ) {
+				wp_insert_term( $cat_name, 'category', array( 'slug' => $cat_slug ) );
+			}
+		}
+		update_option( 'dv_app_setup_steps', array( 'roles' => true, 'migrations' => true, 'pages' => true, 'front_page' => true, 'permalinks' => true, 'categories' => true, 'elementor' => did_action( 'elementor/loaded' ) > 0, 'theme' => wp_get_theme()->get_stylesheet(), 'completed_at' => gmdate( 'c' ) ), false );
 		flush_rewrite_rules( false );
 	}
 
@@ -98,30 +122,115 @@ final class Setup {
 		<p>This creates or repairs plugin-managed pages, assigns the DigiVentures Canvas template, sets the static front page, and refreshes permalinks. Existing custom page content is preserved.</p>
 		<form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post"><?php wp_nonce_field( 'dv_run_setup' ); ?><input type="hidden" name="action" value="dv_run_setup"><button class="button button-primary">Run or retry setup</button></form>
 		<h2>Diagnostics</h2><table class="widefat striped"><tbody>
-		<tr><td>Plugin version</td><td><?php echo esc_html( DV_APP_VERSION ); ?></td></tr><tr><td>Schema version</td><td><?php echo esc_html( (string) get_option( 'dv_app_schema_version', 'not installed' ) ); ?></td></tr><tr><td>WordPress / PHP</td><td><?php echo esc_html( get_bloginfo( 'version' ) . ' / ' . PHP_VERSION ); ?></td></tr><tr><td>Theme</td><td><?php echo esc_html( wp_get_theme()->get( 'Name' ) . ' (' . wp_get_theme()->get_stylesheet() . ')' ); ?></td></tr><tr><td>Elementor</td><td><?php echo did_action( 'elementor/loaded' ) ? 'Active' : 'Not active' ; ?></td></tr><tr><td>Permalinks</td><td><code><?php echo esc_html( (string) get_option( 'permalink_structure', 'plain' ) ); ?></code></td></tr><tr><td>Front page</td><td><?php echo esc_html( (string) get_option( 'page_on_front', 'not set' ) ); ?></td></tr><tr><td>REST</td><td><?php echo rest_url() ? 'Available' : 'Unavailable'; ?></td></tr><tr><td>Setup steps</td><td><code><?php echo esc_html( wp_json_encode( $steps ) ); ?></code></td></tr></tbody></table>
+		<tr><td>Plugin version</td><td><?php echo esc_html( DV_APP_VERSION ); ?></td></tr><tr><td>Schema version</td><td><?php echo esc_html( (string) get_option( 'dv_app_schema_version', 'not installed' ) ); ?></td></tr><tr><td>WordPress / PHP</td><td><?php echo esc_html( get_bloginfo( 'version' ) . ' / ' . PHP_VERSION ); ?></td></tr><tr><td>Theme</td><td><?php echo esc_html( wp_get_theme()->get( 'Name' ) . ' (' . wp_get_theme()->get_stylesheet() . ')' ); ?></td></tr><tr><td>Elementor</td><td><?php echo did_action( 'elementor/loaded' ) ? 'Active' : 'Not active' ; ?></td></tr><tr><td>SEO engine</td><td><?php echo esc_html( \DigiVentures\Application\Seo\SeoService::get_active_seo_handler() ); ?></td></tr><tr><td>Permalinks</td><td><code><?php echo esc_html( (string) get_option( 'permalink_structure', 'plain' ) ); ?></code></td></tr><tr><td>Front page</td><td><?php echo esc_html( (string) get_option( 'page_on_front', 'not set' ) ); ?></td></tr><tr><td>REST</td><td><?php echo rest_url() ? 'Available' : 'Unavailable'; ?></td></tr><tr><td>Setup steps</td><td><code><?php echo esc_html( wp_json_encode( $steps ) ); ?></code></td></tr></tbody></table>
 		<h2>Generated page URLs</h2><ul><?php foreach ( (array) get_option( 'dv_app_pages', array() ) as $key => $id ) : ?><li><strong><?php echo esc_html( $key ); ?>:</strong> <a href="<?php echo esc_url( get_permalink( (int) $id ) ); ?>" target="_blank" rel="noopener"><?php echo esc_html( get_permalink( (int) $id ) ); ?></a></li><?php endforeach; ?></ul></div>
 		<?php
 	}
 
 	private function pages(): array {
 		return array(
-			'home' => array( 'title' => 'دیجی‌ونچرز', 'slug' => 'home', 'content' => '[dv_reference_page page="home"]' ),
-			'portfolio' => array( 'title' => 'پورتفولیو', 'slug' => 'portfolio', 'content' => '[dv_reference_page page="portfolio"]' ),
-			'team' => array( 'title' => 'تیم', 'slug' => 'team', 'content' => '[dv_reference_page page="team"]' ),
-			'about' => array( 'title' => 'درباره ما', 'slug' => 'about', 'content' => '[dv_reference_page page="about"]' ),
-			'contact' => array( 'title' => 'ارتباط با ما', 'slug' => 'contact', 'content' => '[dv_reference_page page="contact"]' ),
-			'news' => array( 'title' => 'تازه‌ها', 'slug' => 'news', 'content' => '[dv_reference_page page="news"]' ),
-			'login' => array( 'title' => 'ورود', 'slug' => 'login', 'content' => '[dv_login]' ),
-			'logout' => array( 'title' => 'خروج', 'slug' => 'logout', 'content' => '[dv_logout]' ),
-			'register' => array( 'title' => 'ثبت‌نام', 'slug' => 'register', 'content' => '[dv_register]' ),
-			'forgot-password' => array( 'title' => 'بازیابی گذرواژه', 'slug' => 'forgot-password', 'content' => '[dv_forgot_password]' ),
-			'reset-password' => array( 'title' => 'تنظیم گذرواژه', 'slug' => 'reset-password', 'content' => '[dv_reset_password]' ),
-			'investment-request' => array( 'title' => 'درخواست سرمایه‌گذاری', 'slug' => 'investment-request', 'content' => '[dv_reference_page page="investment-request"]' ),
-			'my-requests' => array( 'title' => 'درخواست‌های من', 'slug' => 'my-requests', 'content' => '[dv_customer_dashboard]' ),
-			'request-management' => array( 'title' => 'مدیریت درخواست‌ها', 'slug' => 'request-management', 'content' => '[dv_request_management]' ),
-			'user-management' => array( 'title' => 'مدیریت کاربران', 'slug' => 'user-management', 'content' => '[dv_request_user_management]' ),
-			'email-management' => array( 'title' => 'مدیریت ایمیل‌ها', 'slug' => 'email-management', 'content' => '[dv_email_management]' ),
-			'unauthorized' => array( 'title' => 'دسترسی مجاز نیست', 'slug' => 'unauthorized', 'content' => '[dv_unauthorized]' ),
+			'home' => array(
+				'title'   => 'دیجی‌ونچرز | صندوق سرمایه‌گذاری جسورانه شرکتی (CVC)',
+				'slug'    => 'home',
+				'content' => '[dv_reference_page page="home"]',
+				'excerpt' => 'دیجی‌ونچرز — صندوق سرمایه‌گذاری جسورانه شرکتی (CVC) گروه دیجی‌کالا بر آینده تجارت الکترونیک، فین‌تک، لجستیک هوشمند و هوش مصنوعی.',
+			),
+			'portfolio' => array(
+				'title'   => 'پورتفولیو دیجی‌ونچرز | استارتاپ‌ها و سرمایه‌گذاری‌ها',
+				'slug'    => 'portfolio',
+				'content' => '[dv_reference_page page="portfolio"]',
+				'excerpt' => 'پورتفولیو سرمایه‌گذاری دیجی‌ونچرز — همراهی با کسب‌وکارهای پیشرو در حوزه‌های تجارت الکترونیک، فین‌تک، لجستیک هوشمند و هوش مصنوعی.',
+			),
+			'team' => array(
+				'title'   => 'تیم دیجی‌ونچرز | متخصصان سرمایه‌گذاری و توسعه اکوسیستم',
+				'slug'    => 'team',
+				'content' => '[dv_reference_page page="team"]',
+				'excerpt' => 'تیم دیجی‌ونچرز — ترکیبی از متخصصان سرمایه‌گذاری جسورانه، مدیران ارشد عملیاتی و کارشناسان فناوری در اکوسیستم نوآوری ایران.',
+			),
+			'about' => array(
+				'title'   => 'درباره دیجی‌ونچرز | صندوق سرمایه‌گذاری شرکتی گروه دیجی‌کالا',
+				'slug'    => 'about',
+				'content' => '[dv_reference_page page="about"]',
+				'excerpt' => 'درباره دیجی‌ونچرز — بازوی سرمایه‌گذاری خطرپذیر شرکتی (CVC) گروه دیجی‌کالا؛ هم‌افزایی استراتژیک، تجربه عملیاتی و زیرساخت‌های مقیاس‌پذیری.',
+			),
+			'contact' => array(
+				'title'   => 'ارتباط با ما | تماس با تیم دیجی‌ونچرز',
+				'slug'    => 'contact',
+				'content' => '[dv_reference_page page="contact"]',
+				'excerpt' => 'ارتباط با تیم سرمایه‌گذاری دیجی‌ونچرز — ارسال پیام، اطلاعات تماس، آدرس دفتر و شروع گفتگو برای همکاری و سرمایه‌گذاری.',
+			),
+			'news' => array(
+				'title'   => 'تازه‌ها و دیدگاه‌ها | اخبار سرمایه‌گذاری دیجی‌ونچرز',
+				'slug'    => 'news',
+				'content' => '[dv_reference_page page="news"]',
+				'excerpt' => 'تازه‌ها، گزارش‌ها، دیدگاه‌ها و آخرین رویدادهای سرمایه‌گذاری خطرپذیر دیجی‌ونچرز و استارتاپ‌های پورتفولیو گروه دیجی‌کالا.',
+			),
+			'investment-request' => array(
+				'title'   => 'درخواست سرمایه‌گذاری | جذب سرمایه از دیجی‌ونچرز',
+				'slug'    => 'investment-request',
+				'content' => '[dv_reference_page page="investment-request"]',
+				'excerpt' => 'ثبت آنلاین طرح و درخواست جذب سرمایه از دیجی‌ونچرز — معرفی استارتاپ، بنیان‌گذاران و بارگذاری فایل ارائه (Pitch Deck).',
+			),
+			'login' => array(
+				'title'   => 'ورود به حساب کاربری',
+				'slug'    => 'login',
+				'content' => '[dv_login]',
+				'excerpt' => 'ورود به حساب کاربری متقاضیان سرمایه‌گذاری و مدیران دیجی‌ونچرز.',
+			),
+			'logout' => array(
+				'title'   => 'خروج از حساب',
+				'slug'    => 'logout',
+				'content' => '[dv_logout]',
+				'excerpt' => '',
+			),
+			'register' => array(
+				'title'   => 'ثبت‌نام در سامانه جذب سرمایه',
+				'slug'    => 'register',
+				'content' => '[dv_register]',
+				'excerpt' => 'ایجاد حساب کاربری برای ثبت و پیگیری درخواست سرمایه‌گذاری در دیجی‌ونچرز.',
+			),
+			'forgot-password' => array(
+				'title'   => 'بازیابی گذرواژه',
+				'slug'    => 'forgot-password',
+				'content' => '[dv_forgot_password]',
+				'excerpt' => 'بازیابی گذرواژه حساب کاربری دیجی‌ونچرز.',
+			),
+			'reset-password' => array(
+				'title'   => 'تنظیم گذرواژه جدید',
+				'slug'    => 'reset-password',
+				'content' => '[dv_reset_password]',
+				'excerpt' => '',
+			),
+			'my-requests' => array(
+				'title'   => 'درخواست‌های من',
+				'slug'    => 'my-requests',
+				'content' => '[dv_customer_dashboard]',
+				'excerpt' => '',
+			),
+			'request-management' => array(
+				'title'   => 'مدیریت درخواست‌ها',
+				'slug'    => 'request-management',
+				'content' => '[dv_request_management]',
+				'excerpt' => '',
+			),
+			'user-management' => array(
+				'title'   => 'مدیریت کاربران',
+				'slug'    => 'user-management',
+				'content' => '[dv_request_user_management]',
+				'excerpt' => '',
+			),
+			'email-management' => array(
+				'title'   => 'مدیریت ایمیل‌ها',
+				'slug'    => 'email-management',
+				'content' => '[dv_email_management]',
+				'excerpt' => '',
+			),
+			'unauthorized' => array(
+				'title'   => 'دسترسی مجاز نیست',
+				'slug'    => 'unauthorized',
+				'content' => '[dv_unauthorized]',
+				'excerpt' => '',
+			),
 		);
 	}
 

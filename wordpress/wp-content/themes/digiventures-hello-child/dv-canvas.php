@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: DigiVentures Canvas
- * Template Post Type: page
+ * Template Post Type: page, post
  */
 defined( 'ABSPATH' ) || exit;
 ?><!doctype html>

@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="/assets/images/digiventures-favicon.png" />
   <title>تازه‌ها و دیدگاه‌ها | دیجی‌ونچرز</title>
 </head>
-<body class="bg-white text-slate-900 font-sans antialiased selection:bg-brand-green selection:text-white">
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-brand-green selection:text-white overflow-x-hidden">
 
   <!-- ==================== HEADER (M12 Exact Style) ==================== -->
   <header class="fixed top-0 z-50 w-full border-b border-slate-100 bg-white/95 backdrop-blur-md transition-all duration-200">
@@ -20,9 +20,9 @@
       <!-- Primary Navigation -->
       <nav class="header-primary-nav hidden items-center gap-7 xl:flex" aria-label="منوی اصلی">
         <a href="/#focus" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">حوزه‌های سرمایه‌گذاری</a>
-        <a href="/#portfolio" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">پورتفولیو</a>
+        <a href="/portfolio.html" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">پورتفولیو</a>
         <a href="/#team" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">تیم ما</a>
-        <a href="/#news" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">تازه‌ها و دیدگاه‌ها</a>
+        <a href="/news.html" class="text-sm font-semibold text-brand-green transition-colors is-active" aria-current="page">تازه‌ها و دیدگاه‌ها</a>
         <a href="/#contact" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">ارتباط با ما</a>
         <a href="/about.html" class="text-sm font-medium text-slate-700 transition-colors hover:text-brand-green">درباره ما</a>
       </nav>
@@ -45,8 +45,8 @@
 
       <!-- Mobile Menu Button -->
       <button id="mobile-menu-toggle" type="button" class="flex h-10 w-10 items-center justify-center rounded-lg text-slate-800 xl:hidden hover:bg-slate-100" aria-expanded="false" aria-controls="mobile-menu" aria-label="باز کردن منو">
-        <svg id="icon-menu-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        <svg id="icon-menu-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <svg id="icon-menu-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-menu-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
 
@@ -54,9 +54,9 @@
     <nav id="mobile-menu" class="mobile-menu mobile-menu-hidden xl:hidden" aria-label="منوی موبایل" aria-hidden="true">
       <div class="container-dv flex flex-col gap-1 py-6">
         <a href="/#focus" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">حوزه‌های سرمایه‌گذاری</a>
-        <a href="/#portfolio" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">پورتفولیو</a>
+        <a href="/portfolio.html" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">پورتفولیو</a>
         <a href="/#team" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">تیم ما</a>
-        <a href="/#news" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">تازه‌ها و دیدگاه‌ها</a>
+        <a href="/news.html" class="rounded-lg px-4 py-3 text-base font-semibold text-brand-green bg-emerald-50/70">تازه‌ها و دیدگاه‌ها</a>
         <a href="/#contact" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">ارتباط با ما</a>
         <a href="/about.html" class="rounded-lg px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-green">درباره ما</a>
         <div class="mt-4 pt-4 border-t border-slate-100 flex flex-col gap-2">
@@ -73,173 +73,1162 @@
     </nav>
   </header>
 
-  <main class="pt-[76px]">
+  <main class="pt-[76px]" id="news-hub">
 
-    <!-- ==================== "THE LATEST" - M12 SIGNATURE FULL-BLEED ACCORDION GRID ==================== -->
-    <section class="pt-20 pb-0 bg-white border-b border-slate-100 overflow-hidden">
-      <div class="container-dv pb-8">
-        <p class="text-2xl sm:text-3xl font-light text-slate-800 tracking-tight">تازه‌ترین اخبار دیجی‌ونچرز و شرکت‌های پورتفولیو</p>
-      </div>
+    <!-- ==================== HERO SECTION (M12 Signature Canvas) ==================== -->
+    <section class="relative overflow-hidden border-b border-slate-100 bg-white py-16 sm:py-20 lg:py-24">
+      <!-- M12 Organic Gradient Background Ambient Texture -->
+      <img src="/assets/images/m12/gradient-focus.webp" alt="" class="pointer-events-none absolute -top-40 -left-40 w-[600px] sm:w-[850px] opacity-35 blur-3xl select-none" aria-hidden="true" />
+      <img src="/assets/images/m12/gradient-hero.webp" alt="" class="pointer-events-none absolute -bottom-40 -right-40 w-[600px] sm:w-[850px] opacity-30 blur-3xl select-none" aria-hidden="true" />
 
-      <!-- M12 Full-Bleed Expanding Accordion Grid -->
-      <div class="m12-news-grid mb-16">
-        <!-- Tile 1: Smart Logistics & Supply Chain -->
-        <a href="#article-1" class="m12-news-tile group">
-          <img src="/assets/images/m12/dv-news-logistics.jpg" alt="لجستیک هوشمند و زنجیره تأمین تجارت الکترونیک" class="m12-news-bg" />
-          <div class="m12-news-overlay"></div>
-          <span class="m12-news-pill">سرمایه‌گذاری</span>
-          <div class="m12-news-content">
-            <p class="m12-news-date">۱۲ شهریور ۱۴۰۵</p>
-            <h3 class="m12-news-title">چرا دیجی‌ونچرز در استارتاپ‌های لجستیک هوشمند و زنجیره تأمین تجارت دیجیتال سرمایه‌گذاری کرد؟</h3>
+      <div class="container-dv relative z-10 mx-auto max-w-4xl text-center">
+        <!-- Status Pill Tag -->
+        <div class="reveal inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50/90 px-4 py-1.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur-sm mb-6">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
+          </span>
+          <span>تازه‌ها، دیدگاه‌ها و اتاق خبر دیجی‌ونچرز</span>
+        </div>
+
+        <h1 class="reveal text-3xl font-extrabold text-slate-950 sm:text-5xl lg:text-6xl leading-[1.2] tracking-tight">
+          روایت نوآوری، گزارش‌های سرمایه‌گذاری و <span class="text-brand-green">چشم‌انداز آینده</span>
+        </h1>
+
+        <p class="reveal mt-6 text-base sm:text-lg text-slate-600 font-light leading-relaxed max-w-3xl mx-auto">
+          مرجع تخصصی دیدگاه‌های راهبردی، دستاوردهای استارتاپ‌های پورتفولیو و تحلیل‌های تیم سرمایه‌گذاری دیجی‌ونچرز در تحول اقتصاد دیجیتال، تجارت الکترونیک، فین‌تک و فناوری‌های عمیق.
+        </p>
+
+        <!-- Live Search Bar -->
+        <div class="reveal mt-10 max-w-2xl mx-auto">
+          <div class="relative flex items-center">
+            <input
+              id="news-search-input"
+              type="text"
+              placeholder="جستجو در مقالات، دسته‌بندی‌ها یا شرکت‌های پورتفولیو..."
+              class="w-full rounded-2xl border border-slate-200 bg-white/90 px-5 py-4 pl-24 text-sm text-slate-800 placeholder-slate-400 shadow-sm backdrop-blur-md outline-none transition-all duration-200 focus:border-brand-green focus:ring-4 focus:ring-emerald-500/10"
+              aria-label="جستجو در مقالات"
+            />
+            <div class="absolute left-3 flex items-center gap-2">
+              <button
+                id="news-search-clear"
+                type="button"
+                class="hidden rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors"
+                aria-label="پاک کردن جستجو"
+              >
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-white shadow-sm">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+              </div>
+            </div>
           </div>
-        </a>
+        </div>
 
-        <!-- Tile 2: FinTech & Digital Payments -->
-        <a href="#article-2" class="m12-news-tile group">
-          <img src="/assets/images/m12/dv-news-fintech.jpg" alt="استارتاپ‌های حوزه فین‌تک و پرداخت دیجی‌پی" class="m12-news-bg" />
-          <div class="m12-news-overlay"></div>
-          <span class="m12-news-pill">اخبار پورتفولیو</span>
-          <div class="m12-news-content">
-            <p class="m12-news-date">۲ شهریور ۱۴۰۵</p>
-            <h3 class="m12-news-title">همراهی راهبردی دیجی‌پی و دیجی‌ونچرز در توانمندسازی و رشد مقیاس استارتاپ‌های حوزه فین‌تک</h3>
-          </div>
-        </a>
-
-        <!-- Tile 3: AI & Deep Tech -->
-        <a href="#article-3" class="m12-news-tile group">
-          <img src="/assets/images/m12/dv-news-ai.jpg" alt="هوش مصنوعی و مدل‌های زبانی بزرگ در تجارت الکترونیک" class="m12-news-bg" />
-          <div class="m12-news-overlay"></div>
-          <span class="m12-news-pill">دیدگاه و تحلیل</span>
-          <div class="m12-news-content">
-            <p class="m12-news-date">۳۰ تیر ۱۴۰۵</p>
-            <h3 class="m12-news-title">تحلیل اختصاصی: همگرایی هوش مصنوعی و مدل‌های زبانی بزرگ در تحول تجربه تجارت الکترونیک</h3>
-          </div>
-        </a>
       </div>
     </section>
 
-    <!-- ==================== ALL INSIGHTS & ARTICLES ==================== -->
-    <section class="py-16 bg-slate-50/50">
+    <!-- ==================== CATEGORY TABS & FILTER BAR ==================== -->
+    <section class="border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-[76px] z-30 py-4">
+      <div class="container-dv flex flex-col md:flex-row items-center justify-between gap-4">
+        
+        <!-- Category Filter Pills (M12 Style) -->
+        <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none" role="tablist" aria-label="فیلتر موضوعی مقالات">
+          <button
+            type="button"
+            data-news-filter="all"
+            class="whitespace-nowrap rounded-full bg-slate-900 px-5 py-2 text-xs font-bold text-white shadow-sm border border-slate-900 transition-all"
+            role="tab"
+            aria-selected="true"
+          >
+            همه دیدگاه‌ها
+          </button>
+          <button
+            type="button"
+            data-news-filter="investment"
+            class="whitespace-nowrap rounded-full bg-white px-5 py-2 text-xs font-medium text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-green transition-all"
+            role="tab"
+            aria-selected="false"
+          >
+            داستان‌های سرمایه‌گذاری
+          </button>
+          <button
+            type="button"
+            data-news-filter="portfolio"
+            class="whitespace-nowrap rounded-full bg-white px-5 py-2 text-xs font-medium text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-green transition-all"
+            role="tab"
+            aria-selected="false"
+          >
+            اخبار پورتفولیو
+          </button>
+          <button
+            type="button"
+            data-news-filter="fintech"
+            class="whitespace-nowrap rounded-full bg-white px-5 py-2 text-xs font-medium text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-green transition-all"
+            role="tab"
+            aria-selected="false"
+          >
+            فین‌تک و پرداخت
+          </button>
+          <button
+            type="button"
+            data-news-filter="ai"
+            class="whitespace-nowrap rounded-full bg-white px-5 py-2 text-xs font-medium text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-green transition-all"
+            role="tab"
+            aria-selected="false"
+          >
+            هوش مصنوعی و داده
+          </button>
+          <button
+            type="button"
+            data-news-filter="logistics"
+            class="whitespace-nowrap rounded-full bg-white px-5 py-2 text-xs font-medium text-slate-700 border border-slate-200 hover:border-brand-green hover:text-brand-green transition-all"
+            role="tab"
+            aria-selected="false"
+          >
+            لجستیک و زنجیره تأمین
+          </button>
+        </div>
+
+        <!-- Article Counter Feedback & Quick Post Action -->
+        <div class="flex items-center gap-3 text-xs font-medium text-slate-500">
+          <!--dv-admin-new-post-slot-->
+          <div class="hidden sm:flex items-center gap-2">
+            <span>نمایش</span>
+            <span id="news-count" class="font-bold text-slate-900 bg-slate-100 rounded-full px-2.5 py-0.5">۸</span>
+            <span>مقاله تحلیلی</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== MAIN EDITORIAL CONTENT ==================== -->
+    <section class="py-12 lg:py-16 bg-slate-50/50">
       <div class="container-dv">
 
-          <!-- Article 1: Investment Story -->
-          <article id="article-1" class="m12-news-card group reveal">
-            <img src="/assets/images/m12/dv-news-logistics.jpg" alt="داستان سرمایه‌گذاری در لجستیک هوشمند" class="news-bg" />
-            <div class="news-overlay"></div>
-            <div class="relative z-10 flex justify-end">
-              <span class="rounded-full bg-white/20 backdrop-blur-md px-4 py-1.5 text-xs font-semibold text-white border border-white/30">
-                داستان سرمایه‌گذاری
-              </span>
+        <!-- ==================== FEATURED LEAD STORY (M12 Spotlight) ==================== -->
+        <article
+          class="featured-story-card reveal mb-12 rounded-3xl border border-slate-200/90 bg-white p-6 sm:p-8 lg:p-10 shadow-card transition-all duration-300 hover:shadow-card-hover"
+          data-category="investment"
+        >
+          <div class="grid gap-8 lg:grid-cols-12 items-center">
+            
+            <!-- Story Narrative (7 cols) -->
+            <div class="lg:col-span-7 flex flex-col justify-between order-2 lg:order-1">
+              <div>
+                <!-- Metadata Row -->
+                <div class="flex flex-wrap items-center gap-2.5 mb-4">
+                  <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold text-brand-green border border-emerald-100">
+                    <span class="h-1.5 w-1.5 rounded-full bg-brand-green"></span>
+                    مطلب ویژه تحریریه
+                  </span>
+                  <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
+                    داستان سرمایه‌گذاری
+                  </span>
+                  <span class="text-xs text-slate-400">·</span>
+                  <time class="text-xs font-medium text-slate-500">۱۲ شهریور ۱۴۰۵</time>
+                  <span class="text-xs text-slate-400">·</span>
+                  <span class="text-xs font-medium text-slate-500">زمان مطالعه: ۶ دقیقه</span>
+                </div>
+
+                <!-- Headline -->
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-950 leading-tight">
+                  <button
+                    type="button"
+                    class="text-right transition-colors hover:text-brand-green focus:outline-none"
+                    data-open-modal="article-logistics"
+                  >
+                    چرا دیجی‌ونچرز در استارتاپ‌های لجستیک هوشمند و زنجیره تأمین تجارت دیجیتال سرمایه‌گذاری کرد؟
+                  </button>
+                </h2>
+
+                <!-- Teaser Text -->
+                <p class="mt-4 text-sm sm:text-base text-slate-600 font-light leading-relaxed">
+                  بررسی موشکافانه استراتژی CVC دیجی‌ونچرز در ارتقای زیرساخت‌های حمل‌ونقل شهری، الگوریتم‌های انبارداری خودکار و کاهش هزینه تحویل آخرین مایل (Last-Mile Delivery)؛ چگونگی اتصال استارتاپ‌های نوآور به زنجیره عظیم ارزش گروه دیجی‌کالا و خلق ارزش پایدار در اقتصاد دیجیتال ایران.
+                </p>
+              </div>
+
+              <!-- Author Badge & Action CTA -->
+              <div class="mt-8 pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-brand-green font-bold text-sm">
+                    DV
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-slate-900">تیم سرمایه‌گذاری دیجی‌ونچرز</p>
+                    <p class="text-[11px] text-slate-400">تحلیل اختصاصی بخش زنجیره تأمین</p>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  data-open-modal="article-logistics"
+                  class="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-xs font-semibold text-white shadow-sm transition-all hover:bg-brand-green hover:shadow-md"
+                >
+                  <span>مطالعه کامل تحلیل</span>
+                  <svg class="h-3.5 w-3.5 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                  </svg>
+                </button>
+              </div>
             </div>
-            <div class="relative z-10 text-right">
-              <p class="text-xs font-medium text-white/80">داستان پورتفولیو</p>
-              <h2 class="mt-2 text-2xl font-bold text-white leading-snug group-hover:text-emerald-300 transition-colors">
-                چرا دیجی‌ونچرز در استارتاپ‌های لجستیک هوشمند و زنجیره تأمین سرمایه‌گذاری کرد؟
-              </h2>
-              <p class="mt-2 text-xs text-white/70 line-clamp-2">چرا در این تیم‌ها سرمایه‌گذاری کردیم و چه پتانسیلی در زنجیره ارزش گروه دیجی‌کالا برای رشد آن‌ها می‌بینیم.</p>
+
+            <!-- Story Visual (5 cols) -->
+            <div class="lg:col-span-5 order-1 lg:order-2">
+              <div
+                class="group relative aspect-[16/11] overflow-hidden rounded-2xl border border-slate-100 cursor-pointer shadow-sm"
+                data-open-modal="article-logistics"
+              >
+                <img
+                  src="/assets/images/m12/dv-news-logistics.jpg"
+                  alt="لجستیک هوشمند و زنجیره تأمین تجارت الکترونیک"
+                  class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                <span class="absolute bottom-4 right-4 rounded-full bg-white/20 backdrop-blur-md px-3 py-1 text-xs font-semibold text-white border border-white/30">
+                  تحول شبکه توزیع
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- ==================== 3-COLUMN EDITORIAL GRID ==================== -->
+        <div id="news-grid-container" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+          <!-- Card 1: FinTech Strategy -->
+          <article
+            class="news-article-card reveal rounded-2xl border border-slate-200/80 bg-white overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover flex flex-col justify-between"
+            data-category="fintech"
+          >
+            <div>
+              <!-- Card Image -->
+              <div
+                class="group relative aspect-[16/10] overflow-hidden cursor-pointer"
+                data-open-modal="article-fintech"
+              >
+                <img
+                  src="/assets/images/m12/dv-news-fintech.jpg"
+                  alt="همراهی راهبردی دیجی‌پی و دیجی‌ونچرز در حوزه فین‌تک"
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+                <span class="absolute top-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3 py-1 text-xs font-bold text-slate-900 shadow-sm">
+                  فین‌تک و پرداخت
+                </span>
+              </div>
+
+              <!-- Card Content -->
+              <div class="p-6">
+                <div class="flex items-center gap-2 text-xs text-slate-400 mb-3">
+                  <time>۲ شهریور ۱۴۰۵</time>
+                  <span>·</span>
+                  <span>۵ دقیقه مطالعه</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 leading-snug">
+                  <button
+                    type="button"
+                    class="text-right transition-colors hover:text-brand-green focus:outline-none"
+                    data-open-modal="article-fintech"
+                  >
+                    همراهی راهبردی دیجی‌پی و دیجی‌ونچرز در توانمندسازی و رشد مقیاس استارتاپ‌های حوزه فین‌تک
+                  </button>
+                </h3>
+                <p class="mt-3 text-xs sm:text-sm text-slate-600 font-light leading-relaxed line-clamp-3">
+                  چگونه اتصال زیرساخت‌های مالی و اعتباری دیجی‌پی با سرمایه‌گذاری‌های کشت‌دانه (Seed) دیجی‌ونچرز مسیر رشد پرداخت‌های خرد، لندتک و BNPL را هموار می‌سازد.
+                </p>
+              </div>
+            </div>
+
+            <!-- Card Footer -->
+            <div class="px-6 pb-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-medium text-slate-500">مهسا صبوری، تحلیل‌گر فین‌تک</span>
+              <button
+                type="button"
+                data-open-modal="article-fintech"
+                class="font-semibold text-brand-green hover:underline flex items-center gap-1"
+              >
+                <span>مطالعه</span>
+                <span class="rotate-180">←</span>
+              </button>
             </div>
           </article>
 
-          <!-- Article 2: Portfolio Funding -->
-          <article id="article-2" class="m12-news-card group reveal">
-            <img src="/assets/images/m12/dv-news-fintech.jpg" alt="اخبار پورتفولیو فین‌تک" class="news-bg" />
-            <div class="news-overlay"></div>
-            <div class="relative z-10 flex justify-end">
-              <span class="rounded-full bg-white/20 backdrop-blur-md px-4 py-1.5 text-xs font-semibold text-white border border-white/30">
-                اخبار پورتفولیو
-              </span>
+          <!-- Card 2: AI & LLMs in Commerce -->
+          <article
+            class="news-article-card reveal rounded-2xl border border-slate-200/80 bg-white overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover flex flex-col justify-between"
+            data-category="ai"
+          >
+            <div>
+              <div
+                class="group relative aspect-[16/10] overflow-hidden cursor-pointer"
+                data-open-modal="article-ai"
+              >
+                <img
+                  src="/assets/images/m12/dv-news-ai.jpg"
+                  alt="همگرایی هوش مصنوعی و مدل‌های زبانی بزرگ"
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+                <span class="absolute top-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3 py-1 text-xs font-bold text-slate-900 shadow-sm">
+                  هوش مصنوعی و داده
+                </span>
+              </div>
+
+              <div class="p-6">
+                <div class="flex items-center gap-2 text-xs text-slate-400 mb-3">
+                  <time>۳۰ تیر ۱۴۰۵</time>
+                  <span>·</span>
+                  <span>۷ دقیقه مطالعه</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 leading-snug">
+                  <button
+                    type="button"
+                    class="text-right transition-colors hover:text-brand-green focus:outline-none"
+                    data-open-modal="article-ai"
+                  >
+                    تحلیل اختصاصی: همگرایی هوش مصنوعی و مدل‌های زبانی در تحول تجربه خرید دیجیتال
+                  </button>
+                </h3>
+                <p class="mt-3 text-xs sm:text-sm text-slate-600 font-light leading-relaxed line-clamp-3">
+                  چگونه یادگیری عمیق و مدل‌های زبانی بزرگ فرآیند شخصی‌سازی محصولات، جستجوی معنایی و اتوماسیون پشتیبانی مشتریان را در پلتفرم‌های مقیاس‌بالا بازتعریف می‌کنند.
+                </p>
+              </div>
             </div>
-            <div class="relative z-10 text-right">
-              <p class="text-xs font-medium text-white/80">جذب راند جدید</p>
-              <h2 class="mt-2 text-2xl font-bold text-white leading-snug group-hover:text-emerald-300 transition-colors">
-                همراهی راهبردی دیجی‌پی و دیجی‌ونچرز در توانمندسازی و رشد مقیاس استارتاپ‌های حوزه فین‌تک
-              </h2>
-              <p class="mt-2 text-xs text-white/70 line-clamp-2">آخرین اخبار، دستاوردها و توسعه زیرساختی شرکت‌های پورتفولیو در مقیاس ملی.</p>
+
+            <div class="px-6 pb-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-medium text-slate-500">دکتر علی معتمدی، مشاور فناوری</span>
+              <button
+                type="button"
+                data-open-modal="article-ai"
+                class="font-semibold text-brand-green hover:underline flex items-center gap-1"
+              >
+                <span>مطالعه</span>
+                <span class="rotate-180">←</span>
+              </button>
             </div>
           </article>
 
-          <!-- Article 3: Industry Perspective -->
-          <article id="article-3" class="m12-news-card group reveal">
-            <img src="/assets/images/m12/dv-news-ai.jpg" alt="تحلیل بازار و هوش مصنوعی" class="news-bg" />
-            <div class="news-overlay"></div>
-            <div class="relative z-10 flex justify-end">
-              <span class="rounded-full bg-white/20 backdrop-blur-md px-4 py-1.5 text-xs font-semibold text-white border border-white/30">
-                دیدگاه و تحلیل بازار
-              </span>
+          <!-- Card 3: Portfolio Spotlight - Ganjeh -->
+          <article
+            class="news-article-card reveal rounded-2xl border border-slate-200/80 bg-white overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover flex flex-col justify-between"
+            data-category="portfolio"
+          >
+            <div>
+              <div
+                class="group relative aspect-[16/10] overflow-hidden cursor-pointer"
+                data-open-modal="article-ganjeh"
+              >
+                <img
+                  src="/assets/images/startups/startup-01.jpg"
+                  alt="داستان توسعه لاکرهای هوشمند گنجه"
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+                <span class="absolute top-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3 py-1 text-xs font-bold text-slate-900 shadow-sm">
+                  اخبار پورتفولیو
+                </span>
+              </div>
+
+              <div class="p-6">
+                <div class="flex items-center gap-2 text-xs text-slate-400 mb-3">
+                  <time>۱۸ خرداد ۱۴۰۵</time>
+                  <span>·</span>
+                  <span>۴ دقیقه مطالعه</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 leading-snug">
+                  <button
+                    type="button"
+                    class="text-right transition-colors hover:text-brand-green focus:outline-none"
+                    data-open-modal="article-ganjeh"
+                  >
+                    توسعه شبکه لاکرهای هوشمند تحویل کالا: تجربه رشد استارتاپ گنجه در پورتفولیو
+                  </button>
+                </h3>
+                <p class="mt-3 text-xs sm:text-sm text-slate-600 font-light leading-relaxed line-clamp-3">
+                  نقش نوآوری استارتاپ گنجه در ایجاد دسترسی ۲۴ ساعته کاربران به خریدهای اینترنتی در ایستگاه‌های مترو و مجتمع‌های تجاری سراسر کشور و کاهش ۲۰ درصدی هزینه‌های ارسال.
+                </p>
+              </div>
             </div>
-            <div class="relative z-10 text-right">
-              <p class="text-xs font-medium text-white/80">چشم‌انداز و روندها</p>
-              <h2 class="mt-2 text-2xl font-bold text-white leading-snug group-hover:text-emerald-300 transition-colors">
-                چشم‌انداز سرمایه‌گذاری جسورانه شرکتی (CVC) در اقتصاد دیجیتال ایران
-              </h2>
-              <p class="mt-2 text-xs text-white/70 line-clamp-2">دیدگاه‌ها و تحلیل‌های ما درباره روندهای پیش‌روی تجارت الکترونیک، خدمات مالی و هوش مصنوعی.</p>
+
+            <div class="px-6 pb-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-medium text-slate-500">تیم پورتفولیو دیجی‌ونچرز</span>
+              <button
+                type="button"
+                data-open-modal="article-ganjeh"
+                class="font-semibold text-brand-green hover:underline flex items-center gap-1"
+              >
+                <span>مطالعه</span>
+                <span class="rotate-180">←</span>
+              </button>
             </div>
           </article>
 
-          <!-- Article 4: AI & Commerce -->
-          <article class="m12-news-card group reveal">
-            <img src="/assets/images/startups/startup-01.jpg" alt="هوش مصنوعی و تجارت" class="news-bg" />
-            <div class="news-overlay"></div>
-            <div class="relative z-10 flex justify-end">
-              <span class="rounded-full bg-white/20 backdrop-blur-md px-4 py-1.5 text-xs font-semibold text-white border border-white/30">
-                هوش مصنوعی
-              </span>
+          <!-- Card 4: Corporate VC Resilience -->
+          <article
+            class="news-article-card reveal rounded-2xl border border-slate-200/80 bg-white overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover flex flex-col justify-between"
+            data-category="investment"
+          >
+            <div>
+              <div
+                class="group relative aspect-[16/10] overflow-hidden cursor-pointer"
+                data-open-modal="article-cvc"
+              >
+                <img
+                  src="/assets/images/m12/enforceable-behavior-llm.webp"
+                  alt="سرمایه‌گذاری خطرپذیر شرکتی در اقتصاد دیجیتال"
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+                <span class="absolute top-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3 py-1 text-xs font-bold text-slate-900 shadow-sm">
+                  داستان سرمایه‌گذاری
+                </span>
+              </div>
+
+              <div class="p-6">
+                <div class="flex items-center gap-2 text-xs text-slate-400 mb-3">
+                  <time>۲ خرداد ۱۴۰۵</time>
+                  <span>·</span>
+                  <span>۶ دقیقه مطالعه</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 leading-snug">
+                  <button
+                    type="button"
+                    class="text-right transition-colors hover:text-brand-green focus:outline-none"
+                    data-open-modal="article-cvc"
+                  >
+                    نقش سرمایه‌گذاری جسورانه شرکتی (CVC) در تقویت تاب‌آوری اکوسیستم استارتاپی
+                  </button>
+                </h3>
+                <p class="mt-3 text-xs sm:text-sm text-slate-600 font-light leading-relaxed line-clamp-3">
+                  بررسی تفاوت بنیادین سرمایه‌گذاری شرکتی با صندوق‌های سنتی سرمایه‌گذاری؛ چگونه بازار و کانال‌های توزیع دیجی‌کالا ریسک مرحله رشد را برای کارآفرینان به حداقل می‌رساند.
+                </p>
+              </div>
             </div>
-            <div class="relative z-10 text-right">
-              <p class="text-xs font-medium text-white/80">تحلیل فناوری</p>
-              <h2 class="mt-2 text-2xl font-bold text-white leading-snug group-hover:text-emerald-300 transition-colors">
-                هم‌افزایی هوش مصنوعی و تجارت دیجیتال: کاربرد یادگیری عمیق در خرده‌فروشی
-              </h2>
-              <p class="mt-2 text-xs text-white/70 line-clamp-2">تحلیل کاربردی چگونگی خلق ارزش با مدل‌های زبانی و الگوریتم‌های یادگیری ماشین در پلتفرم‌های مقیاس‌بالا.</p>
+
+            <div class="px-6 pb-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-medium text-slate-500">کیوان جعفری، معاونت سرمایه‌گذاری</span>
+              <button
+                type="button"
+                data-open-modal="article-cvc"
+                class="font-semibold text-brand-green hover:underline flex items-center gap-1"
+              >
+                <span>مطالعه</span>
+                <span class="rotate-180">←</span>
+              </button>
             </div>
           </article>
 
-          <!-- Article 5: Fintech Evolution -->
-          <article class="m12-news-card group reveal">
-            <img src="/assets/images/startups/startup-02.jpg" alt="فین‌تک و پرداخت" class="news-bg" />
-            <div class="news-overlay"></div>
-            <div class="relative z-10 flex justify-end">
-              <span class="rounded-full bg-white/20 backdrop-blur-md px-4 py-1.5 text-xs font-semibold text-white border border-white/30">
-                فین‌تک و پرداخت
-              </span>
+          <!-- Card 5: Cloud Tax & Fintech - Keysun -->
+          <article
+            class="news-article-card reveal rounded-2xl border border-slate-200/80 bg-white overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover flex flex-col justify-between"
+            data-category="fintech"
+          >
+            <div>
+              <div
+                class="group relative aspect-[16/10] overflow-hidden cursor-pointer"
+                data-open-modal="article-keysun"
+              >
+                <img
+                  src="/assets/images/startups/startup-02.jpg"
+                  alt="کیسان و راهکارهای مالیاتی ابری"
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+                <span class="absolute top-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3 py-1 text-xs font-bold text-slate-900 shadow-sm">
+                  فین‌تک و پرداخت
+                </span>
+              </div>
+
+              <div class="p-6">
+                <div class="flex items-center gap-2 text-xs text-slate-400 mb-3">
+                  <time>۱۵ اردیبهشت ۱۴۰۵</time>
+                  <span>·</span>
+                  <span>۴ دقیقه مطالعه</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 leading-snug">
+                  <button
+                    type="button"
+                    class="text-right transition-colors hover:text-brand-green focus:outline-none"
+                    data-open-modal="article-keysun"
+                  >
+                    کیسان؛ ساده‌سازی سامانه مودیان و حسابداری ابری برای ده‌ها هزار فروشنده آنلاین
+                  </button>
+                </h3>
+                <p class="mt-3 text-xs sm:text-sm text-slate-600 font-light leading-relaxed line-clamp-3">
+                  گسترش زیرساخت صدور صورت‌حساب الکترونیکی توسط استارتاپ کیسان با همراهی دیجی‌ونچرز و تأثیر مستقیم آن در انطباق مالیاتی و کاهش خطاهای حسابداری فروشندگان.
+                </p>
+              </div>
             </div>
-            <div class="relative z-10 text-right">
-              <p class="text-xs font-medium text-white/80">تحلیل خدمات مالی</p>
-              <h2 class="mt-2 text-2xl font-bold text-white leading-snug group-hover:text-emerald-300 transition-colors">
-                تحول پرداخت‌های دیجیتال و اعتبار خرید خرد (BNPL): آینده فین‌تک در ایران
-              </h2>
-              <p class="mt-2 text-xs text-white/70 line-clamp-2">بررسی روندهای رو به رشد خدمات اعتباری و پرداخت‌های هوشمند در مبادلات آنلاین.</p>
+
+            <div class="px-6 pb-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-medium text-slate-500">امیرحسین رضایی، مدیر سرمایه‌گذاری</span>
+              <button
+                type="button"
+                data-open-modal="article-keysun"
+                class="font-semibold text-brand-green hover:underline flex items-center gap-1"
+              >
+                <span>مطالعه</span>
+                <span class="rotate-180">←</span>
+              </button>
             </div>
           </article>
 
-          <!-- Article 6: Logistics & Operations -->
-          <article class="m12-news-card group reveal">
-            <img src="/assets/images/startups/startup-03.jpg" alt="لجستیک هوشمند" class="news-bg" />
-            <div class="news-overlay"></div>
-            <div class="relative z-10 flex justify-end">
-              <span class="rounded-full bg-white/20 backdrop-blur-md px-4 py-1.5 text-xs font-semibold text-white border border-white/30">
-                زنجیره تأمین
-              </span>
+          <!-- Card 6: AI In Predictive Business Intelligence - NeuroBI -->
+          <article
+            class="news-article-card reveal rounded-2xl border border-slate-200/80 bg-white overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover flex flex-col justify-between"
+            data-category="ai"
+          >
+            <div>
+              <div
+                class="group relative aspect-[16/10] overflow-hidden cursor-pointer"
+                data-open-modal="article-neurobi"
+              >
+                <img
+                  src="/assets/images/startups/startup-03.jpg"
+                  alt="هوش تجاری و تحلیل داده نوروبی‌آی"
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+                <span class="absolute top-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3 py-1 text-xs font-bold text-slate-900 shadow-sm">
+                  هوش مصنوعی و داده
+                </span>
+              </div>
+
+              <div class="p-6">
+                <div class="flex items-center gap-2 text-xs text-slate-400 mb-3">
+                  <time>۲۸ فروردین ۱۴۰۵</time>
+                  <span>·</span>
+                  <span>۵ دقیقه مطالعه</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 leading-snug">
+                  <button
+                    type="button"
+                    class="text-right transition-colors hover:text-brand-green focus:outline-none"
+                    data-open-modal="article-neurobi"
+                  >
+                    هوش تجاری پیش‌بینانه: چگونه نوروبی‌آی رفتار مشتریان تجارت آنلاین را تحلیل می‌کند
+                  </button>
+                </h3>
+                <p class="mt-3 text-xs sm:text-sm text-slate-600 font-light leading-relaxed line-clamp-3">
+                  کاربرد مدل‌های تحلیلی یادگیری عمیق در استارتاپ نوروبی‌آی (NeuroBI) جهت کاهش نرخ ریزش کاربر، پیش‌بینی تقاضای فصلی و بهینه‌سازی بودجه بازاریابی کسب‌وکارها.
+                </p>
+              </div>
             </div>
-            <div class="relative z-10 text-right">
-              <p class="text-xs font-medium text-white/80">لجستیک شهری</p>
-              <h2 class="mt-2 text-2xl font-bold text-white leading-snug group-hover:text-emerald-300 transition-colors">
-                بهینه‌سازی ناوگان و توزیع هوشمند: چگونه فناوری زمان تحویل مرسولات را کاهش می‌دهد
-              </h2>
-              <p class="mt-2 text-xs text-white/70 line-clamp-2">نقش نوآوری استارتاپ‌های لجستیکی در تحول زنجیره تأمین و ارتقای رضایت مشتریان خریدهای اینترنتی.</p>
+
+            <div class="px-6 pb-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-medium text-slate-500">مهسا صبوری، تحلیل‌گر ارشد</span>
+              <button
+                type="button"
+                data-open-modal="article-neurobi"
+                class="font-semibold text-brand-green hover:underline flex items-center gap-1"
+              >
+                <span>مطالعه</span>
+                <span class="rotate-180">←</span>
+              </button>
             </div>
           </article>
 
+          <!-- Card 7: Logistics Fleet Dispatch - Miare -->
+          <article
+            class="news-article-card reveal rounded-2xl border border-slate-200/80 bg-white overflow-hidden shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover flex flex-col justify-between"
+            data-category="logistics"
+          >
+            <div>
+              <div
+                class="group relative aspect-[16/10] overflow-hidden cursor-pointer"
+                data-open-modal="article-miare"
+              >
+                <img
+                  src="/assets/images/startups/startup-04.jpg"
+                  alt="میاره و تحویل فوق‌سریع درون‌شهری"
+                  class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
+                <span class="absolute top-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3 py-1 text-xs font-bold text-slate-900 shadow-sm">
+                  لجستیک و زنجیره تأمین
+                </span>
+              </div>
+
+              <div class="p-6">
+                <div class="flex items-center gap-2 text-xs text-slate-400 mb-3">
+                  <time>۱۴ اسفند ۱۴۰۴</time>
+                  <span>·</span>
+                  <span>۵ دقیقه مطالعه</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 leading-snug">
+                  <button
+                    type="button"
+                    class="text-right transition-colors hover:text-brand-green focus:outline-none"
+                    data-open-modal="article-miare"
+                  >
+                    میاره و تحویل فوق‌سریع: بهینه‌سازی هوشمند ناوگان پیک‌های موتوری در پایتخت
+                  </button>
+                </h3>
+                <p class="mt-3 text-xs sm:text-sm text-slate-600 font-light leading-relaxed line-clamp-3">
+                  چگونه شرکت پورتفولیو میاره توانست با تکیه بر الگوریتم‌های توزیع بار، متوسط زمان ارسال کالاهای سوپرمارکتی و سفارش‌های فروشگاهی را به کمتر از ۳۰ دقیقه کاهش دهد.
+                </p>
+              </div>
+            </div>
+
+            <div class="px-6 pb-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-medium text-slate-500">تیم لجستیک دیجی‌ونچرز</span>
+              <button
+                type="button"
+                data-open-modal="article-miare"
+                class="font-semibold text-brand-green hover:underline flex items-center gap-1"
+              >
+                <span>مطالعه</span>
+                <span class="rotate-180">←</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- ==================== EMPTY STATE (When no results found) ==================== -->
+        <div id="news-empty-state" class="hidden my-16 text-center py-16 px-6 bg-white rounded-3xl border border-slate-200/80 shadow-sm">
+          <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 text-slate-400 mb-4">
+            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900">مقاله‌ای با این مشخصات یافت نشد</h3>
+          <p class="mt-2 text-sm text-slate-500 max-w-md mx-auto">
+            عبارت جستجوی دیگری را وارد کنید یا فیلتر دسته‌بندی را به «همه دیدگاه‌ها» بازگردانید.
+          </p>
+          <button
+            id="news-reset-filters"
+            type="button"
+            class="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-green px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-brand-greenHover transition-all"
+          >
+            <span>مشاهده همه مقالات</span>
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== PRESS KIT & MEDIA INQUIRIES ==================== -->
+    <section class="py-16 bg-white border-t border-b border-slate-100">
+      <div class="container-dv">
+        <div class="grid gap-8 md:grid-cols-2">
+          
+          <!-- Media Kit Card -->
+          <div class="rounded-3xl border border-slate-200/80 bg-slate-50/70 p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm border border-slate-200/80 text-brand-green mb-6">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-slate-950">کیت رسانه‌ای و دارایی‌های بصری</h3>
+              <p class="mt-3 text-sm text-slate-600 font-light leading-relaxed">
+                دسترسی به نسخه‌های برداری لوگوی رسمی دیجی‌ونچرز (SVG/PNG)، کتابچه راهنمای هویت بصری، عکس‌های باکیفیت اعضای هیئت‌مدیره و بیانیه‌های خبری برای استفاده در رسانه‌ها.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-200/60 flex items-center justify-between">
+              <span class="text-xs text-slate-500">فرمت ZIP · شامل فایل‌های برداری</span>
+              <a
+                href="/assets/images/digiventures-wordmark.png"
+                download
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-900 hover:text-brand-green transition-colors"
+              >
+                <span>دریافت دارایی‌های برند</span>
+                <span class="rotate-180">←</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- PR Inquiries Card -->
+          <div class="rounded-3xl border border-slate-200/80 bg-slate-50/70 p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm border border-slate-200/80 text-brand-green mb-6">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-slate-950">ارتباط با روابط عمومی و رسانه‌ها</h3>
+              <p class="mt-3 text-sm text-slate-600 font-light leading-relaxed">
+                خبرنگاران و اصحاب رسانه محترم برای هماهنگی مصاحبه با مدیران، دریافت آخرین گزارش‌های تحلیلی پورتفولیو یا استعلام‌های خبری می‌توانند مستقیماً با روابط عمومی دیجی‌ونچرز مکاتبه نمایند.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-200/60 flex items-center justify-between">
+              <span class="text-xs text-slate-500">پاسخگویی در روزهای کاری</span>
+              <a
+                href="mailto:press@digiventures.ir"
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-green hover:underline"
+              >
+                <span>press@digiventures.ir</span>
+                <span class="rotate-180">←</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== NEWSLETTER SUBSCRIPTION (M12 Gradient) ==================== -->
+    <section class="py-16 bg-slate-50/50">
+      <div class="container-dv">
+        <div class="relative overflow-hidden rounded-3xl bg-slate-950 p-8 sm:p-12 lg:p-16 text-white shadow-xl">
+          <!-- Background Ambient Glow -->
+          <div class="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-brand-green/20 blur-3xl"></div>
+          <div class="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-emerald-600/15 blur-3xl"></div>
+
+          <div class="relative z-10 max-w-3xl mx-auto text-center">
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-emerald-300 backdrop-blur-md mb-4 border border-white/10">
+              خبرنامه تخصصی سرمایه‌گذاری
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+              جدیدترین دیدگاه‌ها و روندهای تکنولوژی در صندوق ایمیل شما
+            </h2>
+            <p class="mt-4 text-sm sm:text-base text-slate-300 font-light leading-relaxed">
+              با عضویت در خبرنامه فصلی دیجی‌ونچرز، گزیده‌ای از تحلیل‌های اقتصادی CVC، روندهای هوش مصنوعی و گزارش‌های پورتفولیو را دریافت کنید.
+            </p>
+
+            <form class="mt-8 flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" onsubmit="event.preventDefault(); alert('با سپاس! ایمیل شما با موفقیت در خبرنامه دیجی‌ونچرز ثبت گردید.'); this.reset();">
+              <input
+                type="email"
+                required
+                placeholder="آدرس ایمیل کاری خود را وارد کنید..."
+                class="flex-1 rounded-xl bg-white/10 border border-white/20 px-4 py-3 text-sm text-white placeholder-slate-400 backdrop-blur-md focus:border-brand-green focus:bg-white/15 focus:outline-none transition-all"
+              />
+              <button
+                type="submit"
+                class="rounded-xl bg-brand-green px-6 py-3 text-sm font-bold text-white shadow-sm hover:bg-brand-greenHover transition-all whitespace-nowrap"
+              >
+                عضویت در خبرنامه
+              </button>
+            </form>
+
+            <p class="mt-4 text-[11px] text-slate-400">
+              ما به حریم خصوصی شما احترام می‌گذاریم و هرگز هرزنامه ارسال نمی‌کنیم. امکان لغو اشتراک در هر زمان وجود دارد.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
   </main>
 
+  <!-- ==================== ARTICLE READER MODAL ==================== -->
+  <dialog id="article-reader-modal" class="article-modal" aria-labelledby="modal-article-title" aria-modal="true">
+    <div class="article-modal-box">
+      
+      <!-- Modal Top Bar -->
+      <div class="flex items-center justify-between border-b border-slate-100 px-6 py-4 bg-white/95 backdrop-blur-md sticky top-0 z-20">
+        <div class="flex items-center gap-2">
+          <span class="flex h-2 w-2 rounded-full bg-brand-green"></span>
+          <span class="text-xs font-bold text-slate-800">اتاق خبر و دیدگاه‌های دیجی‌ونچرز</span>
+        </div>
+        <button
+          type="button"
+          data-close-modal
+          class="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors"
+          aria-label="بستن پنجره"
+        >
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Dynamic Article Content Container -->
+      <div id="modal-article-body" class="article-modal-content">
+        <!-- Injected via JavaScript from hidden template below -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex flex-wrap items-center justify-between border-t border-slate-100 bg-slate-50 px-6 py-4 gap-4">
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-500">اشتراک‌گذاری:</span>
+          <button
+            id="modal-copy-link"
+            type="button"
+            class="flex h-8 items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 text-xs font-medium text-slate-700 hover:border-brand-green hover:text-brand-green transition-colors"
+          >
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+            </svg>
+            <span>کپی لینک</span>
+          </button>
+          <div id="modal-share-toast" class="opacity-0 pointer-events-none text-xs font-semibold text-brand-green transition-opacity">
+            لینک کپی شد!
+          </div>
+        </div>
+
+        <button
+          type="button"
+          data-close-modal
+          class="rounded-xl border border-slate-200 bg-white px-5 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors"
+        >
+          بستن
+        </button>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- ==================== ARTICLE DATA TEMPLATES (Rich Content) ==================== -->
+
+  <!-- Template 1: Logistics & Supply Chain -->
+  <template id="template-article-logistics">
+    <div class="relative mb-6 aspect-[16/9] overflow-hidden rounded-2xl">
+      <img src="/assets/images/m12/dv-news-logistics.jpg" alt="لجستیک هوشمند و زنجیره تأمین" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+      <span class="absolute bottom-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3.5 py-1 text-xs font-bold text-slate-900">
+        داستان سرمایه‌گذاری
+      </span>
+    </div>
+
+    <div class="flex items-center gap-3 text-xs text-slate-500 mb-4">
+      <span>۱۲ شهریور ۱۴۰۵</span>
+      <span>·</span>
+      <span>زمان مطالعه: ۶ دقیقه</span>
+      <span>·</span>
+      <span class="text-brand-green font-semibold">بخش سرمایه‌گذاری خطرپذیر</span>
+    </div>
+
+    <h1 id="modal-article-title" class="text-2xl sm:text-3xl font-black text-slate-950 leading-tight mb-6">
+      چرا دیجی‌ونچرز در استارتاپ‌های لجستیک هوشمند و زنجیره تأمین تجارت دیجیتال سرمایه‌گذاری کرد؟
+    </h1>
+
+    <p class="text-base sm:text-lg font-medium text-slate-700 leading-relaxed mb-6">
+      لجستیک و زنجیره ارزش توزیع، شاهرگ حیاتی تجارت الکترونیک در مقیاس‌های ده‌ها میلیون سفارشی است. دیجی‌ونچرز با هدف کاهش هزینه آخرین مایل و تسریع تحویل سفارش‌ها، سرمایه‌گذاری هدفمندی را در استارتاپ‌های لجستیک آغاز کرده است.
+    </p>
+
+    <div class="pull-quote">
+      «سرمایه‌گذاری در لجستیک برای گروه دیجی‌کالا تنها یک مشارکت مالی نیست؛ بلکه اتصال مستقیم نوآوران جوان به شبکه توزیع و انبارهای پیشرفته‌ای است که روزانه صدها هزار مرسوله را جابجا می‌کنند.»
+    </div>
+
+    <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4">چالش‌های سنتی آخرین مایل و راه‌حل‌های مبتنی بر داده</h3>
+    <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mb-4">
+      در شهرهای بزرگ، ترافیک متراکم، پراکندگی جغرافیایی سفارش‌ها و نوسان ظرفیت ناوگان سنتی، زمان و هزینه ارسال را به شدت افزایش می‌دهند. سرمایه‌گذاری دیجی‌ونچرز در استارتاپ‌هایی نظیر «آپ‌تایم» (سامانه بهینه‌سازی مسیر با هوش مصنوعی) و «میاره» (ناوگان اشتراکی توزیع بار) توانسته است با استفاده از الگوریتم‌های ژنتیک و بهینه‌سازی چندهدفه، مسافت پیموده شده ناوگان را تا ۱۸ درصد کاهش داده و سرعت تحویل سفارش‌های مشتریان را بهبود چشمگیری بخشد.
+    </p>
+
+    <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4">دستاوردها و اهداف کلیدی این سرمایه‌گذاری:</h3>
+    <ul class="space-y-2.5 text-sm sm:text-base text-slate-600 font-light mb-8">
+      <li class="flex items-start gap-2.5">
+        <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-brand-green font-bold text-xs">✓</span>
+        <span>کاهش ۲۰ درصدی هزینه لجستیک در هر مرسوله به واسطه بهینه‌سازی مسیرها.</span>
+      </li>
+      <li class="flex items-start gap-2.5">
+        <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-brand-green font-bold text-xs">✓</span>
+        <span>افزایش رضایت‌مندی خریداران با کاهش میانگین زمان تحویل به کمتر از ۴۵ دقیقه در خریدهای فوری.</span>
+      </li>
+      <li class="flex items-start gap-2.5">
+        <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-brand-green font-bold text-xs">✓</span>
+        <span>کاهش انتشار کربن و مصرف سوخت با طراحی مسیرهای حمل بهینه در ناوگان شهری.</span>
+      </li>
+    </ul>
+
+    <div class="mt-8 rounded-2xl bg-slate-50 p-5 border border-slate-200/80 flex items-center gap-4">
+      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-slate-900 text-white font-bold text-sm">
+        DV
+      </div>
+      <div>
+        <p class="text-sm font-bold text-slate-900">تیم سرمایه‌گذاری دیجی‌ونچرز</p>
+        <p class="text-xs text-slate-500">تهیه شده با همکاری مدیران عملیات دیجی‌کالا و منتورهای دیجی‌نکست</p>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 2: FinTech & Payments -->
+  <template id="template-article-fintech">
+    <div class="relative mb-6 aspect-[16/9] overflow-hidden rounded-2xl">
+      <img src="/assets/images/m12/dv-news-fintech.jpg" alt="فین‌تک و پرداخت" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+      <span class="absolute bottom-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3.5 py-1 text-xs font-bold text-slate-900">
+        فین‌تک و پرداخت
+      </span>
+    </div>
+
+    <div class="flex items-center gap-3 text-xs text-slate-500 mb-4">
+      <span>۲ شهریور ۱۴۰۵</span>
+      <span>·</span>
+      <span>زمان مطالعه: ۵ دقیقه</span>
+      <span>·</span>
+      <span class="text-brand-green font-semibold">هم‌افزایی با دیجی‌پی</span>
+    </div>
+
+    <h1 class="text-2xl sm:text-3xl font-black text-slate-950 leading-tight mb-6">
+      همراهی راهبردی دیجی‌پی و دیجی‌ونچرز در توانمندسازی و رشد مقیاس استارتاپ‌های حوزه فین‌تک
+    </h1>
+
+    <p class="text-base sm:text-lg font-medium text-slate-700 leading-relaxed mb-6">
+      خدمات مالی فراگیر، اعتبارات خرد خرید (BNPL) و ابزارهای مدیریت ثروت نوین، ارکان اصلی توسعه تراکنش‌ها در بستر اقتصاد آنلاین به شمار می‌روند.
+    </p>
+
+    <div class="pull-quote">
+      «ترکیب دانش فناوری‌های مالی دیجی‌پی با توان سرمایه‌گذاری خطرپذیر دیجی‌ونچرز، محیطی امن و شتاب‌دهنده برای استارتاپ‌های فین‌تکی فراهم کرده است.»
+    </div>
+
+    <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4">هم‌افزایی دیجی‌پی و صندوق CVC دیجی‌ونچرز</h3>
+    <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mb-4">
+      استارتاپ‌های فین‌تک در مراحل نخست همواره با چالش‌های رگولاتوری، اعتبارسنجی ریسک و مقیاس‌پذیری پذیرندگان روبرو هستند. با پیوند استارتاپ‌های پورتفولیو به موتورهای ریسک و کیف‌پول دیجی‌پی، زمان استقرار محصولات فین‌تکی از ماه‌ها به چند هفته تقلیل می‌یابد.
+    </p>
+
+    <div class="mt-8 rounded-2xl bg-slate-50 p-5 border border-slate-200/80 flex items-center gap-4">
+      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-brand-green font-bold text-sm">
+        MS
+      </div>
+      <div>
+        <p class="text-sm font-bold text-slate-900">مهسا صبوری</p>
+        <p class="text-xs text-slate-500">تحلیل‌گر ارشد حوزه فین‌تک دیجی‌ونچرز</p>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 3: AI & Large Language Models -->
+  <template id="template-article-ai">
+    <div class="relative mb-6 aspect-[16/9] overflow-hidden rounded-2xl">
+      <img src="/assets/images/m12/dv-news-ai.jpg" alt="هوش مصنوعی و مدل‌های زبانی" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+      <span class="absolute bottom-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3.5 py-1 text-xs font-bold text-slate-900">
+        هوش مصنوعی و داده
+      </span>
+    </div>
+
+    <div class="flex items-center gap-3 text-xs text-slate-500 mb-4">
+      <span>۳۰ تیر ۱۴۰۵</span>
+      <span>·</span>
+      <span>زمان مطالعه: ۷ دقیقه</span>
+      <span>·</span>
+      <span class="text-brand-green font-semibold">فناوری عمیق (Deep Tech)</span>
+    </div>
+
+    <h1 class="text-2xl sm:text-3xl font-black text-slate-950 leading-tight mb-6">
+      تحلیل اختصاصی: همگرایی هوش مصنوعی و مدل‌های زبانی در تحول تجربه تجارت دیجیتال
+    </h1>
+
+    <p class="text-base sm:text-lg font-medium text-slate-700 leading-relaxed mb-6">
+      نسل جدید مدل‌های زبانی چندوجهی و عامل‌های هوشمند نرم‌افزاری (AI Agents) در حال تغییر دادن نحوه جستجو، مقایسه، خرید و پشتیبانی کالاها در بازارهای دیجیتال هستند.
+    </p>
+
+    <div class="pull-quote">
+      «هوش مصنوعی از یک ویژگی اختیاری عبور کرده و اکنون ستون فقرات مزیت رقابتی پلتفرم‌های خرده‌فروشی مدرن است.»
+    </div>
+
+    <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mb-4">
+      دیجی‌ونچرز با سرمایه‌گذاری بر روی هسته‌های پردازش زبان طبیعی فارسی و پلتفرم‌های بینایی ماشین، استارتاپ‌هایی را توانمند می‌سازد که می‌توانند به میلیون‌ها پرسش کاربران در هر ثانیه پاسخ‌های بهینه‌سازی‌شده ارائه داده و بازدهی بازاریابی فروشندگان را چندین برابر نمایند.
+    </p>
+
+    <div class="mt-8 rounded-2xl bg-slate-50 p-5 border border-slate-200/80 flex items-center gap-4">
+      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-700 font-bold text-sm">
+        AM
+      </div>
+      <div>
+        <p class="text-sm font-bold text-slate-900">دکتر علی معتمدی</p>
+        <p class="text-xs text-slate-500">مشاور فناوری‌های عمیق و هوش مصنوعی</p>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 4: Ganjeh Spotlight -->
+  <template id="template-article-ganjeh">
+    <div class="relative mb-6 aspect-[16/9] overflow-hidden rounded-2xl">
+      <img src="/assets/images/startups/startup-01.jpg" alt="گنجه و لاکرهای هوشمند" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+      <span class="absolute bottom-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3.5 py-1 text-xs font-bold text-slate-900">
+        اخبار پورتفولیو
+      </span>
+    </div>
+
+    <div class="flex items-center gap-3 text-xs text-slate-500 mb-4">
+      <span>۱۸ خرداد ۱۴۰۵</span>
+      <span>·</span>
+      <span>زمان مطالعه: ۴ دقیقه</span>
+    </div>
+
+    <h1 class="text-2xl sm:text-3xl font-black text-slate-950 leading-tight mb-6">
+      توسعه شبکه لاکرهای هوشمند تحویل کالا: تجربه رشد استارتاپ گنجه در پورتفولیو
+    </h1>
+
+    <p class="text-base sm:text-lg font-medium text-slate-700 leading-relaxed mb-6">
+      استارتاپ گنجه (Ganjeh) با هدف تحول در تجربه دریافت مرسولات و حذف انتظار در خانه برای تحویل کالا، بزرگ‌ترین شبکه کمدها و لاکرهای هوشمند پستی را با پشتیبانی دیجی‌ونچرز احداث کرده است.
+    </p>
+
+    <p class="text-sm sm:text-base text-slate-600 font-light leading-relaxed mb-4">
+      با استقرار این لاکرها در بیش از ۱۲۰ نقطه منتخب شهر تهران شامل ایستگاه‌های مترو و برج‌های مسکونی، خریداران می‌توانند در هر ساعت از شبانه‌روز با استفاده از یک کد امنیتی بسته خود را در کمتر از ۱۰ ثانیه دریافت کنند.
+    </p>
+
+    <div class="mt-8 rounded-2xl bg-slate-50 p-5 border border-slate-200/80 flex items-center gap-4">
+      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-slate-900 text-white font-bold text-sm">
+        DV
+      </div>
+      <div>
+        <p class="text-sm font-bold text-slate-900">تیم پورتفولیو دیجی‌ونچرز</p>
+        <p class="text-xs text-slate-500">گزارش عملکرد و پایش پیشرفت پورتفولیو</p>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 5: CVC Resilience -->
+  <template id="template-article-cvc">
+    <div class="relative mb-6 aspect-[16/9] overflow-hidden rounded-2xl">
+      <img src="/assets/images/m12/enforceable-behavior-llm.webp" alt="سرمایه‌گذاری CVC" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+      <span class="absolute bottom-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3.5 py-1 text-xs font-bold text-slate-900">
+        داستان سرمایه‌گذاری
+      </span>
+    </div>
+
+    <div class="flex items-center gap-3 text-xs text-slate-500 mb-4">
+      <span>۲ خرداد ۱۴۰۵</span>
+      <span>·</span>
+      <span>زمان مطالعه: ۶ دقیقه</span>
+    </div>
+
+    <h1 class="text-2xl sm:text-3xl font-black text-slate-950 leading-tight mb-6">
+      نقش سرمایه‌گذاری جسورانه شرکتی (CVC) در تقویت تاب‌آوری اکوسیستم استارتاپی
+    </h1>
+
+    <p class="text-base sm:text-lg font-medium text-slate-700 leading-relaxed mb-6">
+      برخلاف صندوق‌های سنتی که صرفاً سرمایه نقدی تزریق می‌کنند، مدل سرمایه‌گذاری خطرپذیر شرکتی (Corporate Venture Capital) به استارتاپ‌ها دسترسی مستقیم به مشتریان تثبیت‌شده، زیرساخت فناوری و داده‌های واقعی بازار می‌دهد.
+    </p>
+
+    <div class="mt-8 rounded-2xl bg-slate-50 p-5 border border-slate-200/80 flex items-center gap-4">
+      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-brand-green font-bold text-sm">
+        KJ
+      </div>
+      <div>
+        <p class="text-sm font-bold text-slate-900">کیوان جعفری</p>
+        <p class="text-xs text-slate-500">معاونت سرمایه‌گذاری دیجی‌ونچرز</p>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 6: Keysun Spotlight -->
+  <template id="template-article-keysun">
+    <div class="relative mb-6 aspect-[16/9] overflow-hidden rounded-2xl">
+      <img src="/assets/images/startups/startup-02.jpg" alt="کیسان و حسابداری ابری" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+      <span class="absolute bottom-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3.5 py-1 text-xs font-bold text-slate-900">
+        فین‌تک و پرداخت
+      </span>
+    </div>
+
+    <div class="flex items-center gap-3 text-xs text-slate-500 mb-4">
+      <span>۱۵ اردیبهشت ۱۴۰۵</span>
+      <span>·</span>
+      <span>زمان مطالعه: ۴ دقیقه</span>
+    </div>
+
+    <h1 class="text-2xl sm:text-3xl font-black text-slate-950 leading-tight mb-6">
+      کیسان؛ ساده‌سازی سامانه مودیان و حسابداری ابری برای ده‌ها هزار فروشنده آنلاین
+    </h1>
+
+    <p class="text-base sm:text-lg font-medium text-slate-700 leading-relaxed mb-6">
+      با اجرای قوانین جدید سامانه مودیان، استارتاپ کیسان با راهکارهای تمام‌ابری خود به عنوان یکی از بازوهای کلیدی پورتفولیو دیجی‌ونچرز، صدور فاکتور الکترونیکی را برای فروشندگان آنلاین به کاری ساده و خودکار تبدیل کرد.
+    </p>
+
+    <div class="mt-8 rounded-2xl bg-slate-50 p-5 border border-slate-200/80 flex items-center gap-4">
+      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-slate-900 text-white font-bold text-sm">
+        AR
+      </div>
+      <div>
+        <p class="text-sm font-bold text-slate-900">امیرحسین رضایی</p>
+        <p class="text-xs text-slate-500">مدیر سرمایه‌گذاری دیجی‌ونچرز</p>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 7: NeuroBI Spotlight -->
+  <template id="template-article-neurobi">
+    <div class="relative mb-6 aspect-[16/9] overflow-hidden rounded-2xl">
+      <img src="/assets/images/startups/startup-03.jpg" alt="نوروبی‌آی و تحلیل هوشمند داده" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+      <span class="absolute bottom-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3.5 py-1 text-xs font-bold text-slate-900">
+        هوش مصنوعی و داده
+      </span>
+    </div>
+
+    <div class="flex items-center gap-3 text-xs text-slate-500 mb-4">
+      <span>۲۸ فروردین ۱۴۰۵</span>
+      <span>·</span>
+      <span>زمان مطالعه: ۵ دقیقه</span>
+    </div>
+
+    <h1 class="text-2xl sm:text-3xl font-black text-slate-950 leading-tight mb-6">
+      هوش تجاری پیش‌بینانه: چگونه نوروبی‌آی رفتار مشتریان تجارت آنلاین را تحلیل می‌کند
+    </h1>
+
+    <p class="text-base sm:text-lg font-medium text-slate-700 leading-relaxed mb-6">
+      پلتفرم هوش تجاری نوروبی‌آی (NeuroBI) با استفاده از مدل‌های پیشرفته یادگیری ماشین، به کسب‌وکارهای تجارت الکترونیک کمک می‌کند تا نوسانات تقاضا و سبد خرید مصرف‌کنندگان را پیش‌بینی نمایند.
+    </p>
+
+    <div class="mt-8 rounded-2xl bg-slate-50 p-5 border border-slate-200/80 flex items-center gap-4">
+      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-purple-100 text-purple-700 font-bold text-sm">
+        MS
+      </div>
+      <div>
+        <p class="text-sm font-bold text-slate-900">مهسا صبوری</p>
+        <p class="text-xs text-slate-500">تحلیل‌گر ارشد حوزه داده دیجی‌ونچرز</p>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 8: Miare Spotlight -->
+  <template id="template-article-miare">
+    <div class="relative mb-6 aspect-[16/9] overflow-hidden rounded-2xl">
+      <img src="/assets/images/startups/startup-04.jpg" alt="میاره و ناوگان تحویل سریع" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+      <span class="absolute bottom-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3.5 py-1 text-xs font-bold text-slate-900">
+        لجستیک و زنجیره تأمین
+      </span>
+    </div>
+
+    <div class="flex items-center gap-3 text-xs text-slate-500 mb-4">
+      <span>۱۴ اسفند ۱۴۰۴</span>
+      <span>·</span>
+      <span>زمان مطالعه: ۵ دقیقه</span>
+    </div>
+
+    <h1 class="text-2xl sm:text-3xl font-black text-slate-950 leading-tight mb-6">
+      میاره و تحویل فوق‌سریع: بهینه‌سازی هوشمند ناوگان پیک‌های موتوری در پایتخت
+    </h1>
+
+    <p class="text-base sm:text-lg font-medium text-slate-700 leading-relaxed mb-6">
+      شرکت پورتفولیو میاره با الگوریتم‌های اختصاصی توزیع بار، ارسال سفارش‌های درون‌شهری را به استانداردی جدید در دقت و سرعت رسانده است.
+    </p>
+
+    <div class="mt-8 rounded-2xl bg-slate-50 p-5 border border-slate-200/80 flex items-center gap-4">
+      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-slate-900 text-white font-bold text-sm">
+        DV
+      </div>
+      <div>
+        <p class="text-sm font-bold text-slate-900">تیم لجستیک دیجی‌ونچرز</p>
+        <p class="text-xs text-slate-500">پایش عملیاتی و زیرساخت ارسال</p>
+      </div>
+    </div>
+  </template>
+
+  </main>
+
   <!-- ==================== FOOTER ==================== -->
-  <footer class="border-t border-slate-200 bg-white py-16 text-slate-700">
+  <footer class="border-t border-slate-200 bg-white py-14 text-slate-700">
     <div class="container-dv">
-      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
+      <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
+        <!-- Col 1: Brand & Bio -->
         <div class="lg:col-span-2">
           <a href="/" class="brand-logo flex items-center gap-2" aria-label="Digiventures">
             <span class="brand-logo-mark" aria-hidden="true"></span>
@@ -249,7 +1238,7 @@
           <p class="mt-3 max-w-sm text-sm leading-relaxed text-slate-500 font-light">
             دیجی‌ونچرز صندوق پژوهش و فناوری سرمایه‌گذاری خطرپذیر شرکتی (CVC) گروه دیجی‌کالاست که با مشارکت دیجی‌کالا و دیجی‌پی و با مدیریت اجرایی دیجی‌نکست فعالیت می‌کند.
           </p>
-          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-slate-600">
+          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-slate-600">
             <span>دیجی‌کالا</span>
             <span>·</span>
             <span>دیجی‌پی</span>
@@ -258,6 +1247,7 @@
           </div>
         </div>
 
+        <!-- Col 2: Navigation & Focus -->
         <div>
           <h4 class="mb-4 text-sm font-bold text-slate-900">حوزه‌های سرمایه‌گذاری</h4>
           <ul class="space-y-3 text-sm text-slate-600">
@@ -269,18 +1259,20 @@
           </ul>
         </div>
 
+        <!-- Col 3: Quick Access & Portfolio -->
         <div>
           <h4 class="mb-4 text-sm font-bold text-slate-900">دسترسی سریع</h4>
           <ul class="space-y-3 text-sm text-slate-600">
-            <li><a href="/portfolio.html" class="transition-colors hover:text-brand-green">پورتفولیو</a></li>
+            <li><a href="/#portfolio" class="transition-colors hover:text-brand-green">پورتفولیو</a></li>
             <li><a href="/#advantage" class="transition-colors hover:text-brand-green">مزیت دیجی‌ونچرز</a></li>
-            <li><a href="/team.html" class="transition-colors hover:text-brand-green">تیم ما</a></li>
+            <li><a href="/#team" class="transition-colors hover:text-brand-green">تیم ما</a></li>
             <li><a href="/about.html" class="transition-colors hover:text-brand-green">درباره ما</a></li>
-            <li><a href="/news.html" class="transition-colors hover:text-brand-green">اخبار و دیدگاه‌ها</a></li>
-            <li><a href="/contact.html" class="transition-colors hover:text-brand-green">ارتباط با ما</a></li>
+            <li><a href="/#news" class="transition-colors hover:text-brand-green">اخبار و دیدگاه‌ها</a></li>
+            <li><a href="/#contact" class="transition-colors hover:text-brand-green">ارتباط با ما</a></li>
           </ul>
         </div>
 
+        <!-- Col 4: For Founders & Contact -->
         <div>
           <h4 class="mb-4 text-sm font-bold text-slate-900">برای بنیان‌گذاران</h4>
           <ul class="space-y-3 text-sm text-slate-600">
@@ -288,6 +1280,24 @@
             <li><a href="/about.html#faq" class="transition-colors hover:text-brand-green">سوالات متداول</a></li>
             <li><a href="mailto:info@digiventures.ir" class="transition-colors hover:text-brand-green">info@digiventures.ir</a></li>
           </ul>
+          <div class="mt-6 flex items-center gap-2.5">
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/company/digiventures" target="_blank" rel="noopener" class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition-colors hover:bg-brand-green hover:text-white" aria-label="LinkedIn">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.9 0-1.63.73-1.63 1.63s.73 1.63 1.63 1.63 1.63-.73 1.63-1.63c0-.9-.73-1.63-1.63-1.63z"/></svg>
+            </a>
+            <!-- X (Twitter) -->
+            <a href="https://x.com/digiventures_ir" target="_blank" rel="noopener" class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition-colors hover:bg-brand-green hover:text-white" aria-label="X (Twitter)">
+              <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <!-- Telegram -->
+            <a href="https://t.me/digiventures" target="_blank" rel="noopener" class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition-colors hover:bg-brand-green hover:text-white" aria-label="Telegram">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <a href="https://instagram.com/digiventures.ir" target="_blank" rel="noopener" class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition-colors hover:bg-brand-green hover:text-white" aria-label="Instagram">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </div>
         </div>
       </div>
 

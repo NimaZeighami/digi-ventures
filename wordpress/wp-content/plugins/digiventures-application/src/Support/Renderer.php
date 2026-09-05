@@ -105,11 +105,7 @@ final class Renderer {
 	}
 
 	public function auth_modals(): void {
-		if ( is_admin() || ! is_singular() ) {
-			return;
-		}
-		$page_ids = array_map( 'intval', (array) get_option( 'dv_app_pages', array() ) );
-		if ( ! in_array( get_queried_object_id(), $page_ids, true ) ) {
+		if ( is_admin() || ! \DigiVentures\Application\Bootstrap::instance()->should_enqueue_assets() ) {
 			return;
 		}
 
@@ -173,7 +169,7 @@ final class Renderer {
 			. $this->dashboard_stat( 'نیازمند اقدام', $needs_revision, 'درخواست‌هایی که باید اصلاح شوند', 'amber' )
 			. $this->dashboard_stat( 'پذیرفته‌شده', $accepted, 'فرصت‌های تأییدشده', 'green' )
 			. '</div>';
-		$html .= '<section class="dv-dashboard-card"><header class="dv-card-header"><div><p class="dv-card-eyebrow">پیگیری سرمایه‌گذاری</p><h2>درخواست‌های من</h2><p>آخرین وضعیت درخواست‌ها و اقدام موردنیاز را اینجا ببینید.</p></div><a class="dv-dashboard-primary" href="' . esc_url( Roles::page_url( 'investment-request', '/investment-request/' ) ) . '"><span aria-hidden="true">＋</span> درخواست جدید</a></header>';
+		$html .= '<section class="dv-dashboard-card"><header class="dv-card-header"><div><span class="dv-card-eyebrow">پیگیری سرمایه‌گذاری</span><h2>درخواست‌های من</h2><p>آخرین وضعیت درخواست‌ها و اقدام موردنیاز را اینجا ببینید.</p></div><a class="dv-dashboard-primary" href="' . esc_url( Roles::page_url( 'investment-request', '/investment-request/' ) ) . '"><span class="dv-btn-icon" aria-hidden="true">' . $this->nav_icon( 'plus' ) . '</span> درخواست جدید</a></header>';
 		if ( ! $rows ) {
 			$html .= $this->dashboard_empty( 'هنوز درخواستی ثبت نکرده‌اید', 'اطلاعات استارتاپ و فایل ارائه خود را آماده کنید و اولین درخواست سرمایه‌گذاری را بسازید.', 'ثبت اولین درخواست', Roles::page_url( 'investment-request', '/investment-request/' ) );
 			return $this->dashboard_shell( 'my-requests', 'نمای کلی حساب', 'درخواست‌های سرمایه‌گذاری خود را یک‌جا مدیریت کنید.', $html . '</section>' );
@@ -204,8 +200,8 @@ final class Renderer {
 			. $this->dashboard_stat( 'نیاز به اصلاح', $revision, 'منتظر اقدام بنیان‌گذار', 'amber' )
 			. $this->dashboard_stat( 'تصمیم‌گیری‌شده', $decided, 'پذیرفته یا رد شده', 'green' )
 			. '</div>';
-		$html .= '<section class="dv-dashboard-card"><header class="dv-card-header"><div><p class="dv-card-eyebrow">فضای مدیریت</p><h2>بررسی درخواست‌ها</h2><p>درخواست‌ها را جست‌وجو، ارزیابی و نتیجه را برای بنیان‌گذار ثبت کنید.</p></div></header>';
-		$html .= '<div class="dv-dashboard-toolbar"><label class="dv-search-field"><span class="sr-only">جست‌وجوی درخواست</span><span aria-hidden="true">⌕</span><input type="search" placeholder="جست‌وجوی استارتاپ، بنیان‌گذار یا ایمیل…" data-dv-table-search="requests"></label><label class="dv-filter-field"><span>وضعیت</span><select data-dv-table-status="requests"><option value="">همه وضعیت‌ها</option><option value="submitted">ثبت شده</option><option value="under_review">در حال بررسی</option><option value="needs_revision">نیاز به اصلاح</option><option value="accepted">پذیرفته شده</option><option value="rejected">رد شده</option></select></label></div>';
+		$html .= '<section class="dv-dashboard-card"><header class="dv-card-header"><div><span class="dv-card-eyebrow">فضای مدیریت</span><h2>بررسی درخواست‌ها</h2><p>درخواست‌ها را جست‌وجو، ارزیابی و نتیجه را برای بنیان‌گذار ثبت کنید.</p></div></header>';
+		$html .= '<div class="dv-dashboard-toolbar"><label class="dv-search-field"><span class="sr-only">جست‌وجوی درخواست</span><span class="dv-search-icon" aria-hidden="true">' . $this->nav_icon( 'search' ) . '</span><input type="search" placeholder="جست‌وجوی استارتاپ، بنیان‌گذار یا ایمیل…" data-dv-table-search="requests"></label><label class="dv-filter-field"><span>وضعیت</span><select data-dv-table-status="requests"><option value="">همه وضعیت‌ها</option><option value="submitted">ثبت شده</option><option value="under_review">در حال بررسی</option><option value="needs_revision">نیاز به اصلاح</option><option value="accepted">پذیرفته شده</option><option value="rejected">رد شده</option></select></label></div>';
 		if ( ! $rows ) {
 			$html .= $this->dashboard_empty( 'درخواستی برای بررسی وجود ندارد', 'درخواست‌های جدید پس از ثبت کاربران در این بخش نمایش داده می‌شوند.' );
 			return $this->dashboard_shell( 'request-management', 'مدیریت درخواست‌ها', 'فرصت‌های سرمایه‌گذاری را با تمرکز و سرعت ارزیابی کنید.', $html . '</section>' );
@@ -214,10 +210,10 @@ final class Renderer {
 		foreach ( $rows as $row ) {
 			$search = strtolower( $row['startup_name'] . ' ' . $row['founder_name'] . ' ' . $row['email'] );
 			$note = ! empty( $row['internal_note'] ) ? '<div class="dv-internal-note"><strong>یادداشت تیم</strong><span>' . esc_html( $row['internal_note'] ) . '</span></div>' : '<span class="dv-note-empty">یادداشتی ثبت نشده</span>';
-			$review_form = '<details class="dv-review-details"><summary><span aria-hidden="true">✎</span> بررسی و به‌روزرسانی</summary><form class="dv-review-form dv-form" data-dv-endpoint="requests/' . (int) $row['id'] . '/status" role="dialog" aria-modal="true" aria-labelledby="dv-review-title-' . (int) $row['id'] . '">'
+			$review_form = '<details class="dv-review-details"><summary><span class="dv-summary-icon" aria-hidden="true">' . $this->nav_icon( 'edit' ) . '</span> بررسی و به‌روزرسانی</summary><form class="dv-review-form dv-form" data-dv-endpoint="requests/' . (int) $row['id'] . '/status" role="dialog" aria-modal="true" aria-labelledby="dv-review-title-' . (int) $row['id'] . '">'
 				. '<div class="dv-review-modal-head"><div><strong id="dv-review-title-' . (int) $row['id'] . '">بررسی درخواست ' . esc_html( $row['startup_name'] ) . '</strong><span>' . esc_html( $row['founder_name'] ) . ' · #' . (int) $row['id'] . '</span></div><button type="button" data-dv-review-close aria-label="بستن پنجره بررسی">×</button></div>'
-				. '<div class="dv-review-grid"><label><span>وضعیت جدید</span><select name="status" required>' . $this->options( array( 'under_review' => 'در حال بررسی', 'needs_revision' => 'نیاز به اصلاح', 'accepted' => 'پذیرفته شده', 'rejected' => 'رد شده' ), $row['status'] ) . '</select></label><label><span>پیام برای بنیان‌گذار</span><textarea name="admin_message" rows="3" placeholder="این پیام در ایمیل و پنل بنیان‌گذار نمایش داده می‌شود.">' . esc_textarea( $row['admin_message'] ?? '' ) . '</textarea></label><label><span>یادداشت داخلی تیم</span><textarea name="internal_note" rows="3" placeholder="فقط مدیران و مدیر ارشد می‌بینند؛ برای ویرایش همین متن را به‌روزرسانی کنید.">' . esc_textarea( $row['internal_note'] ?? '' ) . '</textarea></label></div>'
-				. '<div class="dv-review-actions"><div class="dv-feedback" aria-live="polite" hidden></div><button type="submit">ثبت نتیجه بررسی</button></div></form></details>';
+				. '<div class="dv-review-grid"><label><span>وضعیت جدید</span><select name="status" class="form-select" required>' . $this->options( array( 'under_review' => 'در حال بررسی', 'needs_revision' => 'نیاز به اصلاح', 'accepted' => 'پذیرفته شده', 'rejected' => 'رد شده' ), $row['status'] ) . '</select></label><label><span>پیام برای بنیان‌گذار</span><textarea name="admin_message" rows="3" class="form-textarea" placeholder="این پیام در ایمیل و پنل بنیان‌گذار نمایش داده می‌شود.">' . esc_textarea( $row['admin_message'] ?? '' ) . '</textarea></label><label><span>یادداشت داخلی تیم</span><textarea name="internal_note" rows="3" class="form-textarea" placeholder="فقط مدیران و مدیر ارشد می‌بینند؛ برای ویرایش همین متن را به‌روزرسانی کنید.">' . esc_textarea( $row['internal_note'] ?? '' ) . '</textarea></label></div>'
+				. '<div class="dv-review-actions"><div class="dv-feedback" aria-live="polite" hidden></div><button type="submit" class="dv-dashboard-primary">ثبت نتیجه بررسی</button></div></form></details>';
 			$html .= '<tr data-dv-filter-row data-search="' . esc_attr( $search ) . '" data-status="' . esc_attr( $row['status'] ) . '"><td data-label="استارتاپ"><strong class="dv-table-primary">' . esc_html( $row['startup_name'] ) . '</strong><small>' . esc_html( $this->stage_label( $row['stage'] ) ) . ' · #' . (int) $row['id'] . '</small></td><td data-label="بنیان‌گذار"><strong>' . esc_html( $row['founder_name'] ) . '</strong><small dir="ltr">' . esc_html( $row['email'] ) . '</small></td><td data-label="وضعیت"><span class="dv-status dv-status-' . esc_attr( $row['status'] ) . '">' . esc_html( $this->status_label( $row['status'] ) ) . '</span></td><td data-label="یادداشت داخلی">' . $note . '</td><td data-label="به‌روزرسانی"><time datetime="' . esc_attr( $row['updated_at'] ) . '">' . esc_html( $this->format_date( $row['updated_at'] ) ) . '</time></td><td data-label="بررسی">' . $review_form . '</td></tr>';
 		}
 		$html .= '</tbody></table><p class="dv-filter-empty" data-dv-filter-empty hidden>موردی مطابق جست‌وجوی شما پیدا نشد.</p></div></section>';
@@ -240,8 +236,8 @@ final class Renderer {
 			. $this->dashboard_stat( 'مشتریان', count( $users ) - $admin_count, 'حساب‌های متقاضی سرمایه‌گذاری', 'blue' )
 			. $this->dashboard_stat( 'مدیران بررسی', $admin_count, 'دارای دسترسی بررسی درخواست‌ها', 'green' )
 			. '</div>';
-		$html .= '<section class="dv-dashboard-card"><header class="dv-card-header"><div><p class="dv-card-eyebrow">کنترل دسترسی</p><h2>مدیریت کاربران</h2><p>کاربران را بین نقش مشتری و مدیر بررسی جابه‌جا کنید. حساب‌های مدیر ارشد محافظت‌شده‌اند.</p></div></header>';
-		$html .= '<div class="dv-dashboard-toolbar"><label class="dv-search-field"><span class="sr-only">جست‌وجوی کاربر</span><span aria-hidden="true">⌕</span><input type="search" placeholder="جست‌وجوی نام یا ایمیل…" data-dv-table-search="users"></label></div>';
+		$html .= '<section class="dv-dashboard-card"><header class="dv-card-header"><div><span class="dv-card-eyebrow">کنترل دسترسی</span><h2>مدیریت کاربران</h2><p>کاربران را بین نقش مشتری و مدیر بررسی جابه‌جا کنید. حساب‌های مدیر ارشد محافظت‌شده‌اند.</p></div></header>';
+		$html .= '<div class="dv-dashboard-toolbar"><label class="dv-search-field"><span class="sr-only">جست‌وجوی کاربر</span><span class="dv-search-icon" aria-hidden="true">' . $this->nav_icon( 'search' ) . '</span><input type="search" placeholder="جست‌وجوی نام یا ایمیل…" data-dv-table-search="users"></label></div>';
 		if ( ! $users ) {
 			$html .= $this->dashboard_empty( 'هنوز کاربری وجود ندارد', 'کاربران جدید پس از ثبت‌نام در این بخش نمایش داده می‌شوند.' );
 			return $this->dashboard_shell( 'user-management', 'مدیریت کاربران', 'سطح دسترسی اعضای برنامه را شفاف کنترل کنید.', $html . '</section>' );
@@ -252,7 +248,7 @@ final class Renderer {
 			$name = $user->display_name ?: $user->user_email;
 			$initial = strtoupper( substr( $user->user_email, 0, 1 ) );
 			$search = strtolower( $name . ' ' . $user->user_email );
-			$html .= '<tr data-dv-filter-row data-search="' . esc_attr( $search ) . '"><td data-label="کاربر"><div class="dv-user-cell"><span class="dv-user-avatar" aria-hidden="true">' . esc_html( $initial ) . '</span><span><strong class="dv-table-primary">' . esc_html( $name ) . '</strong><small dir="ltr">' . esc_html( $user->user_email ) . '</small></span></div></td><td data-label="تاریخ عضویت">' . esc_html( $this->format_date( $user->user_registered ) ) . '</td><td data-label="نقش فعلی"><span class="dv-role-badge dv-role-' . esc_attr( $role ) . '">' . esc_html( $this->role_label( $role ) ) . '</span></td><td data-label="تغییر دسترسی"><form class="dv-role-form dv-form" data-dv-endpoint="users/' . (int) $user->ID . '/role"><label class="sr-only" for="dv-role-' . (int) $user->ID . '">نقش کاربر</label><select id="dv-role-' . (int) $user->ID . '" name="role" required>' . $this->options( array( Roles::CUSTOMER => 'مشتری', Roles::ADMIN => 'مدیر بررسی' ), $role, false ) . '</select><button type="submit">ذخیره نقش</button><div class="dv-feedback" aria-live="polite" hidden></div></form></td></tr>';
+			$html .= '<tr data-dv-filter-row data-search="' . esc_attr( $search ) . '"><td data-label="کاربر"><div class="dv-user-cell"><span class="dv-user-avatar" aria-hidden="true">' . esc_html( $initial ) . '</span><span><strong class="dv-table-primary">' . esc_html( $name ) . '</strong><small dir="ltr">' . esc_html( $user->user_email ) . '</small></span></div></td><td data-label="تاریخ عضویت">' . esc_html( $this->format_date( $user->user_registered ) ) . '</td><td data-label="نقش فعلی"><span class="dv-role-badge dv-role-' . esc_attr( $role ) . '">' . esc_html( $this->role_label( $role ) ) . '</span></td><td data-label="تغییر دسترسی"><form class="dv-role-form dv-form" data-dv-endpoint="users/' . (int) $user->ID . '/role"><label class="sr-only" for="dv-role-' . (int) $user->ID . '">نقش کاربر</label><select id="dv-role-' . (int) $user->ID . '" name="role" class="form-select" required>' . $this->options( array( Roles::CUSTOMER => 'مشتری', Roles::ADMIN => 'مدیر بررسی' ), $role, false ) . '</select><button type="submit" class="dv-dashboard-primary">ذخیره نقش</button><div class="dv-feedback" aria-live="polite" hidden></div></form></td></tr>';
 		}
 		$html .= '</tbody></table><p class="dv-filter-empty" data-dv-filter-empty hidden>کاربری مطابق جست‌وجوی شما پیدا نشد.</p></div></section>';
 		return $this->dashboard_shell( 'user-management', 'مدیریت کاربران', 'سطح دسترسی اعضای برنامه را شفاف کنترل کنید.', $html );
@@ -263,11 +259,11 @@ final class Renderer {
 			return $this->unauthorized();
 		}
 		$templates = $this->requests->email_templates();
-		$html = '<section class="dv-dashboard-card dv-email-management"><header class="dv-card-header"><div><p class="dv-card-eyebrow">ارتباطات خودکار</p><h2>مدیریت متن ایمیل‌ها</h2><p>ایمیل دریافت درخواست فوراً ارسال می‌شود؛ هر تغییر وضعیت نیز یک ایمیل به بنیان‌گذار می‌فرستد.</p></div></header>'
+		$html = '<section class="dv-dashboard-card dv-email-management"><header class="dv-card-header"><div><span class="dv-card-eyebrow">ارتباطات خودکار</span><h2>مدیریت متن ایمیل‌ها</h2><p>ایمیل دریافت درخواست فوراً ارسال می‌شود؛ هر تغییر وضعیت نیز یک ایمیل به بنیان‌گذار می‌فرستد.</p></div></header>'
 			. '<form class="dv-form dv-email-template-form" data-dv-endpoint="email-templates"><div class="dv-email-template-grid">'
-			. '<fieldset><legend>ایمیل دریافت درخواست</legend><label>موضوع<input name="received_subject" value="' . esc_attr( $templates['received_subject'] ) . '" required></label><label>متن ایمیل<textarea name="received_body" rows="8" required>' . esc_textarea( $templates['received_body'] ) . '</textarea></label></fieldset>'
-			. '<fieldset><legend>ایمیل به‌روزرسانی وضعیت</legend><label>موضوع<input name="status_subject" value="' . esc_attr( $templates['status_subject'] ) . '" required></label><label>متن ایمیل<textarea name="status_body" rows="8" required>' . esc_textarea( $templates['status_body'] ) . '</textarea></label></fieldset>'
-			. '</div><p class="dv-template-help">متغیرهای قابل استفاده: <code>{founder_name}</code>، <code>{startup_name}</code>، <code>{status}</code> و <code>{message}</code>. پیام مدیر در جایگاه <code>{message}</code>، درست پیش از بخش تشکر، قرار می‌گیرد.</p><div class="dv-email-template-actions"><div class="dv-feedback" aria-live="polite" hidden></div><button type="submit">ذخیره متن ایمیل‌ها</button></div></form></section>';
+			. '<fieldset><legend>ایمیل دریافت درخواست</legend><label><span>موضوع</span><input name="received_subject" value="' . esc_attr( $templates['received_subject'] ) . '" class="form-input" required></label><label><span>متن ایمیل</span><textarea name="received_body" rows="8" class="form-textarea" required>' . esc_textarea( $templates['received_body'] ) . '</textarea></label></fieldset>'
+			. '<fieldset><legend>ایمیل به‌روزرسانی وضعیت</legend><label><span>موضوع</span><input name="status_subject" value="' . esc_attr( $templates['status_subject'] ) . '" class="form-input" required></label><label><span>متن ایمیل</span><textarea name="status_body" rows="8" class="form-textarea" required>' . esc_textarea( $templates['status_body'] ) . '</textarea></label></fieldset>'
+			. '</div><p class="dv-template-help">متغیرهای قابل استفاده: <code>{founder_name}</code>، <code>{startup_name}</code>، <code>{status}</code> و <code>{message}</code>. پیام مدیر در جایگاه <code>{message}</code>، درست پیش از بخش تشکر، قرار می‌گیرد.</p><div class="dv-email-template-actions"><div class="dv-feedback" aria-live="polite" hidden></div><button type="submit" class="dv-dashboard-primary">ذخیره متن ایمیل‌ها</button></div></form></section>';
 		return $this->dashboard_shell( 'email-management', 'مدیریت ایمیل‌ها', 'پیام‌های ارسالی به بنیان‌گذاران را یک‌جا و با کنترل کامل تنظیم کنید.', $html );
 	}
 
@@ -317,42 +313,42 @@ final class Renderer {
 		$role = $this->current_role_label( $user );
 		$nav = array();
 		if ( user_can( $user, 'view_own_requests' ) ) {
-			$nav[] = array( 'key' => 'my-requests', 'label' => 'درخواست‌های من', 'icon' => '◫', 'url' => Roles::page_url( 'my-requests', '/my-requests/' ) );
+			$nav[] = array( 'key' => 'my-requests', 'label' => 'درخواست‌های من', 'icon' => $this->nav_icon( 'grid' ), 'url' => Roles::page_url( 'my-requests', '/my-requests/' ) );
 		}
 		if ( user_can( $user, 'create_request' ) ) {
-			$nav[] = array( 'key' => 'investment-request', 'label' => 'درخواست جدید', 'icon' => '＋', 'url' => Roles::page_url( 'investment-request', '/investment-request/' ) );
+			$nav[] = array( 'key' => 'investment-request', 'label' => 'درخواست جدید', 'icon' => $this->nav_icon( 'plus' ), 'url' => Roles::page_url( 'investment-request', '/investment-request/' ) );
 		}
 		if ( user_can( $user, 'review_requests' ) ) {
-			$nav[] = array( 'key' => 'request-management', 'label' => 'بررسی درخواست‌ها', 'icon' => '◎', 'url' => Roles::page_url( 'request-management', '/request-management/' ) );
+			$nav[] = array( 'key' => 'request-management', 'label' => 'بررسی درخواست‌ها', 'icon' => $this->nav_icon( 'review' ), 'url' => Roles::page_url( 'request-management', '/request-management/' ) );
 		}
 		if ( user_can( $user, 'manage_application_users' ) ) {
-			$nav[] = array( 'key' => 'user-management', 'label' => 'مدیریت کاربران', 'icon' => '◇', 'url' => Roles::page_url( 'user-management', '/user-management/' ) );
+			$nav[] = array( 'key' => 'user-management', 'label' => 'مدیریت کاربران', 'icon' => $this->nav_icon( 'users' ), 'url' => Roles::page_url( 'user-management', '/user-management/' ) );
 		}
 		if ( user_can( $user, 'manage_application_protected' ) ) {
-			$nav[] = array( 'key' => 'email-management', 'label' => 'مدیریت ایمیل‌ها', 'icon' => '✉', 'url' => Roles::page_url( 'email-management', '/email-management/' ) );
+			$nav[] = array( 'key' => 'email-management', 'label' => 'مدیریت ایمیل‌ها', 'icon' => $this->nav_icon( 'mail' ), 'url' => Roles::page_url( 'email-management', '/email-management/' ) );
 		}
 
 		$nav_html = '';
 		foreach ( $nav as $item ) {
-			$nav_html .= '<a class="dv-dashboard-nav-link' . ( $active === $item['key'] ? ' is-active' : '' ) . '" href="' . esc_url( $item['url'] ) . '"' . ( $active === $item['key'] ? ' aria-current="page"' : '' ) . '><span aria-hidden="true">' . esc_html( $item['icon'] ) . '</span>' . esc_html( $item['label'] ) . '</a>';
+			$nav_html .= '<a class="dv-dashboard-nav-link' . ( $active === $item['key'] ? ' is-active' : '' ) . '" href="' . esc_url( $item['url'] ) . '"' . ( $active === $item['key'] ? ' aria-current="page"' : '' ) . '><span class="dv-nav-icon" aria-hidden="true">' . $item['icon'] . '</span><span class="dv-nav-text">' . esc_html( $item['label'] ) . '</span></a>';
 		}
 		if ( user_can( $user, 'manage_options' ) ) {
-			$nav_html .= '<a class="dv-dashboard-nav-link" href="' . esc_url( admin_url() ) . '"><span aria-hidden="true">W</span>مدیریت وردپرس</a>';
+			$nav_html .= '<a class="dv-dashboard-nav-link" href="' . esc_url( admin_url() ) . '"><span class="dv-nav-icon" aria-hidden="true">' . $this->nav_icon( 'wordpress' ) . '</span><span class="dv-nav-text">مدیریت وردپرس</span></a>';
 		}
 
 		$profile_url = user_can( $user, 'view_own_requests' ) ? Roles::page_url( 'my-requests', '/my-requests/' ) : Roles::dashboard_url( $user );
-		return '<div class="dv-dashboard-shell"><header class="dv-dashboard-topbar"><a class="brand-logo dv-dashboard-brand" href="' . esc_url( home_url( '/' ) ) . '" aria-label="دیجی‌ونچرز"><span class="brand-logo-mark" aria-hidden="true"></span><span class="brand-logo-wordmark" aria-hidden="true"></span></a><div class="dv-account-menu"><button class="dv-account-menu-trigger" type="button" data-dv-account-menu aria-expanded="false"><span class="dv-user-avatar" aria-hidden="true">' . esc_html( $initial ) . '</span><span dir="ltr">' . esc_html( $user->user_email ) . '</span><i aria-hidden="true">⌄</i></button><div class="dv-account-menu-popover" data-dv-account-popover hidden><a href="' . esc_url( $profile_url ) . '">پروفایل و حساب</a><a href="' . esc_url( Roles::page_url( 'logout', '/logout/' ) ) . '" data-dv-auth-open="logout" aria-haspopup="dialog">خروج از حساب</a></div></div></header>'
-			. '<div class="dv-dashboard-layout"><aside class="dv-dashboard-sidebar"><div class="dv-dashboard-sidebar-profile"><span class="dv-user-avatar" aria-hidden="true">' . esc_html( $initial ) . '</span><span><strong>' . esc_html( $name ) . '</strong><small>' . esc_html( $user->user_email ) . '</small><em>' . esc_html( $role ) . '</em></span></div><nav aria-label="ناوبری حساب">' . $nav_html . '</nav><div class="dv-dashboard-sidebar-bottom"><a class="dv-dashboard-site-link" href="' . esc_url( home_url( '/' ) ) . '"><span aria-hidden="true">↗</span> بازگشت به سایت</a></div></aside>'
-			. '<main class="dv-dashboard-main"><section class="dv-dashboard-hero"><div><p>پنل دیجی‌ونچرز</p><h1>' . esc_html( $title ) . '</h1><span>' . esc_html( $description ) . '</span></div><span class="dv-dashboard-role">' . esc_html( $role ) . '</span></section>' . $content . '</main></div></div>';
+		return '<div class="dv-dashboard-shell"><header class="dv-dashboard-topbar"><div class="dv-dashboard-topbar-inner"><a class="brand-logo dv-dashboard-brand" href="' . esc_url( home_url( '/' ) ) . '" aria-label="دیجی‌ونچرز"><span class="brand-logo-mark" aria-hidden="true"></span><span class="brand-logo-wordmark" aria-hidden="true"></span></a><div class="dv-account-menu"><button class="dv-account-menu-trigger" type="button" data-dv-account-menu aria-expanded="false"><span class="dv-user-avatar" aria-hidden="true">' . esc_html( $initial ) . '</span><span class="dv-user-email-label" dir="ltr">' . esc_html( $user->user_email ) . '</span><span class="dv-account-arrow" aria-hidden="true">' . $this->nav_icon( 'chevron' ) . '</span></button><div class="dv-account-menu-popover" data-dv-account-popover hidden><a href="' . esc_url( $profile_url ) . '">پروفایل و حساب</a><a href="' . esc_url( Roles::page_url( 'logout', '/logout/' ) ) . '" data-dv-auth-open="logout" aria-haspopup="dialog">خروج از حساب</a></div></div></div></header>'
+			. '<div class="dv-dashboard-layout"><aside class="dv-dashboard-sidebar"><div class="dv-dashboard-sidebar-profile"><span class="dv-user-avatar" aria-hidden="true">' . esc_html( $initial ) . '</span><span><strong>' . esc_html( $name ) . '</strong><small>' . esc_html( $user->user_email ) . '</small><em>' . esc_html( $role ) . '</em></span></div><nav aria-label="ناوبری حساب">' . $nav_html . '</nav><div class="dv-dashboard-sidebar-bottom"><a class="dv-dashboard-site-link" href="' . esc_url( home_url( '/' ) ) . '"><span aria-hidden="true">' . $this->nav_icon( 'external' ) . '</span> بازگشت به سایت</a></div></aside>'
+			. '<main class="dv-dashboard-main"><div class="dv-dashboard-container"><section class="dv-dashboard-hero"><div><span class="dv-hero-badge">پنل دیجی‌ونچرز</span><h1>' . esc_html( $title ) . '</h1><p>' . esc_html( $description ) . '</p></div><span class="dv-dashboard-role">' . esc_html( $role ) . '</span></section>' . $content . '</div></main></div></div>';
 	}
 
 	private function dashboard_stat( string $label, int $value, string $note, string $tone ): string {
-		return '<article class="dv-stat-card dv-stat-' . esc_attr( $tone ) . '"><span class="dv-stat-dot" aria-hidden="true"></span><div><p>' . esc_html( $label ) . '</p><strong>' . esc_html( (string) $value ) . '</strong><small>' . esc_html( $note ) . '</small></div></article>';
+		return '<article class="dv-stat-card dv-stat-' . esc_attr( $tone ) . '"><div class="dv-stat-head"><span class="dv-stat-dot" aria-hidden="true"></span><p class="dv-stat-label">' . esc_html( $label ) . '</p></div><div class="dv-stat-body"><strong class="dv-stat-number">' . esc_html( (string) $value ) . '</strong><small class="dv-stat-sub">' . esc_html( $note ) . '</small></div></article>';
 	}
 
 	private function dashboard_empty( string $title, string $description, string $action = '', string $url = '' ): string {
 		$button = $action && $url ? '<a class="dv-dashboard-primary" href="' . esc_url( $url ) . '">' . esc_html( $action ) . '</a>' : '';
-		return '<div class="dv-dashboard-empty"><span aria-hidden="true">◇</span><h3>' . esc_html( $title ) . '</h3><p>' . esc_html( $description ) . '</p>' . $button . '</div>';
+		return '<div class="dv-dashboard-empty"><span class="dv-empty-icon" aria-hidden="true">' . $this->nav_icon( 'sparkle' ) . '</span><h3>' . esc_html( $title ) . '</h3><p>' . esc_html( $description ) . '</p>' . $button . '</div>';
 	}
 
 	private function count_statuses( array $rows, array $statuses ): int {
@@ -404,5 +400,22 @@ final class Renderer {
 
 	private function status_label( string $status ): string {
 		return array( 'draft' => 'پیش‌نویس', 'submitted' => 'ثبت شده', 'under_review' => 'در حال بررسی', 'needs_revision' => 'نیاز به اصلاح', 'accepted' => 'پذیرفته شده', 'rejected' => 'رد شده' )[ $status ] ?? $status;
+	}
+
+	private function nav_icon( string $name ): string {
+		return match ( $name ) {
+			'grid' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>',
+			'plus' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>',
+			'review' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6m-6 4h4m5-11.5a2.5 2.5 0 0 1 2.5 2.5v13a2.5 2.5 0 0 1-2.5 2.5h-12A2.5 2.5 0 0 1 3.5 20V7a2.5 2.5 0 0 1 2.5-2.5h2.2a2.5 2.5 0 0 1 4.6 0H15Z"/><circle cx="12" cy="4.5" r="1.5"/></svg>',
+			'users' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+			'mail' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>',
+			'wordpress' => '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm-8.48 10a8.5 8.5 0 0 1 1.7-5.07l3.6 9.87Zm10.05 7.77a8.47 8.47 0 0 1-3.57.8A8.34 8.34 0 0 1 6.55 19l2.76-8 2.05 5.92a.66.66 0 0 0 .62.45h.06a.66.66 0 0 0 .63-.44l1.9-5.54.95 2.65ZM12 11.23l-1.93-5.6a8.45 8.45 0 0 1 5.37 1.07l.2.33Zm6.56.77a8.3 8.3 0 0 1-.36 2.45l-2.85-8A8.47 8.47 0 0 1 18.56 12Z"/></svg>',
+			'external' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>',
+			'search' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>',
+			'chevron' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>',
+			'edit' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>',
+			'sparkle' => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/></svg>',
+			default => '',
+		};
 	}
 }
