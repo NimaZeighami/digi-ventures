@@ -1,28 +1,28 @@
-# DigiVentures contributor guide
+# DigiVentures Contributor Guide
 
-## Repository map
+## Repository Map
 
-- `frontend/` is the visual reference; do not treat its client-side forms as the production security boundary.
-- `SPECIFICATION.md` is the application contract.
-- `wordpress/wp-content/plugins/digiventures-application/` is the deployable product.
-- `docs/` records discovery, decisions, contracts, and release evidence.
+- `app/` contains the Next.js 14 App Router pages, layouts, and API routes (`(public)`, `(auth)`, `(portal)`, `(admin)`, `api/`).
+- `components/` contains reusable React UI components, layouts, forms, and administrative controls.
+- `modules/` contains domain business logic (auth, requests, storage, email, news, contact).
+- `db/` contains the PostgreSQL schema (Drizzle ORM), migrations, and seeds.
+- `lib/` contains utilities, logging, environment validation, and mail client.
+- `actions/` contains server actions for transactional workflows.
+- `public/` contains static assets (fonts, images, icons, brand vectors).
+- `storage/` contains local uploaded pitch decks outside the web root.
+- `tests/` contains automated unit and integration tests (Vitest).
 
-## Boundaries
+## Boundaries & Architecture
 
-Elementor and WordPress pages own editable presentation. The DigiVentures plugin owns roles, authentication integration, validation, uploads, persistence, authorization, notifications, migrations, and diagnostics. Never place application logic in a theme, Elementor HTML widget, Elementor JSON, browser-only code, or WordPress core.
+- **Next.js 14 App Router + TypeScript + Tailwind CSS** is the unified fullstack platform.
+- **PostgreSQL + Drizzle ORM** owns persistence, transactional guarantees, and concurrency control.
+- Authentication uses Argon2id password hashing, database-backed opaque session tokens, and secure HTTP-only cookies.
+- Server actions and API routes must always validate input with Zod, authenticate the caller, enforce role-based access control (RBAC), and verify tenant ownership.
+- File uploads are validated strictly by file size (<= 20 MiB) and binary magic bytes (PDF, PPT, PPTX).
 
-## Required practices
+## Verification and Definition of Done
 
-- Target PHP 8.1+ and WordPress 6.4+; use namespaces, WordPress APIs, and WordPress coding standards.
-- Authenticate, check a capability, verify a nonce, validate ownership and server-side input on every state change.
-- Use `$wpdb->prepare()` for dynamic SQL; sanitize inputs and escape all HTML/URLs/attributes at output.
-- Use WordPress users and password APIs only. Never store a password, secret, or role selected by a browser request.
-- Validate uploads by extension, MIME, WordPress file type, and 20 MiB size; never execute uploads.
-- Use repeat-safe migrations and installers. Do not make direct production schema changes or overwrite user page content silently.
-- Keep normal users out of wp-admin and hide their toolbar; preserve administrator login and reset routes.
-- Log non-sensitive failures through the plugin logger. Never commit production secrets or debug logs.
-- Do not invent Elementor template JSON. Register plugin widgets and verify templates in a real Elementor install before exporting them.
-
-## Verification and definition of done
-
-After changing `frontend/`, run `frontend/scripts/sync-plugin.sh` to rebuild the Vite bundle and sync reference templates, CSS/JS, and hashed assets into the plugin. Run `php -l` on every PHP source file, `scripts/validate-release.sh`, and `scripts/package-plugin.sh` before delivery. Run WordPress/Elementor integration and browser checks only in the documented disposable environment; label anything not run as unverified. A change is done only when its docs, relevant tests, migration impact, release package, and security review are updated.
+- Run `npm run typecheck` (`tsc --noEmit`) to ensure zero TypeScript errors.
+- Run `npm test` (`vitest run`) to verify all automated unit and integration tests pass.
+- Run `npm run build` (`next build`) to ensure all routes compile and optimize successfully.
+- Code must follow strict RTL and Iranian Rial / Persian typography standards (Yekan Bakh, Gilroy, `#00B140` DigiVentures green).

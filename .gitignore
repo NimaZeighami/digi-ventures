@@ -73,6 +73,7 @@ build/
 .cache/
 .eslintcache
 .stylelintcache
+*.tsbuildinfo
 
 # Package Manager Storage
 # ------------------------------------------------------------------------------
@@ -83,54 +84,20 @@ build/
 .yarn/install-state.gz
 .pnp.*
 
-# PHP & Composer
-# ------------------------------------------------------------------------------
-vendor/
-composer.phar
-.phpunit.result.cache
-.phpunit.cache/
-.php-cs-fixer.cache
-coverage/
-.nyc_output/
-
-# WordPress Specific
-# ------------------------------------------------------------------------------
-# Core configuration and local overrides (if full WP is placed in repo)
-wp-config.php
-wp-config-local.php
-wordpress/wp-config.php
-wordpress/wp-config-local.php
-
-# WordPress uploads and media (protect user data & uploads)
-wp-content/uploads/
-wordpress/wp-content/uploads/
-**/wp-content/uploads/
-
-# WordPress drop-ins, cache, and upgrade folders
-wp-content/upgrade/
-wp-content/backup-db/
-wp-content/cache/
-wp-content/advanced-cache.php
-wp-content/wp-cache-config.php
-wordpress/wp-content/upgrade/
-wordpress/wp-content/cache/
-**/wp-content/cache/
-**/wp-content/upgrade/
-
-# Database dumps & Local SQL exports
+# Database dumps & Local SQL exports (except drizzle migrations)
 # ------------------------------------------------------------------------------
 *.sql
+!db/migrations/*.sql
 *.sql.gz
 *.sqlite
 *.sqlite3
 *.db
 
-# Docker Local Overrides
-# ------------------------------------------------------------------------------
-docker-compose.override.yml
-
-# Temporary & Scratch Files
+# Temporary & Local Uploads
 # ------------------------------------------------------------------------------
 tmp/
 temp/
 .temp/
+storage/uploads/
+
+
